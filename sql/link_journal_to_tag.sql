@@ -1,0 +1,1 @@
+INSERT INTO journal_tags (journal_id, tag_id) VALUES (?, ?)

@@ -1,0 +1,63 @@
+.container {
+    width: 100%;
+}
+
+.tabNav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-bottom: 2rem;
+    padding: 4px;
+    border-radius: 100px;
+    background: linear-gradient(315deg, #030712 0%, #060910 59.9%, #030712 119.79%);
+    border: 1px solid #0b101a;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+.tabNav a {
+    background: none;
+    border: none;
+    color: var(--monochrome-6);
+    font-size: var(--font-size-subtitle);
+    padding: 12px 24px;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    border-radius: 100px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease,
+        background 0.4s ease,
+        transform 0.25s ease;
+}
+
+.tabNav a.active:hover,
+.tabNav a:hover {
+    color: var(--monochrome-4);
+    transform: translateY(-1px);
+    background-color: var(--monochrome-12);
+}
+
+.tabNav a.active {
+    color: var(--monochrome-4);
+    background: linear-gradient(315deg, #111827 0%, #030712 59.9%, #1F2937 119.79%);
+    border: 1px solid var(--monochrome-11);
+    font-weight: 600;
+    transition:
+        background-color 0.35s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+}
+
+@media (max-width: 768px) {
+    .tabNav a {
+        font-size: var(--font-size-body);
+    }
+
+    .tabNav {
+        gap: 4px;
+    }
+}

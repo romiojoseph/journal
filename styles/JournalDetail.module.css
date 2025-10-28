@@ -1,0 +1,166 @@
+.container {
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 120px;
+}
+
+/* --- NEW STYLES --- */
+.topBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 32px;
+    border-bottom: 1px dashed var(--monochrome-11);
+}
+
+.topBarActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.moodsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.connectorsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 0;
+    border-top: 1px dashed var(--monochrome-11);
+    border-bottom: 1px dashed var(--monochrome-11);
+}
+
+.connectorRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.connectorLabel {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-weight: 500;
+    color: var(--monochrome-6);
+    flex-shrink: 0;
+}
+
+.connectorTags {
+    color: var(--monochrome-5);
+    text-align: right;
+}
+
+/* --- END NEW STYLES --- */
+
+
+.topBarActions button,
+.editButton,
+.quoteButton {
+    background-color: var(--monochrome-11);
+    color: var(--monochrome-4);
+    border: none;
+    border-radius: 100px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.topBarActions button:hover,
+.editButton:hover,
+.quoteButton:hover {
+    background-color: var(--monochrome-10);
+    transform: scale(1.05);
+}
+
+.topBarActions .deleteButton {
+    background-color: #5d2b2b;
+}
+
+.topBarActions .deleteButton:hover {
+    background-color: var(--mood-stress);
+    color: #fff;
+}
+
+.topBarActions .bookmarked {
+    color: var(--monochrome-1);
+}
+
+
+.contentWrapper {
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.content {
+    white-space: pre-wrap;
+    font-size: var(--font-size-heading6);
+    line-height: 1.8;
+    color: var(--monochrome-5);
+}
+
+.footer {
+    border-top: 1px dashed var(--monochrome-11);
+    border-bottom: 1px dashed var(--monochrome-11);
+    padding: 24px 0;
+    margin-top: 24px 0;
+    color: var(--monochrome-7);
+    font-size: var(--font-size-caption);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+}
+
+@media (max-width: 768px) {
+
+    .topBarActions button,
+    .editButton,
+    .quoteButton {
+        padding: 12px;
+        background-color: var(--monochrome-13);
+        color: var(--monochrome-4);
+        border: 1px solid var(--monochrome-11);
+    }
+
+    .topBarActions {
+        gap: 4px;
+    }
+
+    .topBar {
+        padding-bottom: 16px;
+    }
+
+    .connectorRow {
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .content {
+        font-size: var(--font-size-subtitle);
+        color: var(--monochrome-6);
+    }
+
+    .footer {
+        font-size: var(--font-size-label);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}

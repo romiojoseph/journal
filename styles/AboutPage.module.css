@@ -1,0 +1,113 @@
+.container {
+    max-width: 100%;
+}
+
+.appIcon {
+    margin: 0 0 32px;
+}
+
+.container h2 {
+    font-size: var(--font-size-heading2);
+    color: var(--monochrome-4);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.container h3 {
+    font-size: var(--font-size-heading5);
+    font-weight: 500;
+    color: var(--monochrome-5);
+    margin: 40px 0 16px;
+}
+
+.container p+p {
+    margin-top: 12px;
+}
+
+.container blockquote {
+    padding: 16px 32px;
+    font-size: var(--font-size-subtitle);
+    line-height: 1.5;
+    color: var(--monochrome-6);
+    border-left: 3px solid var(--mood-tired);
+    margin: 40px 0;
+    background-color: var(--monochrome-14);
+}
+
+.container p,
+.container li {
+    font-size: var(--font-size-subtitle);
+    line-height: 1.7;
+    color: var(--monochrome-6);
+}
+
+.container ul {
+    list-style-position: inside;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* --- NEW STYLES FOR FONT SELECTOR --- */
+.fontSelector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0 0 32px;
+    padding: 0 0 16px;
+    border-bottom: 1px dashed var(--monochrome-11);
+}
+
+.fontSelector label {
+    color: var(--monochrome-4);
+    font-weight: 500;
+}
+
+.fontSelector select {
+    padding: 0;
+    border: none;
+    color: var(--monochrome-4);
+    border-radius: 0;
+    font-size: var(--font-size-body);
+    width: fit-content;
+    background-color: var(--monochrome-15);
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .fontSelector {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 16px;
+    }
+
+    .fontSelector select {
+        padding: 0;
+        margin-left: -4px;
+        width: 100%;
+    }
+
+    .container h2 {
+        font-size: var(--font-size-heading5);
+        color: var(--monochrome-6);
+    }
+
+
+    .container p,
+    .container li {
+        font-size: var(--font-size-body);
+        color: var(--monochrome-7);
+    }
+
+    .container h3 {
+        font-size: var(--font-size-heading6);
+        color: var(--monochrome-6);
+    }
+
+    .container p:last-child {
+        margin-bottom: 32px;
+    }
+
+}

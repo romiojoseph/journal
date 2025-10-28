@@ -1,0 +1,1 @@
+DELETE FROM journal_tags WHERE journal_id = ?;

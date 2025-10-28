@@ -1,0 +1,259 @@
+/* Google Sans Code */
+@font-face {
+    font-family: 'Google Sans Code';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/google-sans-code/GoogleSansCode-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Google Sans Code';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/google-sans-code/GoogleSansCode-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Google Sans Code';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/google-sans-code/GoogleSansCode-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Google Sans Code';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/google-sans-code/GoogleSansCode-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Google Sans Code';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/google-sans-code/GoogleSansCode-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Google Sans Code';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/google-sans-code/GoogleSansCode-SemiBoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Google Sans Code';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/google-sans-code/GoogleSansCode-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Google Sans Code';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/google-sans-code/GoogleSansCode-BoldItalic.ttf') format('truetype');
+}
+
+/* Inter */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/inter/Inter_18pt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/inter/Inter_18pt-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/inter/Inter_18pt-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/inter/Inter_18pt-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/inter/Inter_18pt-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/inter/Inter_18pt-SemiBoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/inter/Inter_18pt-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/inter/Inter_18pt-BoldItalic.ttf') format('truetype');
+}
+
+/* JetBrains Mono */
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono/JetBrainsMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono/JetBrainsMono-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono/JetBrainsMono-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono/JetBrainsMono-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono/JetBrainsMono-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono/JetBrainsMono-SemiBoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono/JetBrainsMono-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono/JetBrainsMono-BoldItalic.ttf') format('truetype');
+}
+
+/* Lora */
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/lora/Lora-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/lora/Lora-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/lora/Lora-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/lora/Lora-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/lora/Lora-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/lora/Lora-SemiBoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/lora/Lora-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/lora/Lora-BoldItalic.ttf') format('truetype');
+}

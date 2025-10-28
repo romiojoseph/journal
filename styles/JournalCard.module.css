@@ -1,0 +1,78 @@
+.card {
+    display: block;
+    background-color: var(--monochrome-15);
+    padding: 32px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+    border-bottom: 1px solid var(--monochrome-11);
+}
+
+.card:hover {}
+
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 16px;
+}
+
+/* Override TagPill styles for this specific context */
+.tagsContainer>div {
+    pointer-events: none;
+}
+
+.tagsContainer button {
+    display: none;
+    /* Hide the remove button */
+}
+
+.content {
+    color: var(--monochrome-5);
+    font-size: var(--font-size-subtitle);
+    line-height: 1.6;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.timestamp {
+    font-size: var(--font-size-caption);
+    color: var(--monochrome-7);
+}
+
+.connectorCount {
+    font-size: var(--font-size-caption);
+    color: var(--monochrome-7);
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 24px 16px;
+    }
+
+    .timestamp {
+        font-size: var(--font-size-tagline);
+    }
+
+    .connectorCount {
+        font-size: var(--font-size-tagline);
+    }
+
+    .content {
+        font-size: var(--font-size-body);
+        color: var(--monochrome-6);
+    }
+}

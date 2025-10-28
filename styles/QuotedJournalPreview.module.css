@@ -1,0 +1,61 @@
+.quotedContainer {
+    display: block;
+    border: 1px solid var(--monochrome-11);
+    background-color: var(--monochrome-12);
+    border-radius: 24px;
+    padding: 24px;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s;
+}
+
+.quotedContainer:hover {
+    background-color: var(--monochrome-10);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--monochrome-7);
+    margin-bottom: 0.75rem;
+}
+
+.content {
+    color: var(--monochrome-6);
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+.wrapper {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.detachButton {
+    position: absolute;
+    top: -48px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--mood-stress);
+    color: white;
+    border: 1px solid var(--monochrome-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.detachButton:hover {
+    opacity: 0.8;
+}

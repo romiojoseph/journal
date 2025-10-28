@@ -1,0 +1,134 @@
+.filterBar {
+    position: sticky;
+    top: 0;
+    background-color: var(--monochrome-15);
+    border: 1px solid var(--monochrome-11);
+    padding: 16px 24px;
+    margin: -56px 0 0;
+    z-index: 900;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.searchContainer {
+    flex-grow: 1;
+    color: var(--monochrome-6);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-size-body);
+    background-color: var(--monochrome-15);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--monochrome-10);
+    transition: all 0.2s ease-in-out;
+}
+
+.searchContainer input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--monochrome-4);
+    font-size: 1rem;
+}
+
+.searchContainer input::placeholder {
+    color: var(--monochrome-8);
+}
+
+.searchContainer:hover {
+    border-color: var(--monochrome-9);
+    background-color: var(--monochrome-12);
+}
+
+.searchContainer input:focus {
+    outline: none;
+}
+
+.filters {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.filterButton {
+    background-color: var(--monochrome-13);
+    color: var(--monochrome-6);
+    border: 1px solid var(--monochrome-10);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: var(--font-size-body);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.filterButton:hover {
+    border-color: var(--monochrome-9);
+    color: var(--monochrome-4);
+}
+
+.filterButton.activeFilter {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.activeDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    margin-left: 4px;
+}
+
+/* --- MODAL SPECIFIC STYLES --- */
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.modalSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.modalSection label {
+    font-weight: 600;
+    color: var(--monochrome-5);
+}
+
+.datePicker {
+    background-color: var(--monochrome-13);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--monochrome-10);
+    color: var(--monochrome-4);
+    font-size: var(--font-size-body);
+    width: 100%;
+}
+
+.datePicker::placeholder {
+    color: var(--monochrome-6);
+}
+
+.datePickerWrapper .react-datepicker__close-icon {
+    right: 5px;
+}
+
+.datePickerWrapper .react-datepicker__close-icon::after {
+    background-color: var(--monochrome-11);
+}
+
+.selectPlaceholder {
+    background-color: var(--monochrome-13);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--monochrome-10);
+    min-height: 48px;
+}

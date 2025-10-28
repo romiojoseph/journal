@@ -1,0 +1,65 @@
+.container {
+    width: 100%;
+}
+
+.diaryTimeline {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 32px 0 0;
+    border-top: none;
+    border-bottom: 1px solid var(--monochrome-11);
+    border-left: 1px solid var(--monochrome-11);
+    border-right: 1px solid var(--monochrome-11);
+    min-height: 100vh;
+}
+
+.diaryTimeline h1 {
+    font-size: var(--font-size-label);
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 24px 32px 0;
+    color: var(--monochrome-6);
+}
+
+
+.emptyMessage {
+    color: var(--monochrome-6);
+    font-size: var(--font-size-heading6);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 48px);
+    padding: 24px;
+    border: 1px dashed var(--monochrome-11);
+    background: linear-gradient(162.84deg, #111827 0.82%, #111827 30.33%, #030712 59.84%, #030712 99.18%);
+    box-shadow: inset -1px -1px 4px #1F2937, inset 1px 1px 4px #1F2937;
+    background: radial-gradient(82.12% 50% at 50% 50%, #111827 0%, #030712 100%);
+    border-radius: 24px;
+    height: 80vh;
+    margin: 24px;
+}
+
+
+.emptyMessage a {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+
+    .container {
+        width: calc(100% + 33px);
+        margin: -18px -16px;
+    }
+
+    .diaryTimeline h1 {
+        margin: 48px 16px 0;
+    }
+
+
+}

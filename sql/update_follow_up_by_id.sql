@@ -1,0 +1,1 @@
+UPDATE follow_ups SET content = ?, updatedAt = CURRENT_TIMESTAMP WHERE id = ?;

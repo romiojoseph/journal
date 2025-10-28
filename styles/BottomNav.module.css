@@ -1,0 +1,77 @@
+.bottomNav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .bottomNav {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 32px 16px 16px;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.96) 45%);
+        z-index: 1000;
+    }
+}
+
+.navLinks {
+    display: flex;
+    justify-content: space-between;
+    /* Use space-between for the new layout */
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 8px;
+    /* Add some padding */
+}
+
+/* --- FIX: New robust layout classes --- */
+.leftLinks,
+.rightLinks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-basis: 32.30%;
+}
+
+.navLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--monochrome-7);
+    font-size: var(--font-size-tagline);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+}
+
+.navLink.active {
+    color: var(--monochrome-1);
+}
+
+
+
+.fab {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 100px;
+    color: var(--monochrome-4);
+    background: linear-gradient(315deg, #11182746 0%, #03071259 59.9%, #1f293759 119.79%);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--monochrome-11);
+    font-weight: 600;
+}

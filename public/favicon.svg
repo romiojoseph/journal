@@ -1,0 +1,66 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_364_850)">
+<g filter="url(#filter0_g_364_850)">
+<g clip-path="url(#clip1_364_850)">
+<rect x="7" width="242.59" height="256" rx="39.0095" fill="#111827"/>
+<line x1="7.60952" y1="72.5334" x2="248.981" y2="72.5334" stroke="#374151" stroke-width="1.21905" stroke-linecap="round" stroke-dasharray="3.66 3.66"/>
+<line x1="7.60952" y1="76.1905" x2="248.981" y2="76.1905" stroke="#374151" stroke-width="1.21905" stroke-linecap="round" stroke-dasharray="3.66 3.66"/>
+<line x1="7.60952" y1="135.924" x2="248.981" y2="135.924" stroke="#1F2937" stroke-width="1.21905" stroke-linecap="round"/>
+<line x1="7.60952" y1="195.657" x2="248.981" y2="195.657" stroke="#1F2937" stroke-width="1.21905" stroke-linecap="round"/>
+<g filter="url(#filter1_n_364_850)">
+<rect width="242.59" height="68.2667" transform="translate(7)" fill="#FDD655"/>
+</g>
+<rect width="72.0314" height="88.2017" transform="translate(177.559 167.798)" fill="#030712"/>
+<path d="M167.907 167.889C194.591 141.224 249.591 167.619 249.591 167.619L177.667 256C177.667 256 141.222 194.554 167.907 167.889Z" fill="#030712"/>
+<g filter="url(#filter2_g_364_850)">
+<path d="M177.659 167.889C204.344 141.224 249.591 167.889 249.591 167.889L177.659 256C177.659 256 150.975 194.554 177.659 167.889Z" fill="#374151"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_g_364_850" x="5.53714" y="-1.46286" width="245.516" height="258.926" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="0.5126953125 0.5126953125" numOctaves="3" seed="9624" />
+<feDisplacementMap in="shape" scale="2.9257144927978516" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+<feMerge result="effect1_texture_364_850">
+<feMergeNode in="displacedImage"/>
+</feMerge>
+</filter>
+<filter id="filter1_n_364_850" x="7" y="0" width="242.59" height="68.2667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="2.7343747615814209 2.7343747615814209" stitchTiles="stitch" numOctaves="3" result="noise" seed="8372" />
+<feComponentTransfer in="noise" result="coloredNoise1">
+<feFuncR type="linear" slope="2" intercept="-0.5" />
+<feFuncG type="linear" slope="2" intercept="-0.5" />
+<feFuncB type="linear" slope="2" intercept="-0.5" />
+<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
+</feComponentTransfer>
+<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+<feComponentTransfer in="noise1Clipped" result="color1">
+<feFuncA type="table" tableValues="0 0.16" />
+</feComponentTransfer>
+<feMerge result="effect1_noise_364_850">
+<feMergeNode in="shape" />
+<feMergeNode in="color1" />
+</feMerge>
+</filter>
+<filter id="filter2_g_364_850" x="160.923" y="151.162" width="93.5439" height="109.714" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="1.6406248807907104 1.6406248807907104" numOctaves="3" seed="5469" />
+<feDisplacementMap in="shape" scale="9.7523813247680664" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+<feMerge result="effect1_texture_364_850">
+<feMergeNode in="displacedImage"/>
+</feMerge>
+</filter>
+<clipPath id="clip0_364_850">
+<rect width="256" height="256" fill="white"/>
+</clipPath>
+<clipPath id="clip1_364_850">
+<rect x="7" width="242.59" height="256" rx="39.0095" fill="white"/>
+</clipPath>
+</defs>
+</svg>

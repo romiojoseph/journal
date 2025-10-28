@@ -1,0 +1,292 @@
+.container {
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+.container h1 {
+    font-size: var(--font-size-heading2);
+    color: var(--monochrome-4);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.editor {
+    border: 1px solid var(--monochrome-11);
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.selectedTagsContainer {
+    padding: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--monochrome-11);
+    min-height: 45px;
+}
+
+.placeholderText {
+    color: var(--monochrome-7);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.textarea {
+    width: 100%;
+    min-height: 512px;
+    padding: 24px;
+    background-color: transparent;
+    color: var(--monochrome-5);
+    border: none;
+    font-family: inherit;
+    font-size: var(--font-size-heading6);
+    line-height: 1.8;
+    resize: vertical;
+}
+
+.textarea::placeholder {
+    color: var(--monochrome-7);
+}
+
+.textarea:focus {
+    outline: none;
+}
+
+.tagSections {
+    border: 1px solid var(--monochrome-11);
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+
+.accordionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 12px 16px;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.requirementText {
+    font-size: var(--font-size-label);
+    color: var(--monochrome-7);
+}
+
+.accordionItem {
+    border-bottom: 1px solid var(--monochrome-11);
+}
+
+.accordionItem:last-child {
+    border-bottom: none;
+}
+
+.accordionHeader {
+    width: 100%;
+    background-color: var(--monochrome-13);
+    border: none;
+    color: var(--monochrome-5);
+    font-size: var(--font-size-heading6);
+    font-weight: 400;
+    padding: 16px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.accordionHeader .caretOpen {
+    transform: rotate(180deg);
+}
+
+.accordionHeader svg {
+    transition: transform 0.2s ease-in-out;
+}
+
+.accordionContent {
+    padding: 16px;
+}
+
+/* --- NEW MOOD TABS STYLES --- */
+.moodTabs {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2px;
+    margin: 0 0 16px;
+    padding: 4px;
+    border-radius: 100px;
+    background: linear-gradient(315deg, #030712 0%, #060910 59.9%, #030712 119.79%);
+    border: 1px solid #0b101a;
+    width: 100%;
+}
+
+.moodTabs button {
+    background: none;
+    border: none;
+    color: var(--monochrome-6);
+    font-size: var(--font-size-caption);
+    padding: 6px 20px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    border-radius: 100px;
+    text-decoration: none;
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease,
+        background-color 0.35s ease,
+        transform 0.25s ease;
+}
+
+.moodTabs button:hover {
+    color: var(--monochrome-4);
+}
+
+.moodTabs button.activeTab {
+    color: var(--monochrome-15);
+    background: var(--mood-happy);
+    font-weight: 600;
+    box-shadow: 0 0 16px 4px rgb(13, 24, 39);
+    transition:
+        background-color 0.35s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.35s ease;
+}
+
+.moodTabs button:nth-child(2).activeTab {
+    background: var(--mood-chill);
+}
+
+.moodTabs button:nth-child(3).activeTab {
+    background: var(--mood-tired);
+}
+
+.moodTabs button:nth-child(4).activeTab {
+    background: var(--mood-stress);
+}
+
+
+/* --- GENERAL TAG LIST STYLES --- */
+.tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.tagButton {
+    background-color: var(--monochrome-12);
+    border: 2px solid var(--monochrome-11);
+    color: var(--monochrome-5);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: var(--font-size-caption);
+    cursor: pointer;
+    transition: background-color 0.2s, border 0.3s ease-in-out, transform 0.1s ease-in;
+}
+
+.tagButton:hover {
+    background-color: var(--monochrome-11);
+    border: 2px solid var(--monochrome-10);
+    transform: scale(1.03);
+}
+
+/* --- NEW FORM FOOTER STYLES --- */
+.formFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0 40px;
+    gap: 16px;
+}
+
+.charCount {
+    color: var(--monochrome-6);
+    font-size: var(--font-size-body);
+}
+
+.saveButton {
+    padding: 12px 24px;
+    font-size: var(--font-size-subtitle);
+    font-weight: 600;
+    color: var(--monochrome-15);
+    background-color: var(--monochrome-3);
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.saveButton:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .container h1 {
+        font-size: var(--font-size-heading5);
+        margin-bottom: 4px;
+    }
+
+    .textarea {
+        min-height: 512px;
+        font-size: var(--font-size-body);
+        line-height: 1.7;
+    }
+
+    .container {
+        width: 100vw;
+        max-width: 100%;
+    }
+
+    .accordionHeader {
+        font-size: var(--font-size-body);
+        padding: 16px;
+    }
+
+    .formFooter {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 8px 0 40px;
+        gap: 24px;
+    }
+
+    .saveButton {
+        width: 100%;
+    }
+
+}

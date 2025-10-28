@@ -1,0 +1,89 @@
+.manager h2 {
+    font-size: var(--font-size-heading2);
+    color: var(--monochrome-4);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.manager h4 {
+    font-size: var(--font-size-heading6);
+    color: var(--monochrome-6);
+    margin: 16px 0 24px;
+    font-weight: 500;
+}
+
+
+.manager p {
+    font-size: var(--font-size-body);
+    color: var(--monochrome-7);
+    line-height: 1.6;
+}
+
+.addForm strong {
+    font-style: italic;
+    color: var(--monochrome-5);
+}
+
+.addForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 550px;
+}
+
+.addForm input {
+    padding: 16px 24px;
+    font-size: var(--font-size-heading6);
+    background-color: var(--monochrome-12);
+    border: 2px solid var(--monochrome-10);
+    border-radius: 100px;
+    color: var(--monochrome-1);
+    letter-spacing: 8px;
+    transition: border .2s ease-in, background .3s ease-in-out;
+}
+
+.addForm input:hover {
+    border-color: var(--monochrome-9);
+    background-color: var(--monochrome-11);
+}
+
+.addForm input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.addForm input::placeholder {
+    color: var(--monochrome-7);
+    letter-spacing: 0;
+}
+
+.addForm button,
+.disableButton {
+    background-color: var(--mood-stress);
+    color: var(--monochrome-15);
+    border: none;
+    border-radius: 100px;
+    padding: 16px 24px;
+    font-size: var(--font-size-heading6);
+    font-weight: 600;
+}
+
+.disableButton {
+    margin: 24px 0 0;
+}
+
+@media (max-width: 768px) {
+    .manager h2 {
+        font-size: var(--font-size-heading5);
+        color: var(--monochrome-6);
+    }
+
+    .manager h4 {
+        font-size: var(--font-size-body);
+    }
+
+    .manager p {
+        font-size: var(--font-size-caption);
+    }
+
+}

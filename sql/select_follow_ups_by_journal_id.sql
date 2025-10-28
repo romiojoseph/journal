@@ -1,0 +1,1 @@
+SELECT * FROM follow_ups WHERE journal_id = ? ORDER BY createdAt ASC;

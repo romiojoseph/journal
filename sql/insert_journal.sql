@@ -1,0 +1,1 @@
+INSERT INTO journals (content, quoted_journal_id) VALUES (?, ?);

@@ -1,0 +1,31 @@
+{
+  "name": "journal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@nivo/bar": "^0.99.0",
+    "@nivo/calendar": "^0.99.0",
+    "@nivo/core": "^0.99.0",
+    "@nivo/line": "^0.99.0",
+    "@nivo/radar": "^0.99.0",
+    "@nivo/sunburst": "^0.99.0",
+    "@nivo/treemap": "^0.99.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "better-sqlite3": "^12.4.1",
+    "next": "16.0.0",
+    "react": "19.2.0",
+    "react-datepicker": "^8.8.0",
+    "react-dom": "19.2.0",
+    "react-select": "^5.10.2"
+  },
+  "devDependencies": {
+    "eslint": "^9",
+    "eslint-config-next": "16.0.0"
+  }
+}

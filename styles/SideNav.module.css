@@ -1,0 +1,103 @@
+.sideHeader {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    margin: 0 0 12px;
+    outline: none;
+}
+
+.sideHeader h5 {
+    font-size: var(--font-size-heading5);
+    font-weight: 600;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 232px;
+    height: 100vh;
+    padding: 24px 16px 16px;
+    background-color: var(--monochrome-15);
+    border-right: 1px solid var(--monochrome-11);
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    flex-shrink: 0;
+}
+
+.navList {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.navLink {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-size: var(--font-size-subtitle);
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    color: var(--monochrome-5);
+}
+
+.navLink:hover {
+    transform: translateX(2px);
+    color: var(--monochrome-1);
+}
+
+.navLink.active {
+    color: var(--monochrome-1);
+}
+
+.newJournalButton {
+    margin: 16px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 100px;
+    font-size: var(--font-size-subtitle);
+    color: var(--monochrome-4);
+    background: linear-gradient(315deg, #111827 0%, #030712 59.9%, #1F2937 119.79%);
+    border: 1px solid var(--monochrome-11);
+    font-weight: 600;
+    transition:
+        background-color 0.35s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.35s ease;
+}
+
+.newJournalButton:hover {
+    transform: scale(1.05);
+    background-image:
+        linear-gradient(135deg, #1f2937, #0b101a),
+        linear-gradient(135deg, #1f2937, #0b101a);
+    background-position: 100% 100%;
+}
+
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .nav {
+        height: 100vh;
+    }
+}

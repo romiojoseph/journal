@@ -1,0 +1,203 @@
+.manager {
+    width: 100%;
+}
+
+.manager h2 {
+    font-size: var(--font-size-heading2);
+    color: var(--monochrome-4);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.description {
+    font-size: var(--font-size-subtitle);
+    color: var(--monochrome-7);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.manager aside {
+    font-size: var(--font-size-body);
+    color: var(--monochrome-7);
+    margin-bottom: 32px;
+}
+
+.manager aside code {
+    background-color: var(--monochrome-10);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.category {
+    margin-bottom: 2rem;
+}
+
+.category h3 {
+    font-size: var(--font-size-heading3);
+    font-weight: 500;
+    color: var(--monochrome-4);
+    text-transform: capitalize;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 4px solid var(--monochrome-12);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.moodGroup {
+    margin: 0 0 48px;
+}
+
+.moodGroup h4 {
+    margin-bottom: 8px;
+    font-size: var(--font-size-heading5);
+}
+
+.emotionDescription {
+    font-size: var(--font-size-subtitle);
+    color: var(--monochrome-7);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.tagList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+    gap: 16px;
+    max-width: 100%;
+}
+
+
+.tagPill,
+.tagPillEditing {
+    background-color: var(--monochrome-13);
+    border: 1px solid var(--monochrome-11);
+    color: var(--monochrome-6);
+    border-radius: 8px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.tagPill:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 24px 4px var(--monochrome-11);
+    color: var(--monochrome-3);
+}
+
+.tagActions {
+    display: flex;
+    gap: 16px;
+    margin-left: 0.5rem;
+}
+
+.tagActions button {
+    background: none;
+    border: none;
+    color: var(--monochrome-7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.tagActions button:hover {
+    color: var(--monochrome-2);
+}
+
+.tagPillEditing input {
+    background-color: var(--monochrome-10);
+    border: 1px solid var(--monochrome-9);
+    color: var(--monochrome-3);
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: calc(100% - 32px);
+}
+
+.tagPillEditing button {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+.addForm {
+    display: flex;
+    gap: 16px;
+    margin: 0 0 24px;
+}
+
+.addForm input {
+    flex-grow: 1;
+    padding: 16px 24px;
+    background-color: var(--monochrome-12);
+    border: 1px solid var(--monochrome-10);
+    border-radius: 100px;
+    color: var(--monochrome-4);
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    width: 100%;
+}
+
+.addForm input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.addForm input::placeholder {
+    color: var(--monochrome-7);
+}
+
+
+.addForm button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.addForm button:hover {
+    opacity: 0.9;
+}
+
+
+/* Styles for the disable button in SecurityManager */
+.disableButton {
+    background-color: var(--mood-stress);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .manager h2 {
+        font-size: var(--font-size-heading5);
+        color: var(--monochrome-6);
+    }
+
+    .description {
+        font-size: var(--font-size-caption);
+    }
+
+    .category h3 {
+        font-size: var(--font-size-subtitle);
+    }
+
+    .emotionDescription {
+        font-size: var(--font-size-caption);
+    }
+}

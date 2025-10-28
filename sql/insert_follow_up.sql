@@ -1,0 +1,1 @@
+INSERT INTO follow_ups (journal_id, content) VALUES (?, ?);

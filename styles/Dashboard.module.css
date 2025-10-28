@@ -1,0 +1,297 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+    width: 100%;
+}
+
+.container h1 {
+    font-size: var(--font-size-heading2);
+    color: var(--monochrome-4);
+    font-weight: 500;
+}
+
+.subtitle {
+    color: var(--monochrome-7);
+    font-size: var(--font-size-subtitle);
+    text-align: left;
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.subtitle strong {
+    color: var(--monochrome-6);
+}
+
+
+.statBoxContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
+    width: 100%;
+}
+
+.statBox {
+    background-color: var(--monochrome-15);
+    border: 1px solid var(--monochrome-12);
+    border-radius: 24px;
+    padding: 24px 24px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.statBox:hover .statIcon[data-mood="Happy"] {
+    animation: rotate 5s infinite linear;
+}
+
+.statBox:hover .statIcon[data-mood="Chill"] {
+    animation: pulse .8s infinite ease-in-out;
+}
+
+.statBox:hover .statIcon[data-mood="Tired"] {
+    animation: moveLeftRight .9s infinite ease-in-out;
+}
+
+.statBox:hover .statIcon[data-mood="Stress"] {
+    animation: moveUpDown .9s infinite ease-in-out;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes moveLeftRight {
+
+    0%,
+    100% {
+        transform: translateX(-2px);
+    }
+
+    50% {
+        transform: translateX(2px);
+    }
+}
+
+@keyframes moveUpDown {
+
+    0%,
+    100% {
+        transform: translateY(-2px);
+    }
+
+    50% {
+        transform: translateY(2px);
+    }
+}
+
+.statCount {
+    font-size: var(--font-size-displayMedium);
+    font-weight: bold;
+    color: var(--monochrome-4);
+}
+
+.statLabel {
+    font-size: var(--font-size-body);
+    color: var(--monochrome-7);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.statIcon {
+    display: flex;
+    align-items: center;
+}
+
+.chartGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+}
+
+.chartContainer {
+    background-color: var(--monochrome-15);
+    border: 1px solid var(--monochrome-11);
+    box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 32px;
+}
+
+.chartRow h3,
+.chartContainer h3 {
+    font-size: var(--font-size-heading5);
+    color: var(--monochrome-5);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.chartSubtitle {
+    text-align: center;
+    color: var(--monochrome-7);
+    font-size: var(--font-size-body);
+    margin-top: -6px;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+
+.chartRow {
+    background-color: var(--monochrome-15);
+    border: 1px solid var(--monochrome-11);
+    box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 32px;
+    width: 100%;
+    height: 100%;
+}
+
+
+.calendarRow {
+    height: calc(350px + 64px);
+}
+
+
+
+.tabNav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tabNav button {
+    background-color: var(--monochrome-11);
+    color: var(--monochrome-5);
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.tabNav button.activeTab {
+    background-color: var(--accent-color);
+    color: #FFF;
+}
+
+.emptyChartMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--monochrome-5);
+}
+
+.calendarContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.calendarChartWrapper {
+    flex-grow: 1;
+    min-height: 0;
+    width: 100%;
+}
+
+
+.emptyMessage {
+    color: var(--monochrome-6);
+    font-size: var(--font-size-heading6);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 48px);
+    padding: 24px;
+    border: 1px dashed var(--monochrome-11);
+    background: linear-gradient(162.84deg, #111827 0.82%, #111827 30.33%, #030712 59.84%, #030712 99.18%);
+    box-shadow: inset -1px -1px 4px #1F2937, inset 1px 1px 4px #1F2937;
+    background: radial-gradient(82.12% 50% at 50% 50%, #111827 0%, #030712 100%);
+    border-radius: 24px;
+    height: 90vh;
+    margin: 24px;
+}
+
+
+@media (max-width: 1024px) {
+    .chartGrid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .container h1 {
+        font-size: var(--font-size-heading5);
+        color: var(--monochrome-6);
+    }
+
+    .subtitle {
+        font-size: var(--font-size-body);
+        margin-bottom: 8px;
+    }
+
+    .calendarRow {
+        width: 100%;
+        overflow-x: auto;
+        height: 340px;
+        scrollbar-width: thin;
+    }
+
+    .tabNav {
+        display: flex;
+        justify-content: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .calendarContainer {
+        min-width: 768px;
+        height: calc(150px + 10px);
+    }
+
+    .chartRow h3,
+    .chartContainer h3 {
+        font-size: var(--font-size-heading6);
+        text-align: left;
+    }
+
+    .chartSubtitle {
+        text-align: left;
+        font-size: var(--font-size-caption);
+    }
+
+    .chartContainer {
+        padding: 20px;
+    }
+
+
+}
