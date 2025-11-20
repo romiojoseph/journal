@@ -3,6 +3,7 @@ import db from '../../../../lib/db';
 import fs from 'fs';
 import path from 'path';
 import JournalForm from '../../../../components/JournalForm';
+import { getTags } from '../../../../lib/tags';
 
 export const dynamic = 'force-dynamic';
 
@@ -60,5 +61,7 @@ export default async function EditJournalPage({ params }) {
         notFound();
     }
 
-    return <JournalForm initialData={journal} />;
+    const tags = await getTags();
+
+    return <JournalForm initialData={journal} initialTags={tags} />;
 }

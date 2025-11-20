@@ -2,6 +2,7 @@ import JournalForm from '../components/JournalForm';
 import db from '../lib/db';
 import fs from 'fs';
 import path from 'path';
+import { getTags } from '../lib/tags';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,6 +22,7 @@ export default async function NewJournalHomepage({ searchParams }) {
   const quoteId = resolvedSearchParams.quoteId;
 
   const quotedJournal = getQuotedJournal(quoteId);
+  const initialTags = await getTags();
 
-  return <JournalForm quotedJournal={quotedJournal} />;
+  return <JournalForm quotedJournal={quotedJournal} initialTags={initialTags} />;
 }

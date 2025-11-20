@@ -8,26 +8,21 @@ import { useModal } from '../context/ModalContext';
 import QuotedJournalPreview from './QuotedJournalPreview';
 import { CaretDown, YinYang, CirclesThree, Users, Island, CalendarPlus, FloppyDisk } from '@phosphor-icons/react';
 
-import initialMoodData from '../data/moods.json';
-import initialActivityData from '../data/activities.json';
-import initialPeopleData from '../data/people.json';
-import initialPlaceData from '../data/places.json';
-
-const getTagColor = (tag) => {
-    if (tag.type !== 'mood') return null;
-    for (const mood of initialMoodData.moods) {
-        if (mood.tags.includes(tag.name)) return mood.color;
-    }
-    return null;
-};
-
 const typeToCategoryMap = { activity: 'activities', people: 'people', place: 'places' };
 const otherCategories = [{ singular: 'activity', plural: 'activities' }, { singular: 'people', plural: 'people' }, { singular: 'place', plural: 'places' }];
 
-export default function JournalForm({ initialData = null, quotedJournal: initialQuotedJournal = null }) {
+export default function JournalForm({ initialData = null, quotedJournal: initialQuotedJournal = null, initialTags = { moods: [], activities: [], people: [], places: [] } }) {
     const router = useRouter();
     const { showAlert } = useModal();
     const isEditMode = initialData !== null;
+
+    const getTagColor = (tag) => {
+        if (tag.type !== 'mood') return null;
+        for (const mood of initialTags.moods) {
+            if (mood.tags.includes(tag.name)) return mood.color;
+        }
+        return null;
+    };
 
     const storageKey = isEditMode ? `unsaved-journal-${initialData.id}` : 'unsaved-new-journal';
     const [isClient, setIsClient] = useState(false);
@@ -52,14 +47,14 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
         initialData?.tags.map(tag => ({ ...tag, color: getTagColor(tag) })) || []
     );
     const [openAccordion, setOpenAccordion] = useState('moods');
-    const [activeMoodTab, setActiveMoodTab] = useState(initialMoodData.moods[0].name);
+    const [activeMoodTab, setActiveMoodTab] = useState(initialTags.moods[0]?.name || '');
     const [availableTags, setAvailableTags] = useState(() => {
         const selectedTagNames = new Set((initialData?.tags || []).map(t => t.name));
         return {
-            moods: initialMoodData.moods.map(mood => ({ ...mood, tags: mood.tags.filter(tag => !selectedTagNames.has(tag)) })),
-            activities: initialActivityData.activities.filter(tag => !selectedTagNames.has(tag)),
-            people: initialPeopleData.people.filter(tag => !selectedTagNames.has(tag)),
-            places: initialPlaceData.places.filter(tag => !selectedTagNames.has(tag)),
+            moods: initialTags.moods.map(mood => ({ ...mood, tags: mood.tags.filter(tag => !selectedTagNames.has(tag)) })),
+            activities: initialTags.activities.filter(tag => !selectedTagNames.has(tag)),
+            people: initialTags.people.filter(tag => !selectedTagNames.has(tag)),
+            places: initialTags.places.filter(tag => !selectedTagNames.has(tag)),
         };
     });
 
@@ -119,18 +114,24 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
             return newAvailable;
         });
     };
+
     const handleTagRemove = (tagToRemove) => {
         setSelectedTags(prev => prev.filter(t => t.name !== tagToRemove.name));
         setAvailableTags(prev => {
             const newAvailable = { ...prev };
             if (tagToRemove.type === 'mood') {
                 newAvailable.moods = newAvailable.moods.map(mood => {
-                    const originalMood = initialMoodData.moods.find(m => m.tags.includes(tagToRemove.name));
-                    if (mood.name === originalMood?.name) return { ...mood, tags: [...mood.tags, tagToRemove.name].sort() };
+                    const originalMood = initialTags.moods.find(m => m.tags.includes(tagToRemove.name));
+                    if (mood.name === originalMood?.name) {
+                        return {
+                            ...mood,
+                            tags: [...mood.tags, tagToRemove.name].sort((a, b) => a.localeCompare(b))
+                        };
+                    }
                     return mood;
                 });
             } else {
-                newAvailable[typeToCategoryMap[tagToRemove.type]] = [...newAvailable[typeToCategoryMap[tagToRemove.type]], tagToRemove.name].sort();
+                newAvailable[typeToCategoryMap[tagToRemove.type]] = [...newAvailable[typeToCategoryMap[tagToRemove.type]], tagToRemove.name].sort((a, b) => a.localeCompare(b));
             }
             return newAvailable;
         });

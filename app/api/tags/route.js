@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
+import { getTags } from '../../../lib/tags';
 
 const dataDir = path.join(process.cwd(), 'data');
 const fileNames = {
@@ -12,22 +13,8 @@ const fileNames = {
 
 // GET function to read all tag data from all files
 export async function GET() {
-    try {
-        const moodsData = JSON.parse(await fs.readFile(path.join(dataDir, fileNames.moods), 'utf8'));
-        const activitiesData = JSON.parse(await fs.readFile(path.join(dataDir, fileNames.activities), 'utf8'));
-        const peopleData = JSON.parse(await fs.readFile(path.join(dataDir, fileNames.people), 'utf8'));
-        const placesData = JSON.parse(await fs.readFile(path.join(dataDir, fileNames.places), 'utf8'));
-
-        return NextResponse.json({
-            moods: moodsData.moods || [],
-            activities: activitiesData.activities || [],
-            people: peopleData.people || [],
-            places: placesData.places || [],
-        });
-    } catch (error) {
-        console.error('Failed to read tag data:', error);
-        return NextResponse.json({ error: 'Failed to read tag data.' }, { status: 500 });
-    }
+    const tags = await getTags();
+    return NextResponse.json(tags);
 }
 
 // POST function to update one of the tag files

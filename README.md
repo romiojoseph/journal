@@ -72,7 +72,9 @@ Follow these steps to get the application running on your local machine.
     npm run start
     ```
 
-5.  **Open the App**: Open your web browser and go to **http://localhost:3000**. You should be greeted by the welcome message on your first visit.
+    I configured the startup to use port 2468 with: `"start": "next start -p 2468"`
+
+5.  **Open the App**: Open your web browser and go to **http://localhost:2468**. You should be greeted by the welcome message on your first visit.
 
 ## How It Works: Key Concepts
 
