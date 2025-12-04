@@ -20,6 +20,8 @@ export default function AccessVaultPage() {
         });
 
         if (response.ok) {
+            // Set session storage flag for client-side tab protection
+            sessionStorage.setItem('vault-unlocked', 'true');
             // On success, redirect to the main diary page.
             window.location.href = '/diary';
         } else {

@@ -4,6 +4,7 @@ import { FontProvider } from '../context/FontContext'; // NEW
 import OnboardingManager from '../components/OnboardingManager';
 import SideNav from '../components/SideNav';
 import BottomNav from '../components/BottomNav';
+import SessionGuard from '../components/SessionGuard';
 import db, { isFirstLaunch } from '../lib/db';
 
 export const metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
       <body>
         <FontProvider> {/* NEW WRAPPER */}
           <ModalProvider>
+            <SessionGuard />
             <OnboardingManager isFirstLaunch={isFirstLaunch}>
               <div className="app-container">
                 <SideNav isPinEnabled={isPinEnabled} />

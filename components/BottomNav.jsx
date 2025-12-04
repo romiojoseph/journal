@@ -10,8 +10,13 @@ export default function BottomNav({ isPinEnabled }) {
     const router = useRouter();
 
     const handleLock = async () => {
-        await fetch('/api/lock-vault', { method: 'POST' });
-        window.location.reload();
+        try {
+            await fetch('/api/lock-vault', { method: 'POST' });
+            window.location.href = '/access-vault';
+        } catch (error) {
+            console.error('Failed to lock vault:', error);
+            window.location.href = '/access-vault';
+        }
     };
 
     const handleRedirectToSecurity = () => {

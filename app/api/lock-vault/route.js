@@ -7,6 +7,7 @@ export async function POST() {
         // Clear the session cookie by setting its expiration date to the past.
         response.cookies.set('journal-session', '', {
             httpOnly: true,
+            sameSite: 'lax',
             path: '/',
             expires: new Date(0),
         });

@@ -20,10 +20,17 @@ export async function POST(request) {
         if (simpleHash(pin) === storedHash) {
             const response = NextResponse.json({ success: true });
 
-            response.cookies.set('journal-session', 'true', {
+            // Get the current server session ID from the DB
+            const serverSessionId = db.prepare('SELECT value FROM settings WHERE key = ?').get('server_session_id')?.value;
+
+            // Session cookie that expires when browser closes (no maxAge or expires)
+            // Value is tied to server instance to invalidate on restart
+            response.cookies.set('journal-session', serverSessionId, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
                 path: '/',
+                // No maxAge or expires = session cookie (expires when browser closes)
             });
 
             return response;
