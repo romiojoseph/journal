@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
       <body>
         <FontProvider> {/* NEW WRAPPER */}
           <ModalProvider>
-            <SessionGuard />
+            <SessionGuard isPinEnabled={isPinEnabled} />
             <OnboardingManager isFirstLaunch={isFirstLaunch}>
               <div className="app-container">
                 <SideNav isPinEnabled={isPinEnabled} />

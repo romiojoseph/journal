@@ -3,11 +3,14 @@
 import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
-export default function SessionGuard() {
+export default function SessionGuard({ isPinEnabled }) {
     const router = useRouter();
     const pathname = usePathname();
 
     useEffect(() => {
+        // If PIN is disabled, do nothing
+        if (!isPinEnabled) return;
+
         // List of public paths that don't require locking
         const publicPaths = ['/access-vault'];
 
@@ -30,7 +33,7 @@ export default function SessionGuard() {
                     router.push('/access-vault');
                 });
         }
-    }, [pathname, router]);
+    }, [pathname, router, isPinEnabled]);
 
     return null;
 }
