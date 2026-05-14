@@ -13,7 +13,7 @@ export default function MoodsLineChart({ data }) {
                     useUTC: false,
                     precision: 'day',
                 }}
-                xFormat="time:%Y-%m-%d"
+                xFormat="time:%d %b, %Y"
                 yScale={{ type: 'linear', min: 0, max: 'auto' }}
                 yFormat=" >-.0f"
                 axisTop={null}
@@ -46,7 +46,15 @@ export default function MoodsLineChart({ data }) {
                     symbolShape: 'circle',
                     effects: [{ on: 'hover', style: { itemOpacity: 1 } }]
                 }]}
-                theme={{ tooltip: { container: { background: '#333', color: '#fff' } }, legends: { text: { fill: '#fff' } }, axis: { ticks: { text: { fill: '#ccc' } }, legend: { text: { fill: '#fff' } } } }}
+                tooltip={({ point }) => (
+                    <div style={{ padding: '6px 12px', background: '#333', color: '#fff', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '8px', whiteSpace: 'nowrap' }}>
+                        <span style={{ width: 12, height: 12, backgroundColor: point.color, borderRadius: '50%' }}></span>
+                        <span>
+                            <strong>{point.serieId}</strong> on {point.data.xFormatted}: <strong>{point.data.yFormatted} Entries</strong>
+                        </span>
+                    </div>
+                )}
+                theme={{ tooltip: { container: { background: '#333', color: '#fff', whiteSpace: 'nowrap' } }, legends: { text: { fill: '#fff' } }, axis: { ticks: { text: { fill: '#ccc' } }, legend: { text: { fill: '#fff' } } } }}
             />
         </div>
     );

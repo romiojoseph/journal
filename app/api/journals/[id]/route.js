@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
-import db from '../../../../lib/db';
+import db from '@/lib/db';
 import fs from 'fs';
 import path from 'path';
+import { validateSession, isPinEnabled, getEncryptionKey, encrypt } from '@/lib/security';
+import { getClosestMoodSentence } from '@/lib/mood-scoring';
 
 const getQuery = (fileName) => {
     const filePath = path.join(process.cwd(), 'sql', fileName);
@@ -9,14 +11,28 @@ const getQuery = (fileName) => {
 };
 
 export async function PUT(request, { params }) {
+    if (!await validateSession(request)) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     try {
         const resolvedParams = await params;
         const journalId = resolvedParams.id;
         const { content, tags, detachQuote } = await request.json();
 
-        if (!content || !tags) {
-            return NextResponse.json({ error: 'Content and tags are required.' }, { status: 400 });
+        if (!tags || tags.length === 0) {
+            return NextResponse.json({ error: 'At least one tag is required.' }, { status: 400 });
         }
+        if (!tags.some(t => t.type === 'mood')) {
+            return NextResponse.json({ error: 'At least one mood tag is required.' }, { status: 400 });
+        }
+
+        let journalContent = content ?? "";
+        if (isPinEnabled()) {
+            journalContent = encrypt(journalContent, getEncryptionKey());
+        }
+
+        const closestSentence = getClosestMoodSentence(db, tags, journalId);
+        const moodSentenceId = closestSentence ? closestSentence.id : null;
 
         const updateSql = detachQuote
             ? getQuery('update_journal_detach_quote.sql')
@@ -28,7 +44,7 @@ export async function PUT(request, { params }) {
         const linkTagSql = getQuery('link_journal_to_tag.sql');
 
         const transaction = db.transaction((data) => {
-            db.prepare(updateSql).run(data.content, data.journalId);
+            db.prepare(updateSql).run(data.journalContent, data.moodSentenceId, data.journalId);
             db.prepare(deleteTagsSql).run(data.journalId);
 
             const findTagStmt = db.prepare(findTagSql);
@@ -42,7 +58,7 @@ export async function PUT(request, { params }) {
             }
         });
 
-        transaction({ content, tags, journalId });
+        transaction({ journalContent, tags, journalId, moodSentenceId });
 
         return NextResponse.json({ message: 'Journal updated successfully', journalId }, { status: 200 });
     } catch (error) {
@@ -52,6 +68,9 @@ export async function PUT(request, { params }) {
 }
 
 export async function DELETE(request, { params }) {
+    if (!await validateSession(request)) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     try {
         const resolvedParams = await params;
         const journalId = resolvedParams.id;

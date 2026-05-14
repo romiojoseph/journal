@@ -6,19 +6,18 @@
     font-size: var(--font-size-heading4);
     color: var(--monochrome-5);
     padding: 0 0 24px;
-    border-bottom: 1px dashed var(--monochrome-11);
+    border-bottom: 2px solid var(--monochrome-12);
 }
 
 .followUpList {
     display: flex;
     flex-direction: column;
-    gap: 8px;
 
 }
 
 .card {
-    padding: 24px 0;
-    border-bottom: 1px dashed var(--monochrome-11);
+    padding: 32px 0;
+    border-bottom: 2px solid var(--monochrome-12);
 }
 
 .content {
@@ -84,42 +83,54 @@
     backdrop-filter: blur(16px);
     padding: 16px 0;
 
-    margin: 0 auto;
+    margin: auto 0 0 0;
     width: 100%;
 }
 
 /* --- END NEW STYLES --- */
-
+.editTextarea,
 .addTextarea {
     flex-grow: 1;
-    min-height: 80px;
+    min-height: 184px;
     padding: 16px 24px;
-    background-color: var(--monochrome-13);
-    border: 1px solid var(--monochrome-11);
-    border-radius: 24px;
+    background-color: var(--monochrome-12);
+    border: 2px solid var(--monochrome-11);
+    border-radius: 16px;
     color: var(--monochrome-4);
     font-family: inherit;
-    font-size: 1rem;
+    font-size: var(--font-size-subtitle);
+    line-height: 1.6;
     resize: vertical;
     width: 100%;
+    transition: all 0.32s ease-in-out;
+    scrollbar-width: thin;
+    scrollbar-color: var(--monochrome-10) transparent;
 }
 
+.editTextarea::placeholder,
 .addTextarea::placeholder {
     color: var(--monochrome-7);
 }
 
-.addTextarea:focus {
+.editTextarea:hover,
+.addTextarea:hover {
+    border-color: var(--monochrome-10);
+}
+
+.editTextarea:focus-visible,
+.addTextarea:focus-visible {
     outline: none;
-    border-color: var(--accent-color);
+    min-height: 256px;
+    border-color: var(--monochrome-10);
 }
 
 .addButton {
     font-family: var(--font-family-main);
     flex-shrink: 0;
-    background-color: var(--monochrome-3);
+    background: var(--monochrome-4);
     font-size: var(--font-size-subtitle);
     font-weight: 600;
-    padding: 12px 24px;
+    padding: 12px 20px;
     color: var(--monochrome-15);
     border: none;
     border-radius: 100px;
@@ -127,13 +138,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    transition: opacity 0.2s;
+    gap: 8px;
+    transition: all 0.32s ease-in-out;
     width: 100%;
 }
 
 .addButton:hover {
-    opacity: 0.9;
+    filter: contrast(150%);
 }
 
 .editForm {
@@ -142,41 +153,35 @@
     gap: 0.75rem;
 }
 
-.editTextarea {
-    width: 100%;
-    min-height: 80px;
-    padding: 0.75rem;
-    background-color: var(--monochrome-12);
-    border: 1px solid var(--accent-color);
-    border-radius: 8px;
-    color: var(--monochrome-2);
-    font-family: inherit;
-    font-size: 1rem;
-    resize: vertical;
-}
 
 .editActions {
     display: flex;
     justify-content: flex-end;
-    gap: 0.5rem;
+    gap: 12px;
 }
 
 .editActions button {
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+    padding: 8px 20px;
+    border-radius: 100px;
     border: none;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: var(--font-size-body);
+    transition: 0.3s;
+}
+
+.editActions button:hover {
+    filter: contrast(1) brightness(0.8) grayscale(0.3);
 }
 
 .saveButton {
-    background-color: var(--accent-color);
-    color: #FFF;
+    background-color: var(--monochrome-3);
+    color: var(--monochrome-15);
 }
 
 .cancelButton {
     background-color: var(--monochrome-11);
-    color: var(--monochrome-2);
+    color: var(--monochrome-4);
 }
 
 @media (max-width: 768px) {

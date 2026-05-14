@@ -1,0 +1,16 @@
+{
+    "name": "Diary",
+    "short_name": "Diary",
+    "description": "Penned Thoughts is a private, secure digital journal designed to help you capture, organize, and reflect on your life's moments.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#212225",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}

@@ -4,12 +4,18 @@ import { useState, useMemo } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import styles from '../styles/Dashboard.module.css';
 
-const moodColors = { Happy: '#FDD655', Chill: '#5DADEC', Tired: '#FF893F', Stress: '#FF4B4B' };
-const getColor = (bar) => moodColors[bar.id];
-
-export default function ConnectorsBarChart({ data }) {
+export default function ConnectorsBarChart({ data, moodMeta = [] }) {
     const [activeTab, setActiveTab] = useState('activities');
     const chartData = useMemo(() => data[activeTab] || [], [activeTab, data]);
+
+    const moodColors = useMemo(() => {
+        const colors = {};
+        moodMeta.forEach(m => colors[m.name] = m.color);
+        return colors;
+    }, [moodMeta]);
+
+    const moodKeys = useMemo(() => moodMeta.map(m => m.name), [moodMeta]);
+    const getColor = (bar) => moodColors[bar.id];
 
     if (chartData.length === 0) {
         return <div className={styles.emptyChartMessage}>No data available for this category.</div>;
@@ -25,9 +31,9 @@ export default function ConnectorsBarChart({ data }) {
             <div style={{ height: `${Math.max(300, chartData.length * 50)}px` }}>
                 <ResponsiveBar
                     data={chartData}
-                    keys={['Happy', 'Chill', 'Tired', 'Stress']}
+                    keys={moodKeys}
                     indexBy="tag"
-                    margin={{ top: 24, right: 24, bottom: 64, left: 24 }}
+                    margin={{ top: 24, right: 24, bottom: 64, left: 180 }}
                     padding={0.3}
                     layout="horizontal"
                     valueScale={{ type: 'linear' }}
@@ -56,7 +62,7 @@ export default function ConnectorsBarChart({ data }) {
                         symbolSize: 12,
                         symbolShape: 'circle',
                         effects: [{ on: 'hover', style: { itemOpacity: 1 } }]
-                    }]} theme={{ tooltip: { container: { background: '#333', color: '#fff' } }, legends: { text: { fill: '#fff' } }, axis: { ticks: { text: { fill: '#ccc' } }, legend: { text: { fill: '#fff' } } } }}
+                    }]} theme={{ tooltip: { container: { background: '#333', color: '#fff', whiteSpace: 'nowrap' } }, legends: { text: { fill: '#fff' } }, axis: { ticks: { text: { fill: '#ccc', fontSize: 12 } }, legend: { text: { fill: '#fff', fontSize: 12 } } } }}
                 />
             </div>
         </div>

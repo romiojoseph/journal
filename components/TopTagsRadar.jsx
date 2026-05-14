@@ -2,13 +2,14 @@
 import { ResponsiveRadar } from '@nivo/radar';
 
 export default function TopTagsRadar({ data }) {
+    const formattedData = data ? data.map(item => ({ ...item, Entries: item.count })) : [];
     return (
         <div style={{ height: '450px' }}>
             <ResponsiveRadar
-                data={data}
-                keys={['count']}
+                data={formattedData}
+                keys={['Entries']}
                 indexBy="tag"
-                valueFormat=">-.2f"
+                valueFormat=">-.0f"
                 margin={{ top: 32, right: 24, bottom: 32, left: 24 }}
                 gridLevels={3}
                 borderColor={{ from: 'background' }}
@@ -26,7 +27,8 @@ export default function TopTagsRadar({ data }) {
                         container: {
                             background: '#1e1e1e',
                             color: '#fff',
-                            border: '1px solid #333'
+                            border: '1px solid #333',
+                            whiteSpace: 'nowrap'
                         }
                     },
                     grid: {

@@ -1,1 +1,1 @@
-INSERT INTO journals (content, quoted_journal_id) VALUES (?, ?);
+INSERT INTO journals (id, content, quoted_journal_id, mood_sentence_id) VALUES (?, ?, ?, ?);

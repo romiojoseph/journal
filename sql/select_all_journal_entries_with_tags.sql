@@ -1,5 +1,6 @@
 -- This query gets the creation date and tag details for every single tag on every journal.
 SELECT
+    j.id,
     j.createdAt,
     t.name,
     t.type

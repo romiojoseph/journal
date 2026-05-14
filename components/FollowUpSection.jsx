@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { PencilSimple, Trash, GitPullRequest, Copy } from '@phosphor-icons/react';
+import { PencilSimple, Trash, ChatCenteredTextIcon, Copy } from '@phosphor-icons/react';
 import { useModal } from '../context/ModalContext';
 import styles from '../styles/FollowUp.module.css';
 import FormattedDate from './FormattedDate';
+import FireAnimationOverlay from './FireAnimationOverlay';
 
 const copyToClipboard = (text, showAlert) => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -32,11 +33,16 @@ export default function FollowUpSection({ journalId }) {
     const [followUps, setFollowUps] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [newFollowUp, setNewFollowUp] = useState('');
+    const [isDraftLoaded, setIsDraftLoaded] = useState(false);
     const [editingId, setEditingId] = useState(null);
     const [editText, setEditText] = useState('');
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [pendingDeleteId, setPendingDeleteId] = useState(null);
     const { showAlert, showConfirm } = useModal();
 
-    const storageKey = `unsaved-follow-up-${journalId}`;
+    useEffect(() => {
+        localStorage.removeItem(`unsaved-follow-up-${journalId}`);
+    }, [journalId]);
 
     useEffect(() => {
         const fetchFollowUps = async () => {
@@ -51,17 +57,52 @@ export default function FollowUpSection({ journalId }) {
             }
         };
 
-        const savedDraft = localStorage.getItem(storageKey);
-        if (savedDraft) {
-            setNewFollowUp(savedDraft);
-        }
-
         fetchFollowUps();
-    }, [journalId, storageKey]);
+    }, [journalId]);
 
     useEffect(() => {
-        localStorage.setItem(storageKey, newFollowUp);
-    }, [newFollowUp, storageKey]);
+        if (!isDraftLoaded) {
+            fetch(`/api/follow-ups/draft?journalId=${journalId}`)
+                .then(async (res) => {
+                    if (res.status === 403 || res.status === 401) {
+                        return { error: 'Invalid session' };
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if (data.content) setNewFollowUp(data.content);
+                    setIsDraftLoaded(true);
+                })
+                .catch(err => {
+                    console.error('Failed to load follow-up draft', err);
+                    setIsDraftLoaded(true);
+                });
+        }
+    }, [journalId, isDraftLoaded]);
+
+    useEffect(() => {
+        if (!isDraftLoaded) return;
+
+        const interval = setInterval(async () => {
+            if (!newFollowUp.trim()) return;
+
+            try {
+                const res = await fetch('/api/follow-ups/draft', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ journalId, content: newFollowUp })
+                });
+
+                if (res.status === 403) {
+                    console.warn('Follow-up draft auto-save failed: Key missing');
+                }
+            } catch (err) {
+                console.error('Follow-up draft auto-save failed', err);
+            }
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [newFollowUp, journalId, isDraftLoaded]);
 
     const handleAddFollowUp = async (e) => {
         e.preventDefault();
@@ -75,10 +116,14 @@ export default function FollowUpSection({ journalId }) {
 
         if (response.ok) {
             setNewFollowUp('');
-            localStorage.removeItem(storageKey);
+            localStorage.removeItem(`unsaved-follow-up-${journalId}`);
+            fetch(`/api/follow-ups/draft?journalId=${journalId}`, { method: 'DELETE' });
             const res = await fetch(`/api/journals/${journalId}/follow-ups`);
             const data = await res.json();
             setFollowUps(data);
+        } else if (response.status === 401) {
+            localStorage.removeItem('vault-unlocked-expiry');
+            window.location.href = '/access-vault';
         } else {
             showAlert({ title: 'Error', message: 'Failed to add follow-up.' });
         }
@@ -105,8 +150,14 @@ export default function FollowUpSection({ journalId }) {
             body: JSON.stringify({ content: editText }),
         });
         if (response.ok) {
-            setFollowUps(followUps.map(f => f.id === id ? { ...f, content: editText, updatedAt: new Date().toISOString() } : f));
+            // Refetch to get the correct server-side updatedAt timestamp
+            const res = await fetch(`/api/journals/${journalId}/follow-ups`);
+            const data = await res.json();
+            setFollowUps(data);
             handleCancelEdit();
+        } else if (response.status === 401) {
+            localStorage.removeItem('vault-unlocked-expiry');
+            window.location.href = '/access-vault';
         } else {
             showAlert({ title: 'Error', message: 'Failed to update follow-up.' });
         }
@@ -114,18 +165,30 @@ export default function FollowUpSection({ journalId }) {
 
     const handleDelete = (id) => {
         showConfirm({
-            title: 'Delete Follow-up',
-            message: 'Are you sure you want to delete this follow-up?',
-            confirmLabel: 'Delete',
+            title: 'Burn Follow-up?',
+            message: 'Are you sure you want to permanently burn this follow-up?',
+            confirmLabel: 'Burn it',
             onConfirm: async () => {
                 const response = await fetch(`/api/follow-ups/${id}`, { method: 'DELETE' });
                 if (response.ok) {
-                    setFollowUps(followUps.filter(f => f.id !== id));
+                    setPendingDeleteId(id);
+                    setIsDeleting(true);
+                } else if (response.status === 401) {
+                    window.isVaultUnlocked = false;
+                    window.location.href = '/access-vault';
                 } else {
                     showAlert({ title: 'Error', message: 'Failed to delete follow-up.' });
                 }
             }
         });
+    };
+
+    const handleAnimationComplete = () => {
+        setIsDeleting(false);
+        if (pendingDeleteId) {
+            setFollowUps(followUps.filter(f => f.id !== pendingDeleteId));
+            setPendingDeleteId(null);
+        }
     };
 
     if (isLoading) {
@@ -134,8 +197,9 @@ export default function FollowUpSection({ journalId }) {
 
     return (
         <>
+            {isDeleting && <FireAnimationOverlay onComplete={handleAnimationComplete} />}
             <div className={styles.section}>
-                <h3 className={styles.title}>Follow-ups</h3>
+                {followUps.length > 0 && <h3 className={styles.title}>Continued thoughts...</h3>}
                 <div className={styles.followUpList}>
                     {followUps.map(followUp => (
                         <div key={followUp.id} className={styles.card}>
@@ -178,10 +242,10 @@ export default function FollowUpSection({ journalId }) {
                 <textarea
                     value={newFollowUp}
                     onChange={(e) => setNewFollowUp(e.target.value)}
-                    placeholder="Write a follow-up note..."
+                    placeholder="Anything else on your mind?"
                     className={styles.addTextarea}
                 />
-                <button type="submit" className={styles.addButton}><GitPullRequest size={32} weight="fill" />Add Reply</button>
+                <button type="submit" className={styles.addButton}><ChatCenteredTextIcon size={24} weight="duotone" />Add Note</button>
             </form>
         </>
     );

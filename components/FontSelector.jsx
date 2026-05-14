@@ -14,8 +14,7 @@ export default function FontSelector() {
                 value={font}
                 onChange={(e) => setFont(e.target.value)}
             >
-                <option value="inter">Inter (Sans-Serif)</option>
-                <option value="lora">Lora (Serif)</option>
+                <option value="google-sans">Google Sans (Sans-Serif)</option>
                 <option value="jetbrains-mono">JetBrains Mono (Monospace)</option>
                 <option value="google-sans-code">Google Sans Code (Monospace)</option>
             </select>

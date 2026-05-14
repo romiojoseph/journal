@@ -6,27 +6,39 @@ import styles from '../../styles/LockScreen.module.css';
 
 export default function AccessVaultPage() {
     const router = useRouter();
-    const [pin, setPin] = useState('');
+    const [passphrase, setPassphrase] = useState('');
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        setIsLoading(true);
 
-        const response = await fetch('/api/access-vault', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ pin }),
-        });
+        try {
+            const response = await fetch('/api/access-vault', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ passphrase }),
+            });
 
-        if (response.ok) {
-            // Set session storage flag for client-side tab protection
-            sessionStorage.setItem('vault-unlocked', 'true');
-            // On success, redirect to the main diary page.
-            window.location.href = '/diary';
-        } else {
-            setError('Invalid PIN. Please try again.');
-            setPin('');
+            if (response.ok) {
+                // Set 15-minute persistent expiry
+                const expiry = Date.now() + 15 * 60 * 1000;
+                localStorage.setItem('vault-unlocked-expiry', expiry.toString());
+                
+                // Small delay to ensure cookie is settled before reload
+                setTimeout(() => {
+                    window.location.href = '/diary';
+                }, 100);
+            } else {
+                setError('Invalid Passphrase. Please try again.');
+                setPassphrase('');
+                setIsLoading(false);
+            }
+        } catch (err) {
+            setError('Connection error. Please try again.');
+            setIsLoading(false);
         }
     };
 
@@ -34,18 +46,24 @@ export default function AccessVaultPage() {
         <div className={styles.overlay}>
             <div className={styles.container}>
                 <h2>Access Vault</h2>
-                <p>This journal is locked. Please enter your PIN to continue.</p>
+                <p>This journal is locked. Please enter your passphrase to continue.</p>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="password"
-                        value={pin}
-                        onChange={(e) => setPin(e.target.value)}
-                        maxLength={6}
+                        value={passphrase}
+                        onChange={(e) => setPassphrase(e.target.value)}
                         className={styles.pinInput}
+                        disabled={isLoading}
                         autoFocus
                     />
                     {error && <p className={styles.error}>{error}</p>}
-                    <button type="submit" className={styles.unlockButton}>Unlock</button>
+                    <button 
+                        type="submit" 
+                        className={styles.unlockButton}
+                        disabled={isLoading || !passphrase}
+                    >
+                        {isLoading ? 'Unlocking...' : 'Unlock'}
+                    </button>
                 </form>
             </div>
         </div>

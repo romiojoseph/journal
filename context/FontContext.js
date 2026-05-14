@@ -6,16 +6,16 @@ const FontContext = createContext();
 
 export const useFont = () => useContext(FontContext);
 
-const validFonts = ['inter', 'lora', 'jetbrains-mono', 'google-sans-code'];
+const validFonts = ['google-sans', 'jetbrains-mono', 'google-sans-code'];
 
 export const FontProvider = ({ children }) => {
     const [font, setFont] = useState(() => {
-        // On initial client load, get the font from localStorage or default to 'inter'
+        // On initial client load, get the font from localStorage or default to 'google-sans'
         if (typeof window !== 'undefined') {
             const savedFont = localStorage.getItem('journal-font-theme');
-            return validFonts.includes(savedFont) ? savedFont : 'inter';
+            return validFonts.includes(savedFont) ? savedFont : 'google-sans';
         }
-        return 'inter';
+        return 'google-sans';
     });
 
     useEffect(() => {

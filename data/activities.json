@@ -1,6 +1,7 @@
 {
   "activities": [
     "Adventure",
+    "Around",
     "Baking",
     "Browsing internet",
     "Celebration",
@@ -16,8 +17,8 @@
     "Dancing",
     "Date",
     "Doctor visit",
-    "Driving",
     "Drawing",
+    "Driving",
     "Eating out",
     "Event",
     "Exercise",
@@ -60,6 +61,7 @@
     "Sports",
     "Studying",
     "Swimming",
+    "Talking with parents",
     "Tea time",
     "Texting",
     "Therapy",
@@ -68,11 +70,12 @@
     "Video chat",
     "Volunteering",
     "Walking",
-    "Watching TV",
     "Watching movie",
+    "Watching TV",
     "Wedding",
     "Working",
     "Writing",
-    "Yoga"
+    "Yoga",
+    "Politics"
   ]
 }

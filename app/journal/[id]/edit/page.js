@@ -1,13 +1,15 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import db from '../../../../lib/db';
 import fs from 'fs';
 import path from 'path';
 import JournalForm from '../../../../components/JournalForm';
 import { getTags } from '../../../../lib/tags';
+import { validateSession, isPinEnabled, getEncryptionKey, decrypt } from '../../../../lib/security';
+import { cookies } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
 
-function parseJournal(journal) {
+function parseJournal(journal, key) {
     if (!journal) return null;
 
     const tagsArray = journal.tags
@@ -17,17 +19,24 @@ function parseJournal(journal) {
         })
         : [];
 
+    let content = journal.content;
+    let quotedContent = journal.quoted_content;
+    if (key) {
+        content = decrypt(content, key);
+        if (quotedContent) quotedContent = decrypt(quotedContent, key);
+    }
+
     const quotedJournal = journal.quoted_id
         ? {
             id: journal.quoted_id,
-            content: journal.quoted_content,
+            content: quotedContent,
             createdAt: journal.quoted_createdAt,
         }
         : null;
 
     return {
         id: journal.id,
-        content: journal.content,
+        content: content,
         createdAt: journal.createdAt,
         updatedAt: journal.updatedAt,
         isBookmarked: journal.isBookmarked,
@@ -38,9 +47,10 @@ function parseJournal(journal) {
 
 function getJournal(id) {
     try {
+        const key = isPinEnabled() ? getEncryptionKey() : null;
         const sql = fs.readFileSync(path.join(process.cwd(), 'sql', 'select_journal_by_id.sql'), 'utf8');
         const journalData = db.prepare(sql).get(id);
-        return parseJournal(journalData);
+        return parseJournal(journalData, key);
     } catch (error) {
         console.error("Failed to fetch journal for editing:", error);
         return null;
@@ -48,12 +58,11 @@ function getJournal(id) {
 }
 
 export default async function EditJournalPage({ params }) {
-    const resolvedParams = await params;
-    const journalId = parseInt(resolvedParams.id, 10);
-
-    if (isNaN(journalId)) {
-        notFound();
+    if (!await validateSession({ cookies: cookies() })) {
+        redirect('/access-vault');
     }
+    const resolvedParams = await params;
+    const journalId = resolvedParams.id;
 
     const journal = getJournal(journalId);
 

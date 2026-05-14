@@ -1,0 +1,129 @@
+.toastContainer {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    min-width: 320px;
+    max-width: 450px;
+    background: var(--monochrome-12);
+    border: 2px solid var(--monochrome-10);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.iconArea {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.title {
+    font-weight: 600;
+    color: var(--monochrome-3);
+    font-size: var(--font-size-body);
+}
+
+.message {
+    color: var(--monochrome-5);
+    font-size: var(--font-size-caption);
+    line-height: 1.4;
+}
+
+.closeBtn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--monochrome-6);
+    cursor: pointer;
+    padding: 0;
+    border-radius: 0;
+    transition: all 0.2s;
+    height: fit-content;
+}
+
+.closeBtn:hover {
+    color: var(--monochrome-3);
+}
+
+.progressBarWrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.progressBar {
+    height: 100%;
+    background: var(--accent-color, #3b82f6);
+    transition: width 10ms linear;
+}
+
+/* Types */
+.success .progressBar {
+    background: #22c55e;
+}
+
+.error .progressBar {
+    background: #ef4444;
+}
+
+.warning .progressBar {
+    background: #f59e0b;
+}
+
+.info .progressBar {
+    background: #3b82f6;
+}
+
+.successIcon {
+    color: #22c55e;
+}
+
+.errorIcon {
+    color: #ef4444;
+}
+
+.warningIcon {
+    color: #f59e0b;
+}
+
+.infoIcon {
+    color: #3b82f6;
+}

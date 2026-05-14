@@ -1,6 +1,6 @@
 .sideHeader {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     gap: 16px;
     margin: 0 0 12px;
@@ -27,6 +27,7 @@
     align-self: flex-start;
     flex-shrink: 0;
 }
+
 
 .navList {
     list-style-type: none;
@@ -70,11 +71,12 @@
     border-radius: 100px;
     font-size: var(--font-size-subtitle);
     color: var(--monochrome-4);
-    background: linear-gradient(315deg, #111827 0%, #030712 59.9%, #1F2937 119.79%);
-    border: 1px solid var(--monochrome-11);
+    background: linear-gradient(135deg, var(--monochrome-11) 0%, var(--monochrome-13) 50%, var(--monochrome-15) 100%);
+    border: 2px solid var(--monochrome-11);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6), inset 0 1px 0 var(--monochrome-10);
     font-weight: 600;
     transition:
-        background-color 0.35s ease,
+        background 0.32s ease-in-out,
         color 0.25s ease,
         transform 0.25s ease,
         box-shadow 0.35s ease;
@@ -82,12 +84,10 @@
 
 .newJournalButton:hover {
     transform: scale(1.05);
-    background-image:
-        linear-gradient(135deg, #1f2937, #0b101a),
-        linear-gradient(135deg, #1f2937, #0b101a);
-    background-position: 100% 100%;
+    color: var(--monochrome-2);
+    background: linear-gradient(135deg, var(--monochrome-10) 0%, var(--monochrome-11) 50%, var(--monochrome-13) 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), inset 0 1px 0 var(--monochrome-9);
 }
-
 
 @media (max-width: 768px) {
     .nav {

@@ -1,41 +1,45 @@
 import { NextResponse } from 'next/server';
 import db from '../../../lib/db';
+import { verifyPin, deriveKey, getOrCreateEncryptionSalt, setEncryptionKey, migrateData } from '../../../lib/security';
 
 const getQuery = (fileName) => require('fs').readFileSync(require('path').join(process.cwd(), 'sql', fileName), 'utf8');
 
-const simpleHash = (str) => {
-    return str.split('').reverse().map(char => char.charCodeAt(0)).join('.');
-};
-
 export async function POST(request) {
     try {
-        const { pin } = await request.json();
-        if (!pin) {
-            return NextResponse.json({ error: 'PIN is required.' }, { status: 400 });
+        const body = await request.json();
+        const passphrase = body.passphrase || body.pin;
+
+        if (!passphrase) {
+            return NextResponse.json({ error: 'Passphrase is required.' }, { status: 400 });
         }
 
         const sql = getQuery('get_setting.sql');
         const storedHash = db.prepare(sql).get('securityPinHash')?.value;
 
-        if (simpleHash(pin) === storedHash) {
+        if (await verifyPin(passphrase, storedHash)) {
             const response = NextResponse.json({ success: true });
 
-            // Get the current server session ID from the DB
+            const salt = getOrCreateEncryptionSalt();
+            const key = deriveKey(passphrase, salt);
+            setEncryptionKey(key);
+
+            migrateData(true, key);
+
+            db.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('vault_locked', 'false')").run();
+
             const serverSessionId = db.prepare('SELECT value FROM settings WHERE key = ?').get('server_session_id')?.value;
 
-            // Session cookie that expires when browser closes (no maxAge or expires)
-            // Value is tied to server instance to invalidate on restart
             response.cookies.set('journal-session', serverSessionId, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'lax',
                 path: '/',
-                // No maxAge or expires = session cookie (expires when browser closes)
+                maxAge: 15 * 60
             });
 
             return response;
         } else {
-            return NextResponse.json({ error: 'Invalid PIN.' }, { status: 401 });
+            return NextResponse.json({ error: 'Invalid Passphrase.' }, { status: 401 });
         }
     } catch (error) {
         console.error('Access Vault API error:', error);

@@ -4,6 +4,7 @@ SELECT
     j.createdAt,
     j.updatedAt,
     j.isBookmarked,
+    j.mood_sentence_id,
     GROUP_CONCAT(t.type || ':' || t.name, '|') AS tags,
     qj.id as quoted_id,
     qj.content as quoted_content,

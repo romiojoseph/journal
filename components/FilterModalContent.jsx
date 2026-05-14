@@ -1,10 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import dynamic from 'next/dynamic';
 import styles from '../styles/FilterBar.module.css';
+import { Calendar } from '@phosphor-icons/react';
 
 const DynamicMultiSelectFilter = dynamic(
     () => import('./MultiSelectFilter'),
@@ -56,19 +55,33 @@ export default function FilterModalContent({ currentFilters, allTags, onStateCha
             </div>
             <div className={styles.modalSection}>
                 <label>Filter by Date Range</label>
-                <DatePicker
-                    selectsRange={true}
-                    startDate={startDate}
-                    endDate={endDate}
-                    onChange={(update) => {
-                        setStartDate(update[0]);
-                        setEndDate(update[1]);
-                    }}
-                    isClearable={true}
-                    placeholderText="Select a start and end date"
-                    className={styles.datePicker}
-                    wrapperClassName={styles.datePickerWrapper}
-                />
+                <div className={styles.dateRangePicker}>
+                    <div className={styles.dateInputGroup}>
+                        <span className={styles.dateLabel}>From</span>
+                        <input
+                            type="date"
+                            className={styles.nativeDateInput}
+                            value={startDate ? startDate.toISOString().split('T')[0] : ''}
+                            onChange={(e) => {
+                                const d = e.target.value ? new Date(e.target.value) : null;
+                                setStartDate(d);
+                            }}
+                        />
+                    </div>
+                    <div className={styles.dateInputDivider} />
+                    <div className={styles.dateInputGroup}>
+                        <span className={styles.dateLabel}>To</span>
+                        <input
+                            type="date"
+                            className={styles.nativeDateInput}
+                            value={endDate ? endDate.toISOString().split('T')[0] : ''}
+                            onChange={(e) => {
+                                const d = e.target.value ? new Date(e.target.value) : null;
+                                setEndDate(d);
+                            }}
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     );

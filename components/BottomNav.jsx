@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { PresentationChart, Notebook, Gear, PlusCircle, LockKey, Key } from "@phosphor-icons/react/dist/ssr";
+import { PresentationChart, Notebook, Gear, PlusCircle, LockKey, Key, Envelope } from "@phosphor-icons/react/dist/ssr";
 import styles from '../styles/BottomNav.module.css';
 
 export default function BottomNav({ isPinEnabled }) {
@@ -30,6 +30,10 @@ export default function BottomNav({ isPinEnabled }) {
                     <Link href="/diary" className={`${styles.navLink} ${pathname === '/diary' ? styles.active : ''}`}>
                         <Notebook size={28} weight={pathname === '/diary' ? 'fill' : 'regular'} />
                         <span>Diary</span>
+                    </Link>
+                    <Link href="/letters" className={`${styles.navLink} ${pathname.startsWith('/letters') ? styles.active : ''}`}>
+                        <Envelope size={28} weight={pathname.startsWith('/letters') ? 'fill' : 'regular'} />
+                        <span>Letters</span>
                     </Link>
                     <Link href="/foryou" className={`${styles.navLink} ${pathname === '/foryou' ? styles.active : ''}`}>
                         <PresentationChart size={28} weight={pathname === '/foryou' ? 'fill' : 'regular'} />

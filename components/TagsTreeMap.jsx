@@ -7,17 +7,23 @@ export default function TagsTreeMap({ data }) {
         <div style={{ height: '550px' }}>
             <ResponsiveTreeMap
                 data={data}
-                identity="name"
+                identity="id"
+                label="name"
                 value="value"
                 margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
                 labelSkipSize={12}
                 labelTextColor="#ffffff"
-                parentLabelTextColor="#ffffff"
+                enableParentLabel={false}
                 borderColor="#1e1e1e"
                 colors={{ scheme: 'spectral' }}
                 theme={{
-                    tooltip: { container: { background: '#333', color: '#fff' } }
+                    tooltip: { container: { background: '#333', color: '#fff', whiteSpace: 'nowrap' } }
                 }}
+                tooltip={({ node }) => (
+                    <div style={{ padding: '6px 12px', background: '#333', color: '#fff', borderRadius: '4px', whiteSpace: 'nowrap' }}>
+                        <strong>{node.data.name}</strong>: {node.formattedValue}
+                    </div>
+                )}
             />
         </div>
     );

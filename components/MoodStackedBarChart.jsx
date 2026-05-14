@@ -1,15 +1,16 @@
 'use client';
 import { ResponsiveBar } from '@nivo/bar';
 
-const moodColors = { Happy: '#FDD655', Chill: '#5DADEC', Tired: '#FF893F', Stress: '#FF4B4B' };
-const getColor = (bar) => moodColors[bar.id];
+export default function MoodStackedBarChart({ data, indexBy, legend, moodMeta = [] }) {
+    const moodColors = moodMeta.reduce((acc, m) => ({ ...acc, [m.name]: m.color }), {});
+    const moodKeys = moodMeta.map(m => m.name);
+    const getColor = (bar) => moodColors[bar.id];
 
-export default function MoodStackedBarChart({ data, indexBy, legend }) {
     return (
         <div style={{ height: '450px' }}>
             <ResponsiveBar
                 data={data}
-                keys={['Happy', 'Chill', 'Tired', 'Stress']}
+                keys={moodKeys}
                 indexBy={indexBy}
                 margin={{ top: 24, right: 24, bottom: 64, left: 24 }}
                 padding={0.3}
@@ -54,7 +55,7 @@ export default function MoodStackedBarChart({ data, indexBy, legend }) {
                     effects: [{ on: 'hover', style: { itemOpacity: 1 } }]
                 }]}
                 theme={{
-                    tooltip: { container: { background: '#333', color: '#fff' } },
+                    tooltip: { container: { background: '#333', color: '#fff', whiteSpace: 'nowrap' } },
                     legends: { text: { fill: '#fff' } },
                     axis: { ticks: { text: { fill: '#ccc' } }, legend: { text: { fill: '#fff' } } }
                 }}

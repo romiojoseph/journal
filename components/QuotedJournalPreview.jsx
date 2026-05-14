@@ -35,7 +35,7 @@ export default function QuotedJournalPreview({ journal, onDetach = null }) {
                 onClick={handleContainerClick}
             >
                 <div className={styles.header}>
-                    <span className={styles.author}>Context for this journal</span>
+                    <span className={styles.author}>Context journal</span>
                     <FormattedDate dateString={journal.createdAt} />
                 </div>
                 <p className={styles.content}>

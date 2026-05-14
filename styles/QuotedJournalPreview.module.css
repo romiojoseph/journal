@@ -1,26 +1,27 @@
 .quotedContainer {
     display: block;
-    border: 1px solid var(--monochrome-11);
+    border: 2px solid var(--monochrome-11);
     background-color: var(--monochrome-12);
-    border-radius: 24px;
+    border-radius: 16px;
     padding: 24px;
     margin-top: 1rem;
     text-decoration: none;
     color: inherit;
-    transition: background-color 0.2s;
+    transition: all 0.32s ease-in-out;
 }
 
 .quotedContainer:hover {
-    background-color: var(--monochrome-10);
+    background-color: var(--monochrome-11);
+    border-color: var(--monochrome-11);
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.8rem;
-    color: var(--monochrome-7);
-    margin-bottom: 0.75rem;
+    font-size: var(--font-size-caption);
+    color: var(--monochrome-5);
+    margin-bottom: 12px;
 }
 
 .content {

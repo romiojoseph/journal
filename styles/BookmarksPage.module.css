@@ -17,7 +17,7 @@
 
 
 .container h1 {
-    font-size: var(--font-size-heading2);
+    font-size: var(--font-size-heading4);
     color: var(--monochrome-4);
     margin-bottom: 0.5rem;
     font-weight: 500;

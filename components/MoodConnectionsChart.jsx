@@ -3,17 +3,17 @@
 import { ResponsiveSunburst } from '@nivo/sunburst';
 
 const CustomTooltip = ({ id, value, data }) => {
-    const displayText = data.displayName || id;
+    const displayText = data.name || id;
 
     if (!data.connectors || data.connectors.length === 0) {
         return (
-            <div style={{ padding: '8px 12px', background: '#333', color: '#fff', borderRadius: '3px' }}>
+            <div style={{ padding: '8px 12px', background: '#333', color: '#fff', borderRadius: '3px', whiteSpace: 'nowrap' }}>
                 <strong>{displayText}</strong>: {value}
             </div>
         );
     }
     return (
-        <div style={{ padding: '8px 12px', background: '#333', color: '#fff', borderRadius: '3px' }}>
+        <div style={{ padding: '8px 12px', background: '#333', color: '#fff', borderRadius: '3px', whiteSpace: 'nowrap' }}>
             <strong>{displayText}</strong>: {value}<br />
             <strong style={{ color: '#aaa', marginTop: '5px', display: 'block' }}>Top Connectors:</strong>
             <ul style={{ paddingLeft: '15px', margin: 0, marginTop: '3px' }}>
@@ -29,7 +29,7 @@ export default function MoodConnectionsChart({ data }) {
             <ResponsiveSunburst
                 data={data}
                 margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
-                id="name"
+                id="id"
                 value="value"
                 cornerRadius={2}
                 borderWidth={1}
@@ -37,9 +37,7 @@ export default function MoodConnectionsChart({ data }) {
                 colors={{ scheme: 'spectral' }}
                 childColor={{ from: 'color', modifiers: [['brighter', 0.2]] }}
                 enableArcLabels={true}
-                arcLabel={(d) => {
-                    return d.data.displayName || d.id;
-                }}
+                arcLabel="name"
                 arcLabelsSkipAngle={10}
                 arcLabelsTextColor="#111"
                 tooltip={CustomTooltip}

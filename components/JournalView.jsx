@@ -5,15 +5,17 @@ import { useRouter } from 'next/navigation';
 import { useState, useMemo } from 'react';
 import {
     Copy, Trash, BookmarkSimple, Repeat, PencilSimple, DownloadSimple,
-    CirclesThree, Users, Island
+    PersonSimpleBikeIcon, Users, MapTrifoldIcon
 } from '@phosphor-icons/react/dist/ssr';
 import TagPill from './TagPill';
 import styles from '../styles/JournalDetail.module.css';
-import moodJson from '../data/moods.json';
 import { useModal } from '../context/ModalContext';
 import FollowUpSection from './FollowUpSection';
 import FormattedDate from './FormattedDate';
 import QuotedJournalPreview from './QuotedJournalPreview';
+import { getMoodColor } from '../lib/mood-utils';
+import QuoteDisplay from './QuoteDisplay';
+import FireAnimationOverlay from './FireAnimationOverlay';
 
 const copyToClipboard = (text, showAlert) => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -37,15 +39,7 @@ const copyToClipboard = (text, showAlert) => {
     }
 };
 
-const getTagColor = (tag) => {
-    if (tag.type !== 'mood') return null;
-    for (const mood of moodJson.moods) {
-        if (mood.tags.includes(tag.name)) {
-            return mood.color;
-        }
-    }
-    return null;
-};
+
 
 const ConnectorRow = ({ icon, label, tags }) => (
     <div className={styles.connectorRow}>
@@ -59,10 +53,11 @@ const ConnectorRow = ({ icon, label, tags }) => (
     </div>
 );
 
-export default function JournalView({ journal }) {
+export default function JournalView({ journal, moodData }) {
     const router = useRouter();
     const { showAlert, showConfirm } = useModal();
     const [isBookmarked, setIsBookmarked] = useState(journal.isBookmarked);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const { moodTags, activityTags, peopleTags, placeTags } = useMemo(() => {
         const moods = [];
@@ -78,29 +73,48 @@ export default function JournalView({ journal }) {
         return { moodTags: moods, activityTags: activities, peopleTags: people, placeTags: places };
     }, [journal.tags]);
 
+    const dominantMood = useMemo(() => {
+        if (moodTags.length === 0) return 'happy';
+
+        const counts = { Happy: 0, Chill: 0, Tired: 0, Stress: 0 };
+        moodTags.forEach(tag => {
+            const parent = moodData?.moods?.find(m => m.name === tag.name || m.tags.includes(tag.name));
+            if (parent) counts[parent.name]++;
+        });
+
+        const maxCount = Math.max(...Object.values(counts));
+        const winners = Object.entries(counts)
+            .filter(([_, count]) => count === maxCount && count > 0)
+            .map(([name, _]) => name.toLowerCase());
+
+        if (winners.length === 0) return 'happy';
+        return winners[Math.floor(Math.random() * winners.length)];
+    }, [moodTags, moodData]);
+
     const handleCopy = () => {
         copyToClipboard(journal.content, showAlert);
     };
 
     const handleDelete = () => {
         showConfirm({
-            title: 'Confirm Deletion',
-            message: 'Are you sure you want to permanently delete this journal?',
-            confirmLabel: 'Delete',
+            title: 'Burn Entry?',
+            message: 'Are you sure you want to permanently burn this entry? This cannot be undone.',
+            confirmLabel: 'Burn it',
             onConfirm: async () => {
                 const response = await fetch(`/api/journals/${journal.id}`, { method: 'DELETE' });
                 if (response.ok) {
-                    showAlert({
-                        title: 'Deleted', message: 'Journal has been deleted.', onOk: () => {
-                            router.push('/diary');
-                            router.refresh();
-                        }
-                    });
+                    setIsDeleting(true);
                 } else {
                     showAlert({ title: 'Error', message: 'Failed to delete journal.' });
                 }
             }
         });
+    };
+
+    const handleAnimationComplete = () => {
+        setIsDeleting(false);
+        router.push('/diary');
+        router.refresh();
     };
 
     const handleToggleBookmark = async () => {
@@ -122,7 +136,7 @@ export default function JournalView({ journal }) {
         const typeToCategoryMap = { activity: 'Activities', people: 'People', place: 'Places' };
         journal.tags.forEach(tag => {
             if (tag.type === 'mood') {
-                const parentMood = moodJson.moods.find(m => m.tags.includes(tag.name));
+                const parentMood = moodData?.moods?.find(m => m.name === tag.name || m.tags.includes(tag.name));
                 if (parentMood) frontmatter[parentMood.name].push(tag.name);
             } else {
                 const category = typeToCategoryMap[tag.type];
@@ -175,49 +189,66 @@ export default function JournalView({ journal }) {
     };
 
     return (
-        <article className={styles.container}>
-            <div className={styles.topBar}>
-                <div className={styles.topBarActions}>
-                    <button onClick={handleDownload} title="Download as Markdown"><DownloadSimple size={24} weight="bold" /></button>
-                    <Link href={`/journal/${journal.id}/edit`} className={styles.editButton} title="Edit Journal"><PencilSimple size={24} weight="bold" /></Link>
-                    <button onClick={handleCopy} title="Copy Content"><Copy size={24} weight="bold" /></button>
-                    <button onClick={handleToggleBookmark} title="Bookmark" className={isBookmarked ? styles.bookmarked : ''}>
-                        <BookmarkSimple size={24} weight={isBookmarked ? 'fill' : 'bold'} />
-                    </button>
-                    <Link href={`/new?quoteId=${journal.id}`} className={styles.quoteButton} title="Quote Journal"><Repeat size={24} weight="bold" /></Link>
-                    <button onClick={handleDelete} className={styles.deleteButton} title="Delete Journal"><Trash size={24} weight="bold" /></button>
+        <>
+            {isDeleting && <FireAnimationOverlay onComplete={handleAnimationComplete} />}
+            <aside className={styles.sidebar}>
+                <div className={styles.topBar}>
+                    <div className={styles.topBarActions}>
+                        <Link href={`/journal/${journal.id}/edit`} className={styles.editButton} title="Edit Journal"><PencilSimple size={20} weight="bold" /></Link>
+                        <button onClick={handleCopy} title="Copy Content"><Copy size={20} weight="bold" /></button>
+                        <button onClick={handleDownload} title="Download as Markdown"><DownloadSimple size={20} weight="bold" /></button>
+                        <button onClick={handleToggleBookmark} title="Bookmark" className={isBookmarked ? styles.bookmarked : ''}>
+                            <BookmarkSimple size={20} weight={isBookmarked ? 'fill' : 'bold'} />
+                        </button>
+                        <Link href={`/new?quoteId=${journal.id}`} className={styles.quoteButton} title="Quote Journal"><Repeat size={20} weight="bold" /></Link>
+                        <button onClick={handleDelete} className={styles.deleteButton} title="Delete Journal"><Trash size={20} weight="bold" /></button>
+                    </div>
+                </div>
+
+                <div className={styles.moodsContainer}>
+                    {moodTags.map(tag => (
+                        <TagPill key={`${tag.type}-${tag.name}`} text={tag.name} color={tag.type === 'mood' ? getMoodColor(tag.name, moodData?.moods) : null} onRemove={null} />
+                    ))}
+                </div>
+
+                <div className={styles.connectorsContainer}>
+                    {activityTags.length > 0 && (
+                        <ConnectorRow icon={<PersonSimpleBikeIcon size={18} weight="duotone" />} label="Activities" tags={activityTags} />
+                    )}
+                    {peopleTags.length > 0 && (
+                        <ConnectorRow icon={<Users size={18} weight="duotone" />} label="People" tags={peopleTags} />
+                    )}
+                    {placeTags.length > 0 && (
+                        <ConnectorRow icon={<MapTrifoldIcon size={18} weight="duotone" />} label="Places" tags={placeTags} />
+                    )}
+                </div>
+
+                <footer className={styles.footer}>
+                    <p>Created: <FormattedDate dateString={journal.createdAt} /></p>
+                    {journal.updatedAt !== journal.createdAt && <p>Modified: <FormattedDate dateString={journal.updatedAt} /></p>}
+                </footer>
+            </aside>
+            <div className={styles.contentArea}>
+                <div className={styles.container}>
+                    <main className={styles.mainContent}>
+                        {journal.moodSentence && (
+                            <div className={styles.moodSentenceHeader}>
+                                {journal.moodSentence}
+                            </div>
+                        )}
+                        <div className={styles.contentWrapper}>
+                            {journal.content ? (
+                                <p className={styles.content}>{journal.content}</p>
+                            ) : (
+                                <QuoteDisplay mood={dominantMood} />
+                            )}
+                            <QuotedJournalPreview journal={journal.quotedJournal} />
+                        </div>
+
+                        <FollowUpSection journalId={journal.id} />
+                    </main>
                 </div>
             </div>
-
-            <div className={styles.moodsContainer}>
-                {moodTags.map(tag => (
-                    <TagPill key={`${tag.type}-${tag.name}`} text={tag.name} color={getTagColor(tag)} onRemove={null} />
-                ))}
-            </div>
-
-            <div className={styles.connectorsContainer}>
-                {activityTags.length > 0 && (
-                    <ConnectorRow icon={<CirclesThree size={24} weight="duotone" />} label="Activities" tags={activityTags} />
-                )}
-                {peopleTags.length > 0 && (
-                    <ConnectorRow icon={<Users size={24} weight="duotone" />} label="People" tags={peopleTags} />
-                )}
-                {placeTags.length > 0 && (
-                    <ConnectorRow icon={<Island size={24} weight="duotone" />} label="Places" tags={placeTags} />
-                )}
-            </div>
-
-            <div className={styles.contentWrapper}>
-                <p className={styles.content}>{journal.content}</p>
-                <QuotedJournalPreview journal={journal.quotedJournal} />
-            </div>
-
-            <footer className={styles.footer}>
-                <p>Created: <FormattedDate dateString={journal.createdAt} /></p>
-                {journal.updatedAt !== journal.createdAt && <p>Modified: <FormattedDate dateString={journal.updatedAt} /></p>}
-            </footer>
-
-            <FollowUpSection journalId={journal.id} />
-        </article>
+        </>
     );
 }

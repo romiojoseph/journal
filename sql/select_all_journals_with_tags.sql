@@ -3,13 +3,17 @@ SELECT
     j.id,
     j.content,
     j.createdAt,
+    j.updatedAt,
     j.isBookmarked,
     j.quoted_journal_id,
+    j.mood_sentence_id,
     GROUP_CONCAT(t.type || ':' || t.name, '|') AS tags,
     qj.id as quoted_id,
     qj.content as quoted_content,
     qj.createdAt as quoted_createdAt,
-    (SELECT GROUP_CONCAT(fu.content, ' ') FROM follow_ups fu WHERE fu.journal_id = j.id) as follow_up_content
+    (SELECT GROUP_CONCAT(fu.content, ' ') FROM follow_ups fu WHERE fu.journal_id = j.id) as follow_up_content,
+    (SELECT COUNT(*) FROM follow_ups WHERE journal_id = j.id) as follow_up_count,
+    (SELECT COUNT(*) FROM journals WHERE quoted_journal_id = j.id) as quote_count
 FROM
     journals j
 LEFT JOIN

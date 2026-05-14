@@ -8,32 +8,38 @@ export default function SessionGuard({ isPinEnabled }) {
     const pathname = usePathname();
 
     useEffect(() => {
-        // If PIN is disabled, do nothing
-        if (!isPinEnabled) return;
-
-        // List of public paths that don't require locking
-        const publicPaths = ['/access-vault'];
-
-        // If we are on a public path, do nothing
-        if (publicPaths.some(p => pathname.startsWith(p))) {
+        if (!isPinEnabled || pathname.startsWith('/access-vault') || pathname.startsWith('/config/security')) {
             return;
         }
 
-        // Check if the session is valid in sessionStorage (cleared on tab close)
-        const isSessionValid = sessionStorage.getItem('vault-unlocked');
+        const checkSession = async () => {
+            const expiryStr = localStorage.getItem('vault-unlocked-expiry');
+            const expiry = expiryStr ? parseInt(expiryStr, 10) : 0;
+            const now = Date.now();
+            
+            if (expiry > 0 && now >= expiry) {
+                localStorage.removeItem('vault-unlocked-expiry');
+                router.push('/access-vault');
+                return;
+            }
 
-        if (!isSessionValid) {
-            // If session is invalid (tab closed/reopened), force lock
-            // We call the API to clear the cookie as well
-            fetch('/api/lock-vault', { method: 'POST' })
-                .then(() => {
+            // Periodic server-side check to ensure encryption key is still alive
+            try {
+                const res = await fetch('/api/check-session');
+                if (res.status === 401) {
+                    localStorage.removeItem('vault-unlocked-expiry');
                     router.push('/access-vault');
-                })
-                .catch(() => {
-                    router.push('/access-vault');
-                });
-        }
-    }, [pathname, router, isPinEnabled]);
+                }
+            } catch (err) {
+                console.error('Session check failed', err);
+            }
+        };
+
+        checkSession();
+        const interval = setInterval(checkSession, 10000); // Background check every 10s
+
+        return () => clearInterval(interval);
+    }, [isPinEnabled, router, pathname]);
 
     return null;
 }

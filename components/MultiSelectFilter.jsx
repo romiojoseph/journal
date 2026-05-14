@@ -7,15 +7,15 @@ const selectStyles = {
     control: (provided, state) => ({
         ...provided,
         backgroundColor: 'var(--monochrome-13)',
-        border: '1px solid var(--monochrome-10)',
+        border: '2px solid var(--monochrome-12)',
         borderRadius: '12px',
         boxShadow: 'none',
-        minHeight: '44px',
+        minHeight: '48px',
         fontSize: 'var(--font-size-body)',
         '&:hover': {
-            borderColor: 'var(--accent-color)',
+            borderColor: 'var(--monochrome-10)',
         },
-        borderColor: state.isFocused ? 'var(--accent-color)' : 'var(--monochrome-10)',
+        borderColor: state.isFocused ? 'var(--monochrome-10)' : 'var(--monochrome-12)',
     }),
     menu: (provided) => ({
         ...provided,

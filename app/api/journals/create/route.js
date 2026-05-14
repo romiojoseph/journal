@@ -1,18 +1,36 @@
 import { NextResponse } from 'next/server';
-import db from '../../../../lib/db';
+import db from '@/lib/db';
 import fs from 'fs';
 import path from 'path';
+import { getClosestMoodSentence } from '@/lib/mood-scoring';
+
+import { validateSession, isPinEnabled, getEncryptionKey, encrypt } from '@/lib/security';
 
 const getQuery = (fileName) => fs.readFileSync(path.join(process.cwd(), 'sql', fileName), 'utf8');
 
 export async function POST(request) {
+    if (!await validateSession(request)) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     try {
         // Accept the new optional field
         const { content, tags, quotedJournalId = null } = await request.json();
 
-        if (!content || !tags || tags.length === 0) {
-            return NextResponse.json({ error: 'Content and at least one tag are required.' }, { status: 400 });
+        if (!tags || tags.length === 0) {
+            return NextResponse.json({ error: 'At least one tag is required.' }, { status: 400 });
         }
+        if (!tags.some(t => t.type === 'mood')) {
+            return NextResponse.json({ error: 'At least one mood tag is required.' }, { status: 400 });
+        }
+
+        let finalContent = content;
+        if (isPinEnabled()) {
+            finalContent = encrypt(content, getEncryptionKey());
+        }
+
+        const journalId = crypto.randomUUID();
+        const closestSentence = getClosestMoodSentence(db, tags, journalId);
+        const moodSentenceId = closestSentence ? closestSentence.id : null;
 
         const insertJournalSql = getQuery('insert_journal.sql');
         const findTagSql = getQuery('find_tag_by_name_and_type.sql');
@@ -21,9 +39,13 @@ export async function POST(request) {
 
         const transaction = db.transaction((journalData) => {
             const journalStmt = db.prepare(insertJournalSql);
-            // Pass the new field to the query
-            const journalResult = journalStmt.run(journalData.content, journalData.quotedJournalId);
-            const journalId = journalResult.lastInsertRowid;
+            const journalResult = journalStmt.run(
+                journalData.id, 
+                journalData.content, 
+                journalData.quotedJournalId,
+                journalData.moodSentenceId
+            );
+            const journalId = journalData.id;
 
             const findTagStmt = db.prepare(findTagSql);
             const insertTagStmt = db.prepare(insertTagSql);
@@ -37,7 +59,13 @@ export async function POST(request) {
             return journalId;
         });
 
-        const newJournalId = transaction({ content, tags, quotedJournalId });
+        const newJournalId = transaction({ 
+            id: journalId, 
+            content: finalContent, 
+            tags, 
+            quotedJournalId,
+            moodSentenceId
+        });
 
         return NextResponse.json({ message: 'Journal created successfully', journalId: newJournalId }, { status: 201 });
 

@@ -2,11 +2,15 @@ import { NextResponse } from 'next/server';
 import db from '../../../../lib/db';
 import fs from 'fs';
 import path from 'path';
+import { validateSession, isPinEnabled, getEncryptionKey, encrypt } from '../../../../lib/security';
 
 const getQuery = (fileName) => fs.readFileSync(path.join(process.cwd(), 'sql', fileName), 'utf8');
 
 // PUT (update) a specific follow-up
 export async function PUT(request, { params }) {
+    if (!await validateSession(request)) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     try {
         const resolvedParams = await params;
         const followUpId = resolvedParams.followUpId;
@@ -16,8 +20,13 @@ export async function PUT(request, { params }) {
             return NextResponse.json({ error: 'Content is required.' }, { status: 400 });
         }
 
+        let finalContent = content;
+        if (isPinEnabled()) {
+            finalContent = encrypt(content, getEncryptionKey());
+        }
+
         const sql = getQuery('update_follow_up_by_id.sql');
-        db.prepare(sql).run(content, followUpId);
+        db.prepare(sql).run(finalContent, followUpId);
 
         return NextResponse.json({ message: 'Follow-up updated.' });
     } catch (error) {
@@ -28,6 +37,9 @@ export async function PUT(request, { params }) {
 
 // DELETE a specific follow-up
 export async function DELETE(request, { params }) {
+    if (!await validateSession(request)) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     try {
         const resolvedParams = await params;
         const followUpId = resolvedParams.followUpId;

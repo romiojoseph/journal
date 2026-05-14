@@ -1,31 +1,146 @@
 .container {
     width: 100%;
-    max-width: 768px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-
-.container h1 {
-    font-size: var(--font-size-heading2);
-    color: var(--monochrome-4);
-    margin-bottom: 8px;
-    font-weight: 500;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
     width: 100%;
 }
 
+.contentArea {
+    width: 100%;
+    padding: 32px 16px;
+    padding-right: 380px;
+    /* Space for fixed sidebar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    box-sizing: border-box;
+}
+
+.contentArea h1 {
+    font-size: var(--font-size-heading3);
+    color: var(--monochrome-4);
+    margin-bottom: 8px;
+    font-weight: 500;
+    width: 100%;
+    max-width: 728px;
+}
+
+.sidebar {
+    width: 380px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: var(--monochrome-14);
+    border-left: 1px solid var(--monochrome-11);
+    padding: 16px 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 100;
+}
+
+/* --- SEARCH STYLES --- */
+.searchContainer {
+    width: 100%;
+}
+
+.searchInputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--monochrome-13);
+    border: 2px solid var(--monochrome-12);
+    border-radius: 12px;
+    padding: 2px 12px;
+    transition: all 0.3s ease;
+}
+
+.searchInputWrapper:hover {
+    border-color: var(--monochrome-10);
+    background-color: var(--monochrome-13);
+}
+
+.searchInputWrapper:focus-within {
+    outline: none;
+    border-color: var(--monochrome-10);
+    background-color: var(--monochrome-13);
+}
+
+.searchIcon {
+    color: var(--monochrome-7);
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.searchInput {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--monochrome-4);
+    font-size: var(--font-size-body);
+    padding: 10px 0;
+    font-family: inherit;
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+.clearSearch {
+    background: var(--monochrome-11);
+    border: none;
+    color: var(--monochrome-6);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 8px;
+    transition: all 0.2s;
+}
+
+.clearSearch:hover {
+    background: var(--monochrome-9);
+    color: var(--monochrome-2);
+}
+
+/* Custom scrollbar for fixed sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--monochrome-11);
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--monochrome-9);
+}
+
 .editor {
+    width: 100%;
+    max-width: 728px;
     border: 1px solid var(--monochrome-11);
     border-radius: 24px;
     overflow: hidden;
+    background-color: var(--monochrome-15);
 }
 
 .selectedTagsContainer {
@@ -45,7 +160,7 @@
 
 .textarea {
     width: 100%;
-    min-height: 512px;
+    min-height: 500px;
     padding: 24px;
     background-color: transparent;
     color: var(--monochrome-5);
@@ -53,7 +168,7 @@
     font-family: inherit;
     font-size: var(--font-size-heading6);
     line-height: 1.8;
-    resize: vertical;
+    resize: none;
 }
 
 .textarea::placeholder {
@@ -65,22 +180,36 @@
 }
 
 .tagSections {
-    border: 1px solid var(--monochrome-11);
-    border-radius: 24px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
 }
 
+.accordionItem {
+    border: 1px solid var(--monochrome-11);
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: var(--monochrome-15);
+}
 
 .accordionHeader {
+    width: 100%;
+    background-color: var(--monochrome-13);
+    border: none;
+    color: var(--monochrome-5);
+    font-size: var(--font-size-body);
+    font-weight: 400;
+    padding: 16px 20px;
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 12px 16px;
-    font-weight: 600;
-    background: none;
-    border: none;
-    cursor: pointer;
+    text-align: left;
+}
+
+.accordionHeader:hover {
+    background-color: var(--monochrome-11);
 }
 
 .headerLeft {
@@ -100,29 +229,6 @@
     color: var(--monochrome-7);
 }
 
-.accordionItem {
-    border-bottom: 1px solid var(--monochrome-11);
-}
-
-.accordionItem:last-child {
-    border-bottom: none;
-}
-
-.accordionHeader {
-    width: 100%;
-    background-color: var(--monochrome-13);
-    border: none;
-    color: var(--monochrome-5);
-    font-size: var(--font-size-heading6);
-    font-weight: 400;
-    padding: 16px 24px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-}
-
 .accordionHeader .caretOpen {
     transform: rotate(180deg);
 }
@@ -132,10 +238,11 @@
 }
 
 .accordionContent {
-    padding: 16px;
+    padding: 20px;
+    border-top: 1px solid var(--monochrome-11);
 }
 
-/* --- NEW MOOD TABS STYLES --- */
+/* --- MOOD TABS --- */
 .moodTabs {
     display: flex;
     align-items: center;
@@ -154,16 +261,10 @@
     border: none;
     color: var(--monochrome-6);
     font-size: var(--font-size-caption);
-    padding: 6px 20px;
+    padding: 6px 12px;
     cursor: pointer;
-    border-bottom: 2px solid transparent;
     border-radius: 100px;
-    text-decoration: none;
-    transition:
-        color 0.25s ease,
-        border-color 0.25s ease,
-        background-color 0.35s ease,
-        transform 0.25s ease;
+    transition: all 0.25s ease;
 }
 
 .moodTabs button:hover {
@@ -174,12 +275,6 @@
     color: var(--monochrome-15);
     background: var(--mood-happy);
     font-weight: 600;
-    box-shadow: 0 0 16px 4px rgb(13, 24, 39);
-    transition:
-        background-color 0.35s ease,
-        color 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.35s ease;
 }
 
 .moodTabs button:nth-child(2).activeTab {
@@ -194,56 +289,66 @@
     background: var(--mood-stress);
 }
 
-
-/* --- GENERAL TAG LIST STYLES --- */
+/* --- TAG LIST --- */
 .tagList {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    padding-top: 0.5rem;
 }
 
 .tagButton {
     background-color: var(--monochrome-12);
-    border: 2px solid var(--monochrome-11);
+    border: 1px solid var(--monochrome-11);
     color: var(--monochrome-5);
-    padding: 8px 16px;
+    padding: 6px 12px;
     border-radius: 100px;
     font-size: var(--font-size-caption);
     cursor: pointer;
-    transition: background-color 0.2s, border 0.3s ease-in-out, transform 0.1s ease-in;
+    transition: all 0.2s ease-in-out;
 }
 
 .tagButton:hover {
     background-color: var(--monochrome-11);
-    border: 2px solid var(--monochrome-10);
-    transform: scale(1.03);
+    border-color: var(--monochrome-10);
 }
 
-/* --- NEW FORM FOOTER STYLES --- */
+/* --- FORM FOOTER --- */
 .formFooter {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 16px 0 40px;
+    padding-top: 24px;
     gap: 16px;
+    width: 100%;
+    max-width: 728px;
 }
 
 .charCount {
     color: var(--monochrome-6);
-    font-size: var(--font-size-body);
+    font-size: var(--font-size-caption);
+}
+
+.saveStatus {
+    font-size: var(--font-size-caption);
+    color: var(--monochrome-7);
+    transition: all 0.32s ease-in-out;
+}
+
+.saveStatusDone {
+    color: var(--accent-color);
+    font-weight: 500;
 }
 
 .saveButton {
-    padding: 12px 24px;
+    padding: 12px 20px;
     font-size: var(--font-size-subtitle);
     font-weight: 600;
     color: var(--monochrome-15);
-    background-color: var(--monochrome-3);
+    background-color: var(--monochrome-4);
     border: none;
     border-radius: 100px;
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: all 0.32s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,42 +356,39 @@
 }
 
 .saveButton:hover {
-    opacity: 0.9;
+    filter: contrast(150%);
+}
+
+@media (max-width: 1100px) {
+    .contentArea {
+        padding-right: 0;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-top: 1px solid var(--monochrome-11);
+        padding: 24px;
+    }
 }
 
 @media (max-width: 768px) {
-    .container h1 {
-        font-size: var(--font-size-heading5);
-        margin-bottom: 4px;
+    .contentArea {
+        padding: 24px 16px;
     }
 
     .textarea {
-        min-height: 512px;
-        font-size: var(--font-size-body);
-        line-height: 1.7;
-    }
-
-    .container {
-        width: 100vw;
-        max-width: 100%;
-    }
-
-    .accordionHeader {
-        font-size: var(--font-size-body);
-        padding: 16px;
+        min-height: 400px;
     }
 
     .formFooter {
-        display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 8px 0 40px;
-        gap: 24px;
+        align-items: stretch;
     }
 
     .saveButton {
         width: 100%;
     }
-
 }

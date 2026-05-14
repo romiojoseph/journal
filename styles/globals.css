@@ -5,24 +5,24 @@
 
   /* Light tones */
   --monochrome-0: #ffffff;
-  --monochrome-1: #f9fafb;
-  --monochrome-2: #f3f4f6;
-  --monochrome-3: #e5e7eb;
-  --monochrome-4: #d1d5db;
+  --monochrome-1: #f8f9fa;
+  --monochrome-2: #f1f2f4;
+  --monochrome-3: #e3e5e8;
+  --monochrome-4: #cdd0d5;
 
   /* Mid tones */
-  --monochrome-5: #bfc4cb;
-  --monochrome-6: #9ca3af;
-  --monochrome-7: #6b7280;
-  --monochrome-8: #4b5563;
+  --monochrome-5: #b0b4bb;
+  --monochrome-6: #909599;
+  --monochrome-7: #6e7278;
+  --monochrome-8: #4e5258;
 
   /* Dark tones */
-  --monochrome-9: #374151;
-  --monochrome-10: #1f2937;
-  --monochrome-11: #111827;
-  --monochrome-12: #0b101a;
-  --monochrome-13: #060910;
-  --monochrome-14: #030712;
+  --monochrome-9: #393d42;
+  --monochrome-10: #25282d;
+  --monochrome-11: #16191e;
+  --monochrome-12: #0e1014;
+  --monochrome-13: #080a0d;
+  --monochrome-14: #040508;
   --monochrome-15: #000000;
 
   /* Mood Colors */
@@ -31,13 +31,12 @@
   --mood-tired: #FF893F;
   --mood-stress: #FF4B4B;
 
-  --font-inter: "Inter", sans-serif;
-  --font-lora: "Lora", serif;
+  --font-google-sans: "Google Sans", sans-serif;
   --font-jetbrains-mono: "JetBrains Mono", monospace;
   --font-google-sans-code: "Google Sans Code", monospace;
 
-  /* Default font is Inter */
-  --font-family-main: var(--font-inter);
+  /* Default font is Google Sans */
+  --font-family-main: var(--font-google-sans);
 
   --font-size-displayLarge: 52px;
   --font-size-displayMedium: 46px;
@@ -56,12 +55,8 @@
 }
 
 /* --- NEW: Classes to switch the font --- */
-.font-theme-inter {
-  --font-family-main: var(--font-inter);
-}
-
-.font-theme-lora {
-  --font-family-main: var(--font-lora);
+.font-theme-google-sans {
+  --font-family-main: var(--font-google-sans);
 }
 
 .font-theme-jetbrains-mono {
@@ -82,28 +77,22 @@
   text-rendering: optimizeLegibility;
 }
 
-:not(input, textarea) {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
   height: 12px;
   transition: background-color 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--monochrome-11);
+  background-color: var(--monochrome-9);
   border-radius: 10px;
   transition: background-color 0.2s ease;
   scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--monochrome-9);
+  background-color: var(--monochrome-7);
 }
 
 ::-webkit-scrollbar-track {
@@ -141,6 +130,11 @@ main {
   padding: 24px;
 }
 
+main:has(.diary-page-wrapper),
+main:has(.new-journal-wrapper) {
+  padding: 0;
+}
+
 button {
   font-family: var(--font-family-main);
   white-space: nowrap;
@@ -148,6 +142,13 @@ button {
 }
 
 input {
+  font-family: var(--font-family-main);
+}
+
+input,
+textarea,
+select,
+label {
   font-family: var(--font-family-main);
 }
 

@@ -1,0 +1,461 @@
+/* ─── FULL-SCREEN EDITOR OVERLAY ────────────────────────────── */
+
+.editorOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background-color: var(--monochrome-15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header bar */
+.editorHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--monochrome-11);
+    flex-shrink: 0;
+}
+
+.headerBackBtn {
+    background: transparent;
+    border: none;
+    color: var(--monochrome-7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.15s, background-color 0.15s;
+}
+
+.headerBackBtn:hover {
+    color: var(--monochrome-3);
+    background-color: var(--monochrome-11);
+}
+
+.titleInput {
+    flex: 1;
+    background: transparent;
+    color: var(--monochrome-3);
+    border: none;
+    font-family: inherit;
+    font-size: var(--font-size-heading4);
+    font-weight: 600;
+    min-width: 0;
+}
+
+.titleInput::placeholder {
+    color: var(--monochrome-8);
+}
+
+.titleInput:focus {
+    outline: none;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.charCount {
+    color: var(--monochrome-6);
+    font-size: var(--font-size-body);
+    white-space: nowrap;
+    margin-right: 6px;
+}
+
+.saveStatus {
+    font-size: var(--font-size-caption);
+    color: var(--monochrome-7);
+    white-space: nowrap;
+    margin-right: 6px;
+}
+
+.saveStatusDone {
+    color: var(--accent-color);
+}
+
+.headerBtn {
+    background: transparent;
+    border: none;
+    color: var(--monochrome-6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: color 0.15s, background-color 0.15s;
+}
+
+.headerBtn:hover {
+    color: var(--monochrome-3);
+    background-color: var(--monochrome-11);
+}
+
+.headerBtnActive {
+    color: var(--monochrome-3);
+    background-color: var(--monochrome-11);
+}
+
+.headerBtnBack {
+    margin-right: 4px;
+    padding-right: 12px;
+    border-right: 1px solid var(--monochrome-11);
+    border-radius: 0;
+}
+
+.headerBtnBack:hover {
+    background-color: transparent;
+    color: var(--monochrome-3);
+}
+
+.headerBtnDanger:hover {
+    color: var(--mood-stress);
+    background-color: #5d2b2b;
+}
+
+/* Contenteditable writing area */
+.editor {
+    flex: 1;
+    width: 100%;
+    /* Center content within the full-width scrollable area */
+    padding: 40px calc(50% - 352px) 180px;
+    color: var(--monochrome-5);
+    font-family: inherit;
+    font-size: var(--font-size-heading6);
+    line-height: 1.8;
+    overflow-y: scroll;
+    outline: none;
+    white-space: pre-wrap;
+    word-break: break-word;
+    caret-color: var(--monochrome-3);
+    /* scrollbar sits at the viewport edge */
+    scrollbar-gutter: stable;
+}
+
+/* Placeholder via pseudo-element */
+.editor:empty::before {
+    content: attr(data-placeholder);
+    color: var(--monochrome-8);
+    pointer-events: none;
+}
+
+.editorReadOnly {
+    cursor: default;
+    caret-color: transparent;
+}
+
+/* Timestamp heading — inserted as contentEditable=false div */
+.editor :global(.ts-heading),
+.timestampHeading {
+    display: block;
+    font-size: var(--font-size-heading3);
+    font-weight: 600;
+    color: var(--monochrome-4);
+    border-top: 1px dashed var(--monochrome-11);
+    border-bottom: 1px dashed var(--monochrome-11);
+    padding: 24px 0 12px 0;
+    margin: 32px 0 8px 0;
+    line-height: 1.3;
+    cursor: default;
+    user-select: none;
+    text-align: center;
+}
+
+/* Highlight mark */
+.editor mark,
+.highlight {
+    background-color: rgba(253, 214, 85, 0.22);
+    color: var(--monochrome-3);
+    border-radius: 3px;
+    padding: 0 2px;
+}
+
+.editor ul,
+.editor ol {
+    margin: 16px 0;
+    padding-left: 32px;
+}
+
+.editor ul {
+    list-style-type: disc;
+}
+
+.editor ol {
+    list-style-type: decimal;
+}
+
+.editor li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* Bold and underline inherit naturally from execCommand */
+
+/* ─── CALENDAR POPOVER ─────────────────────────────────────────── */
+
+.calendarWrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.calendarPopover {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 280px;
+    max-width: 320px;
+    max-height: 240px;
+    overflow-y: auto;
+    background-color: var(--monochrome-11);
+    border: 1px solid var(--monochrome-10);
+    border-radius: 12px;
+    padding: 12px;
+    z-index: 300;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.calendarPopoverItem {
+    font-size: var(--font-size-caption);
+    color: var(--monochrome-4);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: default;
+    transition: background-color 0.15s;
+    white-space: nowrap;
+}
+
+.calendarPopoverItem:hover {
+    background-color: var(--monochrome-10);
+}
+
+.calendarPopoverEmpty {
+    font-size: var(--font-size-caption);
+    color: var(--monochrome-7);
+    padding: 12px;
+    text-align: center;
+}
+
+/* ─── NATIVE TIMESTAMP PICKER ─────────────────────────────────── */
+
+.tsPickerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 8px 0;
+}
+
+.tsInputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--monochrome-12);
+    border: 1px solid var(--monochrome-10);
+    border-radius: 12px;
+    padding: 0 12px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.tsInputWrapper:focus-within {
+    border-color: var(--monochrome-6);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+.tsInputIcon {
+    color: var(--monochrome-7);
+    margin-right: 8px;
+    pointer-events: none;
+}
+
+.nativeTsInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--monochrome-3);
+    font-family: inherit;
+    font-size: var(--font-size-body);
+    padding: 12px 0;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Style the native picker icon/calendar to some extent */
+.nativeTsInput::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.8) sepia(0) saturate(0) hue-rotate(0deg);
+    opacity: 0.6;
+    transition: opacity 0.15s;
+}
+
+.nativeTsInput::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+.tsPreview {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--monochrome-7);
+    font-size: var(--font-size-caption);
+    padding-left: 4px;
+}
+
+.tsPreview span {
+    color: var(--monochrome-4);
+    font-weight: 500;
+}
+
+/* ─── TIMESTAMP POPOVER ─────────────────────────────────────── */
+
+.tsPopover {
+    position: fixed;
+    z-index: 300;
+    display: flex;
+    gap: 4px;
+    padding: 6px 8px;
+    background-color: var(--monochrome-10);
+    border: 1px solid var(--monochrome-9);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.tsPopoverBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: transparent;
+    color: var(--monochrome-4);
+    border: none;
+    border-radius: 6px;
+    font-size: var(--font-size-caption);
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.tsPopoverBtn:hover {
+    background-color: var(--monochrome-9);
+    color: var(--monochrome-1);
+}
+
+.tsPopoverBtnDelete:hover {
+    background-color: #5d2b2b;
+    color: var(--mood-stress);
+}
+
+/* ─── FLOATING TOOLBAR ──────────────────────────────────────── */
+
+.floatingToolbar {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background: var(--monochrome-14);
+    border: 2px solid var(--monochrome-11);
+    border-radius: 100px;
+    z-index: 200;
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
+}
+
+.toolButton {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: transparent;
+    color: var(--monochrome-5);
+    border: none;
+    border-radius: 100px;
+    font-size: var(--font-size-body);
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.toolButton:hover:not(:disabled) {
+    background-color: var(--monochrome-10);
+    color: var(--monochrome-3);
+}
+
+.toolButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.toolButtonSave {
+    color: var(--monochrome-3);
+    font-weight: 600;
+}
+
+.toolButtonSave:hover:not(:disabled) {
+    background-color: var(--monochrome-10);
+    color: var(--monochrome-3);
+}
+
+.toolDivider {
+    width: 1px;
+    height: 20px;
+    background-color: var(--monochrome-9);
+    margin: 0 4px;
+    flex-shrink: 0;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .editorHeader {
+        padding: 12px 16px;
+    }
+
+    .titleInput {
+        font-size: var(--font-size-heading5);
+    }
+
+    .charCount {
+        display: none;
+    }
+
+    .editor {
+        padding: 24px 16px 160px;
+        font-size: var(--font-size-body);
+    }
+
+    .floatingToolbar {
+        bottom: 24px;
+        left: 16px;
+        right: 16px;
+        transform: none;
+        border-radius: 20px;
+        justify-content: space-around;
+    }
+
+    .toolButton span {
+        display: none;
+    }
+
+    .toolButton {
+        padding: 10px;
+    }
+
+    .calendarPopover {
+        right: -8px;
+        min-width: 240px;
+    }
+}

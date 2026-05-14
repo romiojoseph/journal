@@ -1,7 +1,14 @@
 import { NextResponse } from 'next/server';
+import { clearEncryptionKey } from '../../../lib/security';
+import db from '../../../lib/db';
 
 export async function POST() {
     try {
+        clearEncryptionKey();
+
+        // Set vault_locked flag in database
+        db.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('vault_locked', 'true')").run();
+
         const response = NextResponse.json({ message: 'Vault locked successfully.' });
 
         // Clear the session cookie by setting its expiration date to the past.

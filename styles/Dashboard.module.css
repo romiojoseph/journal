@@ -8,7 +8,7 @@
 }
 
 .container h1 {
-    font-size: var(--font-size-heading2);
+    font-size: var(--font-size-heading4);
     color: var(--monochrome-4);
     font-weight: 500;
 }
@@ -18,6 +18,7 @@
     font-size: var(--font-size-subtitle);
     text-align: left;
     margin-bottom: 16px;
+    margin-top: -4px;
     line-height: 1.6;
 }
 
@@ -34,8 +35,8 @@
 }
 
 .statBox {
-    background-color: var(--monochrome-15);
-    border: 1px solid var(--monochrome-12);
+    background-color: var(--monochrome-13);
+    border: 2px solid var(--monochrome-11);
     border-radius: 24px;
     padding: 24px 24px 24px 32px;
     display: flex;
@@ -170,7 +171,7 @@
 
 
 .calendarRow {
-    height: calc(350px + 64px);
+    height: calc(400px + 64px);
 }
 
 
@@ -237,6 +238,65 @@
     height: 90vh;
     margin: 24px;
 }
+
+.toggleWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.toggleLabel {
+    color: var(--monochrome-6);
+    font-size: var(--font-size-body);
+}
+
+.toggleSwitch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.toggleSwitch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--monochrome-11);
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--monochrome-4);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.toggleSwitch input:checked+.slider {
+    background-color: var(--accent-color);
+}
+
+.toggleSwitch input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
 
 
 @media (max-width: 1024px) {

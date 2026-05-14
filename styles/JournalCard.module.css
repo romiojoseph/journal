@@ -1,36 +1,52 @@
 .card {
+    position: relative;
     display: block;
     background-color: var(--monochrome-15);
     padding: 32px;
     cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
     text-decoration: none;
-    border-bottom: 1px solid var(--monochrome-11);
+    border-bottom: 2px solid var(--monochrome-12);
 }
 
-.card:hover {}
+.card:hover {
+    background-color: var(--monochrome-13);
+}
 
-.tagsContainer {
+.cardHeader {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 0 0 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-/* Override TagPill styles for this specific context */
-.tagsContainer>div {
-    pointer-events: none;
+.moodBar {
+    width: 100%;
+    height: 6px;
+    background-color: var(--monochrome-11);
+    border-radius: 100px;
+    display: flex;
+    overflow: hidden;
 }
 
-.tagsContainer button {
-    display: none;
-    /* Hide the remove button */
+.moodSegment {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.moodSentence {
+    font-size: var(--font-size-subtitle);
+    font-weight: 500;
+    color: var(--monochrome-4);
+    line-height: 1.4;
 }
 
 .content {
     color: var(--monochrome-5);
     font-size: var(--font-size-subtitle);
     line-height: 1.6;
+    margin-bottom: 24px;
 
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -41,21 +57,195 @@
     white-space: pre-wrap;
 }
 
+/* ─── ACTION MENU ───────────────────────────────────────────── */
+
+.actionsContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button.categoryBadge {
+    cursor: pointer;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+.menuContainer {
+    position: relative;
+}
+
+.bookmarked {
+    color: var(--mood-happy) !important;
+}
+
+.menuDropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background-color: var(--monochrome-12);
+    border: 2px solid var(--monochrome-11);
+    border-radius: 16px;
+    padding: 12px;
+    min-width: 220px;
+    z-index: 100;
+    box-shadow: inset 0 0 0 2px var(--monochrome-15), 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.menuDropdown button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    color: var(--monochrome-5);
+    font-size: var(--font-size-body);
+    font-family: inherit;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.menuDropdown button:hover {
+    background-color: var(--monochrome-11);
+    color: var(--monochrome-1);
+}
+
+.menuDivider {
+    height: 2px;
+    background-color: var(--monochrome-11);
+    margin: 8px 0;
+}
+
+.danger:hover {
+    background-color: #5d2b2b !important;
+    color: var(--mood-stress) !important;
+}
+
 .footer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.footerRow {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 16px;
 }
 
-.timestamp {
+.categorySummary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.categoryBadge {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--monochrome-6);
+    transition: color 0.32s ease-in-out;
+    background: var(--monochrome-11);
+    border: 1px solid var(--monochrome-10);
+    padding: 6px 12px;
+    border-radius: 100px;
+}
+
+.categoryBadge:hover {
+    color: var(--monochrome-1);
+    border-color: var(--monochrome-10);
+    background-color: var(--monochrome-10);
+}
+
+.categoryCount {
+    font-size: var(--font-size-caption);
+    font-weight: 500;
+}
+
+.timestampContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: var(--font-size-caption);
     color: var(--monochrome-7);
 }
 
-.connectorCount {
-    font-size: var(--font-size-caption);
+.modifiedTime {
+    color: var(--monochrome-8);
+    font-style: italic;
+}
+
+/* ─── POPOVER ───────────────────────────────────────────────── */
+
+.popover {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--monochrome-12);
+    border: 2px solid var(--monochrome-11);
+    box-shadow: inset 0 0 0 2px var(--monochrome-15);
+    border-radius: 16px;
+    padding: 16px;
+    min-width: 256px;
+    max-width: 500px;
+    z-index: 999;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Tooltip arrow */
+.popover::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--monochrome-10) transparent transparent transparent;
+}
+
+.popoverTitle {
+    font-size: var(--font-size-tagline);
+    font-weight: 600;
     color: var(--monochrome-7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--monochrome-11);
+    padding-bottom: 12px;
+}
+
+.popoverList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 256px;
+    overflow-y: auto;
+}
+
+.popoverItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-size-body);
+    color: var(--monochrome-5);
+    white-space: nowrap;
+}
+
+.moodDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    min-width: 0;
 }
 
 @media (max-width: 768px) {
@@ -63,16 +253,21 @@
         padding: 24px 16px;
     }
 
-    .timestamp {
-        font-size: var(--font-size-tagline);
+    .footer {
+        margin-top: 16px;
     }
 
-    .connectorCount {
-        font-size: var(--font-size-tagline);
+    .categorySummary {
+        gap: 12px;
+    }
+
+    .categoryCount {
+        font-size: 12px;
     }
 
     .content {
         font-size: var(--font-size-body);
         color: var(--monochrome-6);
+        margin-bottom: 16px;
     }
 }

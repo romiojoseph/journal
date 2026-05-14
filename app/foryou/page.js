@@ -10,7 +10,7 @@ import MoodsLineChart from '../../components/MoodsLineChart';
 import ActivityCalendar from '../../components/ActivityCalendar';
 import TopTagsRadar from '../../components/TopTagsRadar';
 import ConnectorsBarChart from '../../components/ConnectorsBarChart';
-import FormattedDate from '../../components/FormattedDate';
+import { formatDate } from '../../lib/time-utils';
 import MoodStackedBarChart from '../../components/MoodStackedBarChart';
 import MoodConnectionsChart from '../../components/MoodConnectionsChart';
 
@@ -20,17 +20,24 @@ export default function ForYouPage() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        let retries = 0;
+        const maxRetries = 3;
+
         const fetchStats = async () => {
             try {
                 const response = await fetch('/api/stats');
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 setStats(data.isEmpty ? { isEmpty: true } : data);
-            } catch (error) {
-                console.error('Failed to fetch stats:', error);
-                setError('Could not load your stats. Please try again later.');
-            } finally {
                 setIsLoading(false);
+            } catch (error) {
+                if (retries < maxRetries) {
+                    retries++;
+                    setTimeout(fetchStats, 1000);
+                } else {
+                    setError('Could not load your stats. Please try again later.');
+                    setIsLoading(false);
+                }
             }
         };
         fetchStats();
@@ -47,9 +54,9 @@ export default function ForYouPage() {
             {stats.subtitleData && (
                 <p className={styles.subtitle}>
                     <strong>
-                        {stats.subtitleData.totalJournals} journals</strong> - Writing from{' '}
-                    <FormattedDate dateString={stats.subtitleData.firstDate} /> to{' '}
-                    <FormattedDate dateString={stats.subtitleData.lastDate} />
+                        {stats.subtitleData.totalJournals} diary entries</strong> - Writing from{' '}
+                    {formatDate(stats.subtitleData.firstDate)} to{' '}
+                    {formatDate(stats.subtitleData.lastDate)}
                 </p>
             )}
 
@@ -82,8 +89,8 @@ export default function ForYouPage() {
             </div>
 
             <div className={`${styles.chartRow} ${styles.calendarRow}`}>
-                <h3>Journal Entries This Year</h3>
-                <p className={styles.chartSubtitle}>A heatmap of your writing activity.</p>
+                <h3>Journal Entries/Check-ins This Year</h3>
+                <p className={styles.chartSubtitle}>A heatmap of your activity.</p>
                 <ActivityCalendar data={stats.calendarData} />
             </div>
 
@@ -91,7 +98,7 @@ export default function ForYouPage() {
                 <div className={styles.chartContainer}>
                     <h3>Connector Mood Correlation</h3>
                     <p className={styles.chartSubtitle}>The mood breakdown for each of your tags.</p>
-                    <ConnectorsBarChart data={stats.stackedBarData} />
+                    <ConnectorsBarChart data={stats.stackedBarData} moodMeta={stats.moodMeta} />
                 </div>
                 <div className={styles.chartContainer}>
                     <h3>Connector Distribution</h3>
@@ -104,12 +111,12 @@ export default function ForYouPage() {
                 <div className={styles.chartContainer}>
                     <h3>Moods by Time of Day</h3>
                     <p className={styles.chartSubtitle}>Your mood patterns recorded at different times.</p>
-                    <MoodStackedBarChart data={stats.timeOfDayData} indexBy="time" />
+                    <MoodStackedBarChart data={stats.timeOfDayData} indexBy="time" moodMeta={stats.moodMeta} />
                 </div>
                 <div className={styles.chartContainer}>
                     <h3>Moods by Day of Week</h3>
                     <p className={styles.chartSubtitle}>Your mood patterns across the days of the week.</p>
-                    <MoodStackedBarChart data={stats.dayOfWeekData} indexBy="day" />
+                    <MoodStackedBarChart data={stats.dayOfWeekData} indexBy="day" moodMeta={stats.moodMeta} />
                 </div>
             </div>
 

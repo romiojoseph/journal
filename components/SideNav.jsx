@@ -3,43 +3,27 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { GearSix, Notebook, PresentationChart, PlusCircle, LockKey, Key } from "@phosphor-icons/react/dist/ssr";
+import { GearSix, Notebook, PresentationChart, PenIcon, LockKey, Key, EnvelopeSimpleIcon } from "@phosphor-icons/react/dist/ssr";
 import styles from '../styles/SideNav.module.css';
 
 export default function SideNav({ isPinEnabled }) {
     const router = useRouter();
     const pathname = usePathname(); // Get the current path
 
-    const handleLock = async () => {
-        try {
-            await fetch('/api/lock-vault', { method: 'POST' });
-            window.location.href = '/access-vault';
-        } catch (error) {
-            console.error('Failed to lock vault:', error);
-            window.location.href = '/access-vault';
-        }
-    };
-
-    const handleRedirectToSecurity = () => {
-        router.push('/config/security');
-    };
-
     return (
         <nav className={styles.nav}>
+            <div className={styles.sideHeader}>
+                <Link href="/" className={styles.logoLink}>
+                    <Image
+                        src="/sidebar-logo.svg"
+                        alt="App icon"
+                        width={120}
+                        height={40}
+                        priority
+                    />
+                </Link>
+            </div>
             <ul className={styles.navList}>
-                <li>
-                    <div className={styles.sideHeader}>
-                        <Link href="/" className={styles.logoLink}>
-                            <Image
-                                src="/sidebar-logo.svg"
-                                alt="App icon"
-                                width={144}
-                                height={35}
-                                priority
-                            />
-                        </Link>
-                    </div>
-                </li>
                 <li>
                     {/* Add active state logic */}
                     <Link href="/diary" className={`${styles.navLink} ${pathname === '/diary' ? styles.active : ''}`}>
@@ -55,30 +39,30 @@ export default function SideNav({ isPinEnabled }) {
                     </Link>
                 </li>
                 <li>
+                    <Link href="/letters" className={`${styles.navLink} ${pathname.startsWith('/letters') ? styles.active : ''}`}>
+                        <EnvelopeSimpleIcon size={24} weight={pathname.startsWith('/letters') ? 'fill' : 'duotone'} />
+                        <span>Letters</span>
+                    </Link>
+                </li>
+                <li>
                     {/* Add active state logic using startsWith for all sub-pages */}
                     <Link href="/config" className={`${styles.navLink} ${pathname.startsWith('/config') ? styles.active : ''}`}>
                         <GearSix size={24} weight={pathname.startsWith('/config') ? 'fill' : 'duotone'} />
                         <span>Config</span>
                     </Link>
                 </li>
-                <li>
-                    <button
-                        onClick={isPinEnabled ? handleLock : handleRedirectToSecurity}
-                        className={styles.navLink}
-                        title={isPinEnabled ? 'Lock the application' : 'Go to Security settings to set up a PIN'}
-                    >
-                        {isPinEnabled ? (
-                            <LockKey size={24} weight="duotone" />
-                        ) : (
+                {!isPinEnabled && (
+                    <li>
+                        <Link href="/config/security" className={styles.navLink}>
                             <Key size={24} weight="duotone" />
-                        )}
-                        <span>{isPinEnabled ? 'Lock Vault' : 'Setup Lock'}</span>
-                    </button>
-                </li>
+                            <span>Setup Lock</span>
+                        </Link>
+                    </li>
+                )}
             </ul>
             {/* Correct the href to point to the homepage */}
             <Link href="/" className={styles.newJournalButton}>
-                <PlusCircle size={24} weight="duotone" />
+                <PenIcon size={24} weight="duotone" />
                 <span>New Journal</span>
             </Link>
         </nav>

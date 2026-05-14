@@ -2,10 +2,14 @@ import { NextResponse } from 'next/server';
 import db from '../../../../../lib/db';
 import fs from 'fs';
 import path from 'path';
+import { validateSession } from '../../../../../lib/security';
 
 const getQuery = (fileName) => fs.readFileSync(path.join(process.cwd(), 'sql', fileName), 'utf8');
 
 export async function POST(request, { params }) {
+    if (!await validateSession(request)) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     try {
         const resolvedParams = await params;
         const journalId = resolvedParams.id;

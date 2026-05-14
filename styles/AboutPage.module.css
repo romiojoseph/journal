@@ -7,7 +7,7 @@
 }
 
 .container h2 {
-    font-size: var(--font-size-heading2);
+    font-size: var(--font-size-heading4);
     color: var(--monochrome-4);
     margin-bottom: 0.5rem;
     font-weight: 500;
@@ -17,7 +17,7 @@
     font-size: var(--font-size-heading5);
     font-weight: 500;
     color: var(--monochrome-5);
-    margin: 40px 0 16px;
+    margin: 40px 0 12px;
 }
 
 .container p+p {
@@ -25,13 +25,13 @@
 }
 
 .container blockquote {
-    padding: 16px 32px;
+    padding: 16px 24px;
     font-size: var(--font-size-subtitle);
     line-height: 1.5;
-    color: var(--monochrome-6);
+    color: var(--monochrome-5);
     border-left: 3px solid var(--mood-tired);
     margin: 40px 0;
-    background-color: var(--monochrome-14);
+    background-color: var(--monochrome-11);
 }
 
 .container p,
@@ -46,6 +46,11 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.container ul ul {
+    margin-left: 24px;
+    margin-top: 12px;
 }
 
 /* --- NEW STYLES FOR FONT SELECTOR --- */

@@ -1,18 +1,63 @@
 import '../styles/globals.css';
 import { ModalProvider } from '../context/ModalContext';
-import { FontProvider } from '../context/FontContext'; // NEW
+import { ToastProvider } from '../context/ToastContext';
+import { FontProvider } from '../context/FontContext';
 import OnboardingManager from '../components/OnboardingManager';
 import SideNav from '../components/SideNav';
 import BottomNav from '../components/BottomNav';
 import SessionGuard from '../components/SessionGuard';
+import VaultTimer from '../components/VaultTimer';
+import CompatibilityOverlay from '../components/CompatibilityOverlay';
 import db, { isFirstLaunch } from '../lib/db';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
-  title: 'What’s on Your Mind?',
-  description: 'Your data, on your terms, in your hands.',
-  icons: {
-    icon: '/favicon.svg',
+  title: "Journal - Penned Thoughts",
+  description:
+    "Penned Thoughts is a private, secure digital journal designed to help you capture, organize, and reflect on your life's moments.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "http://127.0.0.1:2048/"),
+  openGraph: {
+    title: "Journal - Penned Thoughts",
+    description:
+      "Penned Thoughts is a private, secure digital journal designed to help you capture, organize, and reflect on your life's moments.",
+    url: "http://127.0.0.1:2048/",
+    siteName: "Journal - Penned Thoughts",
+    images: [
+      {
+        url: "/social-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Journal - Penned Thoughts",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Journal - Penned Thoughts",
+    description:
+      "Penned Thoughts is a private, secure digital journal designed to help you capture, organize, and reflect on your life's moments.",
+    images: ["/social-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+  manifest: "/manifest.json",
 };
 
 function getPinStatus() {
@@ -28,20 +73,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <FontProvider> {/* NEW WRAPPER */}
+        <FontProvider>
+          <CompatibilityOverlay />
           <ModalProvider>
-            <SessionGuard isPinEnabled={isPinEnabled} />
-            <OnboardingManager isFirstLaunch={isFirstLaunch}>
-              <div className="app-container">
-                <SideNav isPinEnabled={isPinEnabled} />
-                <div className="main-content-wrapper">
-                  <main>
-                    {children}
-                  </main>
+            <ToastProvider>
+              <SessionGuard isPinEnabled={isPinEnabled} />
+              <VaultTimer isPinEnabled={isPinEnabled} />
+              <OnboardingManager isFirstLaunch={isFirstLaunch}>
+                <div className="app-container">
+                  <SideNav isPinEnabled={isPinEnabled} />
+                  <div className="main-content-wrapper">
+                    <main>
+                      {children}
+                    </main>
+                  </div>
+                  <BottomNav isPinEnabled={isPinEnabled} />
                 </div>
-                <BottomNav isPinEnabled={isPinEnabled} />
-              </div>
-            </OnboardingManager>
+              </OnboardingManager>
+            </ToastProvider>
           </ModalProvider>
         </FontProvider>
       </body>

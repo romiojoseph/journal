@@ -1,0 +1,3046 @@
+{
+    "version": "1.0",
+    "scoring_note": "Each sentence has a weight vector {chill, happy, stress, tired} summing to 1.0. Normalize user tag counts to ratios, then find the closest sentence using cosine similarity or Euclidean distance.",
+    "sentences": [
+        {
+            "id": "pc_001",
+            "text": "Everything feels slow and soft right now.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_002",
+            "text": "You're in that quiet, easy headspace today.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_003",
+            "text": "There's a calm wrapping around you.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_004",
+            "text": "You're floating through the day.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_005",
+            "text": "The noise turned down for you.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_006",
+            "text": "You're untouchable in the best way.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_007",
+            "text": "You're moving through the day like a gentle breeze.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_008",
+            "text": "Everything feels soft and unhurried right now.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_009",
+            "text": "Just you and the quiet, doing its thing.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_010",
+            "text": "A still mind and a warm heart.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_011",
+            "text": "Everything feels easy today, and that is just right.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_012",
+            "text": "You are taking your sweet time, and it shows.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_013",
+            "text": "The pace feels light and exactly where it needs to be.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_014",
+            "text": "You have settled into a quiet little rhythm today.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_015",
+            "text": "Nothing is rushing you, so just breathe and be.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_016",
+            "text": "You seem a little more grounded today.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_017",
+            "text": "Feels like your mind finally slowed down a bit.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_018",
+            "text": "Today has a softer pace to it.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_019",
+            "text": "You are settling into your own space today.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_020",
+            "text": "Things feel quiet in a good way.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_021",
+            "text": "You seem more at ease with everything today.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_022",
+            "text": "A calm mood is carrying you right now.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_023",
+            "text": "You are moving gently through the day.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_024",
+            "text": "Feels like you are finally breathing easier.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_025",
+            "text": "There is a peaceful kind of energy here.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_026",
+            "text": "You look settled in today.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_027",
+            "text": "A soft kind of day seems to fit.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_028",
+            "text": "You are moving at an easy pace.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_029",
+            "text": "Feels like a calm one.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pc_030",
+            "text": "You seem quietly at ease.",
+            "weights": {
+                "chill": 1.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_001",
+            "text": "You're glowing from the inside out.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_002",
+            "text": "Something good is running through your veins.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_003",
+            "text": "You're riding a high that feels real.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_004",
+            "text": "The world feels lighter on your shoulders.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_005",
+            "text": "You're beaming without trying.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_006",
+            "text": "Joy is spilling out of you today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_007",
+            "text": "Your joy is showing, and the world is better for it.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_008",
+            "text": "Light on your feet and a smile that won't quit.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_009",
+            "text": "Feels like everything is falling into place.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_010",
+            "text": "Today is smiling back at you in the best way.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_011",
+            "text": "You are carrying a bright little spark of joy.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_012",
+            "text": "Something is clearly lifting your spirits today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_013",
+            "text": "You are riding a good wave of happiness right now.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_014",
+            "text": "The day feels lighter because your heart feels full.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_015",
+            "text": "Something feels genuinely good today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_016",
+            "text": "You seem lighter than usual today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_017",
+            "text": "There is a nice glow to your mood today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_018",
+            "text": "Feels like your heart is a little fuller today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_019",
+            "text": "You are carrying good energy right now.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_020",
+            "text": "Today seems to be treating you well.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_021",
+            "text": "You sound more alive today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_022",
+            "text": "There is warmth in your mood today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_023",
+            "text": "You seem quietly excited about life today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_024",
+            "text": "Happiness looks comfortable on you today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_025",
+            "text": "You look genuinely light today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_026",
+            "text": "It looks like a good day for you.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ph_027",
+            "text": "You seem in a really good place.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 1.0,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_001",
+            "text": "Your shoulders are carrying a lot right now.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_002",
+            "text": "Everything feels tight and urgent.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_003",
+            "text": "You're juggling more than you want to.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_004",
+            "text": "The pressure is sitting heavy.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_005",
+            "text": "Your mind won't stop spinning.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_006",
+            "text": "It's all closing in a little.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_007",
+            "text": "Heavy thoughts, but you're still standing.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_008",
+            "text": "It's okay that today feels like too much.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_009",
+            "text": "Just one breath at a time, you've got this.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_010",
+            "text": "The weight is real, but so is your strength.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_011",
+            "text": "A lot is asking for your attention right now.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_012",
+            "text": "Things are moving fast and pulling you in many directions.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_013",
+            "text": "You are carrying a full load, but it will pass.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_014",
+            "text": "The noise in your head is loud today, so be gentle with yourself.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_015",
+            "text": "Your mind seems crowded today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_016",
+            "text": "Feels like too much is happening at once.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_017",
+            "text": "You have a lot sitting on your shoulders today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_018",
+            "text": "Today feels heavier than usual.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_019",
+            "text": "Your thoughts seem to be pulling in every direction.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_020",
+            "text": "You are carrying tension through the day.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_021",
+            "text": "It looks like today is asking a lot from you.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_022",
+            "text": "You have a lot on your mind.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_023",
+            "text": "Today feels heavy, and that is okay.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_024",
+            "text": "You seem stretched a little thin.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ps_025",
+            "text": "You are carrying quite a bit right now.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 1.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "pt_001",
+            "text": "You're running on empty right now.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_002",
+            "text": "Everything feels like it takes effort.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_003",
+            "text": "Your body is asking for a pause.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_004",
+            "text": "You're drained in that deep way.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_005",
+            "text": "You're hollowed out and heavy.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_006",
+            "text": "Running on wishes and warm tea.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_007",
+            "text": "Your to-do list can wait, rest is on the menu.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_008",
+            "text": "The body's way of whispering, pause.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_009",
+            "text": "Your batteries are running low, and that is okay.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_010",
+            "text": "You have given so much today, rest is earned.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_011",
+            "text": "The day has taken more out of you than you expected.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_012",
+            "text": "Your body and mind are asking for a quiet pause.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_013",
+            "text": "You are running on fumes, so give yourself grace.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_014",
+            "text": "You seem drained today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_015",
+            "text": "Your energy feels low and quiet today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_016",
+            "text": "Today feels slower and heavier.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_017",
+            "text": "Rest feels overdue right now.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_018",
+            "text": "You seem a little worn out today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_019",
+            "text": "Feels like you have been running on empty.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_020",
+            "text": "You look like you need a slower pace.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_021",
+            "text": "You seem low on energy.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "pt_022",
+            "text": "You look like you have done enough for now.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 1.0
+            }
+        },
+        {
+            "id": "lc_001",
+            "text": "Mostly, you're just vibing today.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.1,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lc_002",
+            "text": "You're leaning into the calm.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.08,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lc_003",
+            "text": "Easy energy is carrying you.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.1,
+                "stress": 0.07,
+                "tired": 0.08
+            }
+        },
+        {
+            "id": "lc_004",
+            "text": "You're keeping things low and slow.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.07,
+                "stress": 0.08,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "lc_005",
+            "text": "There's a peaceful weight to the day.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.08,
+                "stress": 0.07,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "lc_006",
+            "text": "You're coasting more than pushing.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.08,
+                "stress": 0.07,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "lc_007",
+            "text": "Mostly a calm day with just a few other things going on.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.1,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lc_008",
+            "text": "You are keeping it fairly relaxed despite everything else.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.08,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lc_009",
+            "text": "Seems like you are managing to stay grounded today.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.07,
+                "stress": 0.1,
+                "tired": 0.08
+            }
+        },
+        {
+            "id": "lc_010",
+            "text": "Calmness is leading the mood today.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.1,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lc_011",
+            "text": "You are finding your balance today.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.1,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lc_012",
+            "text": "Things feel mostly steady right now.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.1,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lc_013",
+            "text": "There is a calm layer over everything else today.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.07,
+                "stress": 0.1,
+                "tired": 0.08
+            }
+        },
+        {
+            "id": "lc_014",
+            "text": "You seem to be protecting your peace today.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.08,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lc_015",
+            "text": "You feel more settled than scattered today.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.08,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lc_016",
+            "text": "You are mostly in a calm mood today.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.1,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lc_017",
+            "text": "A calm thread runs through your day.",
+            "weights": {
+                "chill": 0.75,
+                "happy": 0.08,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_001",
+            "text": "You're mostly here for the good stuff today.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.75,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_002",
+            "text": "Joy is winning right now.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.75,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_003",
+            "text": "You're carrying a little extra light.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.75,
+                "stress": 0.07,
+                "tired": 0.08
+            }
+        },
+        {
+            "id": "lh_004",
+            "text": "Good feelings are pulling you forward.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.75,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_005",
+            "text": "You're tilting toward the bright side.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.75,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_006",
+            "text": "The good is louder than the rest.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.75,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_007",
+            "text": "Joy is winning the day, even with a few mixed notes.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.75,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_008",
+            "text": "That sunny heart of yours is carrying the team.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.75,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_009",
+            "text": "Happiness is the loudest voice in the room today.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.75,
+                "stress": 0.1,
+                "tired": 0.08
+            }
+        },
+        {
+            "id": "lh_010",
+            "text": "You are riding high, mostly, with just a little else tagging along.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.75,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_011",
+            "text": "The bright spots are carrying your day forward.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.75,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_012",
+            "text": "Happiness is leading the way, even if not everything is perfect.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.75,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_013",
+            "text": "You are mostly in a good mood today.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.75,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_014",
+            "text": "Happy is the stronger note here.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.75,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_015",
+            "text": "There is a bright feel to your day.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.75,
+                "stress": 0.07,
+                "tired": 0.08
+            }
+        },
+        {
+            "id": "lh_016",
+            "text": "Happiness seems to be winning today.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.75,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_017",
+            "text": "You are holding onto something positive today.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.75,
+                "stress": 0.08,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "lh_018",
+            "text": "Today feels more hopeful than heavy.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.75,
+                "stress": 0.1,
+                "tired": 0.07
+            }
+        },
+        {
+            "id": "ls_001",
+            "text": "Stress is creeping in the most.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_002",
+            "text": "You're carrying more weight than usual.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.08,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_003",
+            "text": "Things feel piled up on you.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_004",
+            "text": "You're mostly running on tension.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.08,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_005",
+            "text": "The pressure is louder than the calm.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.07,
+                "stress": 0.75,
+                "tired": 0.08
+            }
+        },
+        {
+            "id": "ls_006",
+            "text": "Something is wound too tight inside.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.08,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_007",
+            "text": "Tension's taking the driver's seat, but you're still in the car.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_008",
+            "text": "Feeling the squeeze, though there's still some breathing room.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.07,
+                "stress": 0.75,
+                "tired": 0.08
+            }
+        },
+        {
+            "id": "ls_009",
+            "text": "Shoulders up, heart steady, you're working through it.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_010",
+            "text": "A little overwhelmed, but still showing up.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.08,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_011",
+            "text": "The pressure is loud today, even if there are quiet pockets.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.07,
+                "stress": 0.75,
+                "tired": 0.08
+            }
+        },
+        {
+            "id": "ls_012",
+            "text": "Tension is running the show, but you know how to push through.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.08,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_013",
+            "text": "Stress is louder than the rest, but not the only sound.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.07,
+                "stress": 0.75,
+                "tired": 0.08
+            }
+        },
+        {
+            "id": "ls_014",
+            "text": "Stress seems to be taking over the day a little.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_015",
+            "text": "Your mind keeps circling back to things today.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.08,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_016",
+            "text": "Stress keeps pulling your attention back in.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "ls_017",
+            "text": "You are trying to hold everything together today.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.08,
+                "stress": 0.75,
+                "tired": 0.1
+            }
+        },
+        {
+            "id": "lt_001",
+            "text": "Exhaustion is the loudest thing today.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.08,
+                "stress": 0.1,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_002",
+            "text": "You're mostly just worn down.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.1,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_003",
+            "text": "Tired is winning the mood battle.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.07,
+                "stress": 0.08,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_004",
+            "text": "You're running low on fuel.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.08,
+                "stress": 0.1,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_005",
+            "text": "Your energy dipped hard today.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.1,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_006",
+            "text": "You're running on fumes and willpower.",
+            "weights": {
+                "chill": 0.07,
+                "happy": 0.08,
+                "stress": 0.1,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_007",
+            "text": "Exhaustion is taking the lead, but you are keeping going.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.1,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_008",
+            "text": "The day is mostly asking you to slow down and rest.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.07,
+                "stress": 0.08,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_009",
+            "text": "You are leaning hard into tiredness, and it is okay to pause.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.07,
+                "stress": 0.08,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_010",
+            "text": "Tiredness feels stronger than everything else today.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.1,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_011",
+            "text": "You seem mostly ready for rest today.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.07,
+                "stress": 0.08,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_012",
+            "text": "Everything seems to require extra effort today.",
+            "weights": {
+                "chill": 0.08,
+                "happy": 0.07,
+                "stress": 0.1,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_013",
+            "text": "Rest is clearly winning today.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.07,
+                "stress": 0.08,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "lt_014",
+            "text": "You seem quieter than usual today.",
+            "weights": {
+                "chill": 0.1,
+                "happy": 0.07,
+                "stress": 0.08,
+                "tired": 0.75
+            }
+        },
+        {
+            "id": "ch_001",
+            "text": "You're in that rare easy-joy zone.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_002",
+            "text": "Relaxed and smiling suits you.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_003",
+            "text": "You're floating on a good vibe.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_004",
+            "text": "Calm happiness looks good on you.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_005",
+            "text": "Life feels gentle and generous right now.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_006",
+            "text": "Peaceful and joyful, a wonderful little combo.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_007",
+            "text": "Calm smile, quiet heart, bright eyes.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_008",
+            "text": "Relaxed happiness is its own kind of magic.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_009",
+            "text": "Contentment with a splash of delight.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_010",
+            "text": "You are floating between calm and joy today.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_011",
+            "text": "Peace and lightness are sharing the wheel right now.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_012",
+            "text": "It is a soft kind of good, steady and easy.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_013",
+            "text": "You are riding a gentle wave that feels just right.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_014",
+            "text": "You seem calm and genuinely content today.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_015",
+            "text": "Today feels light, easy, and warm.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_016",
+            "text": "There is a quiet joy around you today.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_017",
+            "text": "Things feel good without feeling loud.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_018",
+            "text": "Feels like one of those quietly good days.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_019",
+            "text": "You seem comfortable with yourself today.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_020",
+            "text": "Calm and bright are both showing up today.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ch_021",
+            "text": "You look comfortably happy right now.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_001",
+            "text": "You're tense but trying to breathe through it.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_002",
+            "text": "Calm and chaos are both here.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_003",
+            "text": "You're holding stress with soft hands.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_004",
+            "text": "There's peace underneath the pressure.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_005",
+            "text": "You're unsettled but not unraveling.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_006",
+            "text": "You're fighting to keep the quiet.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_007",
+            "text": "Quiet on the surface, busy underneath.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_008",
+            "text": "Holding calm while your mind does hurdles.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_009",
+            "text": "Peaceful but wired, an interesting mix.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_010",
+            "text": "Gentle exterior, electric interior.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_011",
+            "text": "There is a tug of war between calm and tension today.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_012",
+            "text": "You are holding onto stillness while things feel a bit loud.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_013",
+            "text": "A quiet center is trying to balance out the rush.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_014",
+            "text": "Your mind is busy, but part of you is staying steady.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_015",
+            "text": "Today feels tense, but not overwhelming.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_016",
+            "text": "There is pressure, but also patience today.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_017",
+            "text": "Calmness keeps breaking through the tension today.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_018",
+            "text": "You are calm on the surface, but a bit loaded underneath.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "cs_019",
+            "text": "You look steady, even with a lot going on.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ct_001",
+            "text": "You're too exhausted to care much.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_002",
+            "text": "Drained but somehow still mellow.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_003",
+            "text": "Tired, but not fighting it.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_004",
+            "text": "You're in a slow, sleepy haze.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_005",
+            "text": "You're surrendering to the fatigue.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_006",
+            "text": "Soft, quiet, and ready to rest.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_007",
+            "text": "A peaceful kind of worn out.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_008",
+            "text": "Moving slow, thinking slow, perfectly okay.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_009",
+            "text": "That blissful place where calm meets cozy exhaustion.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_010",
+            "text": "Stillness and heavy eyes are sharing the room today.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_011",
+            "text": "Calm is your anchor while your energy dips low.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_012",
+            "text": "It is a slow, quiet day that asks for very little.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_013",
+            "text": "You seem peaceful, but a little worn out.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_014",
+            "text": "The day feels soft and slow.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_015",
+            "text": "There is a calm kind of exhaustion here.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_016",
+            "text": "Today feels like a deep exhale.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ct_017",
+            "text": "You are moving through the day carefully today.",
+            "weights": {
+                "chill": 0.5,
+                "happy": 0.0,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "hs_001",
+            "text": "Good things are happening but you're stretched thin.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_002",
+            "text": "You're smiling through the pressure.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_003",
+            "text": "Joy and chaos are sharing space.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_004",
+            "text": "You're excited and overwhelmed at once.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_005",
+            "text": "There's happiness buried under the rush.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_006",
+            "text": "You're holding joy and panic in both hands.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_007",
+            "text": "Nervous laughter and genuine hope, quite the blend.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_008",
+            "text": "Joy and jitters holding hands.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_009",
+            "text": "A happy heart with a bit of a flutter.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_010",
+            "text": "Bright and buzzing, somehow all at once.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_011",
+            "text": "Bright moments are pushing through a busy day.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_012",
+            "text": "You are juggling a lot but still catching the good spots.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_013",
+            "text": "Even with the weight, there are reasons to smile.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_014",
+            "text": "You are finding light in the middle of the rush.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_015",
+            "text": "Today feels chaotic in a strangely good way.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_016",
+            "text": "Your mind is racing, but not all of it feels bad.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "hs_017",
+            "text": "You are carrying stress without losing your spark.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.5,
+                "tired": 0.0
+            }
+        },
+        {
+            "id": "ht_001",
+            "text": "You're worn out but still grinning.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_002",
+            "text": "Tired doesn't stop the good mood.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_003",
+            "text": "You're running on joy and low battery.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_004",
+            "text": "Exhausted but the heart is full.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_005",
+            "text": "You're drained in the best possible way.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_006",
+            "text": "You're happily running on empty.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_007",
+            "text": "Sleepy smiles are the best kind of smiles.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_008",
+            "text": "Happily worn out, the good kind of done.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_009",
+            "text": "That post-adventure, heart-full, body-empty feeling.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_010",
+            "text": "You are tired but still smiling through it all.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_011",
+            "text": "The day wore you out, but it also made you happy.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_012",
+            "text": "You gave a lot today, and it was worth it.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_013",
+            "text": "Heavy eyes, full heart, and that is a fair trade.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_014",
+            "text": "You seem happy, just low on energy today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_015",
+            "text": "There is warmth in your mood, even through the exhaustion.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_016",
+            "text": "Your heart feels awake even if your body does not.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_017",
+            "text": "Today feels cozy and sleepy at the same time.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_018",
+            "text": "Happiness is here, just moving slowly.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "ht_019",
+            "text": "You feel emotionally present, even without much energy.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.5,
+                "stress": 0.0,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_001",
+            "text": "Everything feels heavy and urgent.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_002",
+            "text": "You're burned out and it shows.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_003",
+            "text": "The weight is piling on tired bones.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_004",
+            "text": "You're frayed at every edge.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_005",
+            "text": "Stress hit when you had nothing left.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_006",
+            "text": "Too tired to be stressed, too stressed to rest.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_007",
+            "text": "Wired and weary in the same breath.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_008",
+            "text": "An exhausted mind with a running commentary.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_009",
+            "text": "Burnt out but still spinning.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_010",
+            "text": "The weight and the fatigue are both asking for a break.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_011",
+            "text": "You are pushing through tired eyes and heavy thoughts.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_012",
+            "text": "It has been a long day with little room to breathe.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_013",
+            "text": "Both your mind and body are ready to clock out.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_014",
+            "text": "You seem mentally and physically exhausted today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_015",
+            "text": "Everything feels a little too heavy right now.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_016",
+            "text": "Today feels like survival mode.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_017",
+            "text": "Your mind and body both seem tired today.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "st_018",
+            "text": "You are carrying stress with very little left in the tank.",
+            "weights": {
+                "chill": 0.0,
+                "happy": 0.0,
+                "stress": 0.5,
+                "tired": 0.5
+            }
+        },
+        {
+            "id": "cx_001",
+            "text": "Your feelings are all over the place.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_002",
+            "text": "It's a messy, human kind of day.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_003",
+            "text": "You're holding a lot at once.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_004",
+            "text": "Nothing is simple today.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_005",
+            "text": "You're layered and complicated right now.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_006",
+            "text": "So many feelings, so little clarity.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_007",
+            "text": "You're all the things today.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_008",
+            "text": "It's a full spectrum kind of mood.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_009",
+            "text": "Everything is showing up at once.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_010",
+            "text": "You're a beautiful contradiction right now.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_011",
+            "text": "A little bit of everything swirling around today.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_012",
+            "text": "The whole emotional palette showed up at once.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_013",
+            "text": "A beautifully messy inside kind of day.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_014",
+            "text": "All the feelings are here, and they're all valid.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_015",
+            "text": "Today brought a little bit of everything, and that is okay.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_016",
+            "text": "You are holding a whole handful of feelings at once.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_017",
+            "text": "It is a full spectrum kind of day, and you are right in the middle.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_018",
+            "text": "Your heart is busy sorting through a lot right now.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_019",
+            "text": "There is a little bit of everything in today's mood.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_020",
+            "text": "Your mood keeps shifting today.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_021",
+            "text": "It feels hard to describe today in one feeling.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_022",
+            "text": "You seem to be feeling everything at once today.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        },
+        {
+            "id": "cx_023",
+            "text": "Today carries a complicated kind of energy.",
+            "weights": {
+                "chill": 0.25,
+                "happy": 0.25,
+                "stress": 0.25,
+                "tired": 0.25
+            }
+        }
+    ]
+}
