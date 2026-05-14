@@ -1,5 +1,8 @@
 >**Important update:** If you're upgrading from an older version, disable your PIN before upgrading. Running the new version with a PIN still enabled will cause data to fail to load, and you'll have to manually fix the settings table in the database. If you're new here, no action needed. Please look into the release page for more information.
 
+
+[V2.0.0 Release Information](https://github.com/romiojoseph/journal/releases/tag/2.0.0)
+
 # Journaling Web App
 
 ### Why Another Journaling App? Right?
@@ -139,10 +142,6 @@ A brief overview of the key directories in this project:
 
 /styles/             # All CSS Modules and global stylesheets
 ```
-
-## Recent Dev Notes
-
-
 
 ## Core Technologies
 
