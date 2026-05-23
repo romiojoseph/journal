@@ -13,6 +13,7 @@ import { useModal } from '../context/ModalContext';
 import FollowUpSection from './FollowUpSection';
 import FormattedDate from './FormattedDate';
 import QuotedJournalPreview from './QuotedJournalPreview';
+import QuotedFollowUpPreview from './QuotedFollowUpPreview';
 import { getMoodColor } from '../lib/mood-utils';
 import QuoteDisplay from './QuoteDisplay';
 import FireAnimationOverlay from './FireAnimationOverlay';
@@ -243,6 +244,7 @@ export default function JournalView({ journal, moodData }) {
                                 <QuoteDisplay mood={dominantMood} />
                             )}
                             <QuotedJournalPreview journal={journal.quotedJournal} />
+                            <QuotedFollowUpPreview followUp={journal.quotedFollowUp} />
                         </div>
 
                         <FollowUpSection journalId={journal.id} />

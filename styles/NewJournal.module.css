@@ -235,24 +235,32 @@
 
 .accordionHeader svg {
     transition: transform 0.2s ease-in-out;
+    color: var(--monochrome-8);
+    transition: all 0.32 ease-in-out;
+}
+
+.accordionHeader svg:hover {
+    color: var(--monochrome-4);
 }
 
 .accordionContent {
-    padding: 20px;
+    padding: 16px 20px;
     border-top: 1px solid var(--monochrome-11);
 }
 
 /* --- MOOD TABS --- */
 .moodTabs {
-    display: flex;
-    align-items: center;
+    background: var(--monochrome-11);
+    border: 2px solid var(--monochrome-11);
+    box-shadow: inset 0 0 0 3px var(--monochrome-13);
+    border-radius: 100px;
     justify-content: flex-start;
+    align-items: center;
     gap: 2px;
+    width: fit-content;
     margin: 0 0 16px;
     padding: 4px;
-    border-radius: 100px;
-    background: linear-gradient(315deg, #030712 0%, #060910 59.9%, #030712 119.79%);
-    border: 1px solid #0b101a;
+    display: flex;
     width: 100%;
 }
 
@@ -265,6 +273,7 @@
     cursor: pointer;
     border-radius: 100px;
     transition: all 0.25s ease;
+    width: 100%;
 }
 
 .moodTabs button:hover {

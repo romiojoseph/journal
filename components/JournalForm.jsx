@@ -7,13 +7,14 @@ import TagPill from './TagPill';
 import { useModal } from '../context/ModalContext';
 import { useToast } from '../context/ToastContext';
 import QuotedJournalPreview from './QuotedJournalPreview';
+import QuotedFollowUpPreview from './QuotedFollowUpPreview';
 import { CaretDown, AsteriskIcon, PersonSimpleBikeIcon, Users, MapTrifoldIcon, CalendarPlus, FloppyDisk, MagnifyingGlassIcon } from '@phosphor-icons/react';
 import { getMoodColor } from '../lib/mood-utils';
 
 const typeToCategoryMap = { activity: 'activities', people: 'people', place: 'places' };
 const otherCategories = [{ singular: 'activity', plural: 'activities' }, { singular: 'people', plural: 'people' }, { singular: 'place', plural: 'places' }];
 
-export default function JournalForm({ initialData = null, quotedJournal: initialQuotedJournal = null, initialTags = { moods: [], activities: [], people: [], places: [] } }) {
+export default function JournalForm({ initialData = null, quotedJournal: initialQuotedJournal = null, quotedFollowUp: initialQuotedFollowUp = null, initialTags = { moods: [], activities: [], people: [], places: [] } }) {
     const router = useRouter();
     const { showAlert } = useModal();
     const { showToast } = useToast();
@@ -31,10 +32,12 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
     const [isClient, setIsClient] = useState(false);
 
     const [quotedJournal, setQuotedJournal] = useState(initialQuotedJournal || initialData?.quotedJournal || null);
+    const [quotedFollowUp, setQuotedFollowUp] = useState(initialQuotedFollowUp || initialData?.quotedFollowUp || null);
     const [isQuoteDetached, setIsQuoteDetached] = useState(false);
 
     const handleDetachQuote = () => {
         setQuotedJournal(null);
+        setQuotedFollowUp(null);
         setIsQuoteDetached(true);
     };
 
@@ -48,7 +51,7 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
     const savedContentRef = useRef(initialData?.content || '');
     const savedTagsRef = useRef(JSON.stringify(initialData?.tags || []));
 
-    const [openAccordion, setOpenAccordion] = useState('moods');
+    const [openAccordions, setOpenAccordions] = useState(['moods']);
     const [activeMoodTab, setActiveMoodTab] = useState(initialTags.moods[0]?.name || '');
     const [availableTags, setAvailableTags] = useState(() => {
         const selectedTagNames = new Set((initialData?.tags || []).map(t => t.name));
@@ -200,6 +203,9 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
         if (!isEditMode && quotedJournal) {
             payload.quotedJournalId = quotedJournal.id;
         }
+        if (!isEditMode && quotedFollowUp) {
+            payload.quotedFollowUpId = quotedFollowUp.id;
+        }
         if (isEditMode && isQuoteDetached) {
             payload.detachQuote = true;
         }
@@ -288,20 +294,19 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
         };
     }, [availableTags, searchQuery]);
 
-    // Automatically open accordions and switch tabs that have search results
+    // Open all accordions when searching, close all when cleared
     useEffect(() => {
         if (searchQuery.trim()) {
+            setOpenAccordions(['moods', 'activities', 'people', 'places']);
             const moodWithResults = filteredTags.moods.find(m => m.tags.length > 0);
             if (moodWithResults) {
-                setOpenAccordion('moods');
-                // If current tab has no results, switch to the first one that does
                 const currentTabHasResults = filteredTags.moods.find(m => m.name === activeMoodTab)?.tags.length > 0;
                 if (!currentTabHasResults) {
                     setActiveMoodTab(moodWithResults.name);
                 }
-            } else if (filteredTags.activities.length > 0) setOpenAccordion('activities');
-            else if (filteredTags.people.length > 0) setOpenAccordion('people');
-            else if (filteredTags.places.length > 0) setOpenAccordion('places');
+            }
+        } else {
+            setOpenAccordions([]);
         }
     }, [searchQuery, filteredTags, activeMoodTab]);
 
@@ -350,6 +355,10 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
                         />
                         <QuotedJournalPreview
                             journal={quotedJournal}
+                            onDetach={handleDetachQuote}
+                        />
+                        <QuotedFollowUpPreview
+                            followUp={quotedFollowUp}
                             onDetach={handleDetachQuote}
                         />
                     </div>
@@ -406,17 +415,17 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
                     <div className={styles.tagSections}>
                         {(searchQuery === '' || filteredTags.moods.length > 0) && (
                             <div className={styles.accordionItem}>
-                                <button type="button" className={styles.accordionHeader} onClick={() => setOpenAccordion(openAccordion === 'moods' ? null : 'moods')}>
+                                <button type="button" className={styles.accordionHeader} onClick={() => setOpenAccordions(prev => prev.includes('moods') ? prev.filter(a => a !== 'moods') : [...prev, 'moods'])}>
                                     <div className={styles.headerLeft}>
                                         <AsteriskIcon size={24} weight="duotone" />
                                         <span>Moods</span>
                                     </div>
                                     <div className={styles.headerRight}>
                                         <span className={styles.requirementText}>Required</span>
-                                        <CaretDown size={20} className={openAccordion === 'moods' ? styles.caretOpen : ''} />
+                                        <CaretDown size={20} className={openAccordions.includes('moods') ? styles.caretOpen : ''} />
                                     </div>
                                 </button>
-                                {openAccordion === 'moods' && (
+                                {openAccordions.includes('moods') && (
                                     <div className={styles.accordionContent}>
                                         <div className={styles.moodTabs}>
                                             {(searchQuery === '' ? availableTags.moods : filteredTags.moods).map(mood => (
@@ -443,7 +452,7 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
 
                             return (
                                 <div key={plural} className={styles.accordionItem}>
-                                    <button type="button" className={styles.accordionHeader} onClick={() => setOpenAccordion(openAccordion === plural ? null : plural)}>
+                                    <button type="button" className={styles.accordionHeader} onClick={() => setOpenAccordions(prev => prev.includes(plural) ? prev.filter(a => a !== plural) : [...prev, plural])}>
                                         <div className={styles.headerLeft}>
                                             {plural === 'activities' && <PersonSimpleBikeIcon size={24} weight="duotone" />}
                                             {plural === 'people' && <Users size={24} weight="duotone" />}
@@ -452,10 +461,10 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
                                         </div>
                                         <div className={styles.headerRight}>
                                             <span className={styles.requirementText}>Optional</span>
-                                            <CaretDown size={20} className={openAccordion === plural ? styles.caretOpen : ''} />
+                                            <CaretDown size={20} className={openAccordions.includes(plural) ? styles.caretOpen : ''} />
                                         </div>
                                     </button>
-                                    {openAccordion === plural && (
+                                    {openAccordions.includes(plural) && (
                                         <div className={styles.accordionContent}>
                                             <div className={styles.tagList}>
                                                 {tagsToShow.map(tag => (

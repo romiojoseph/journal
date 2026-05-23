@@ -21,9 +21,11 @@ function parseJournal(journal, key) {
 
     let content = journal.content;
     let quotedContent = journal.quoted_content;
+    let quotedFollowUpContent = journal.quoted_follow_up_content;
     if (key) {
         content = decrypt(content, key);
         if (quotedContent) quotedContent = decrypt(quotedContent, key);
+        if (quotedFollowUpContent) quotedFollowUpContent = decrypt(quotedFollowUpContent, key);
     }
 
     const quotedJournal = journal.quoted_id
@@ -31,6 +33,15 @@ function parseJournal(journal, key) {
             id: journal.quoted_id,
             content: quotedContent,
             createdAt: journal.quoted_createdAt,
+        }
+        : null;
+
+    const quotedFollowUp = journal.quoted_follow_up_id
+        ? {
+            id: journal.quoted_follow_up_id,
+            journalId: journal.quoted_follow_up_journal_id,
+            content: quotedFollowUpContent,
+            createdAt: journal.quoted_follow_up_createdAt,
         }
         : null;
 
@@ -42,6 +53,7 @@ function parseJournal(journal, key) {
         isBookmarked: journal.isBookmarked,
         tags: tagsArray,
         quotedJournal: quotedJournal,
+        quotedFollowUp: quotedFollowUp,
     };
 }
 

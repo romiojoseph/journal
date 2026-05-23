@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { PencilSimple, Trash, ChatCenteredTextIcon, Copy } from '@phosphor-icons/react';
+import { PencilSimple, Trash, ChatCenteredTextIcon, Copy, Repeat } from '@phosphor-icons/react';
+import { useRouter } from 'next/navigation';
 import { useModal } from '../context/ModalContext';
 import styles from '../styles/FollowUp.module.css';
 import FormattedDate from './FormattedDate';
@@ -30,6 +31,7 @@ const copyToClipboard = (text, showAlert) => {
 };
 
 export default function FollowUpSection({ journalId }) {
+    const router = useRouter();
     const [followUps, setFollowUps] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [newFollowUp, setNewFollowUp] = useState('');
@@ -133,6 +135,10 @@ export default function FollowUpSection({ journalId }) {
         copyToClipboard(content, showAlert);
     };
 
+    const handleQuoteAsJournal = (followUpId) => {
+        router.push(`/?quoteFollowUpId=${encodeURIComponent(String(followUpId))}`);
+    };
+
     const handleEdit = (followUp) => {
         setEditingId(followUp.id);
         setEditText(followUp.content);
@@ -227,6 +233,7 @@ export default function FollowUpSection({ journalId }) {
                                         </div>
                                         <div className={styles.actions}>
                                             <button onClick={() => handleCopy(followUp.content)} title="Copy"><Copy size={18} /></button>
+                                            <button onClick={() => handleQuoteAsJournal(followUp.id)} title="Quote as new journal"><Repeat size={18} /></button>
                                             <button onClick={() => handleEdit(followUp)} title="Edit"><PencilSimple size={18} /></button>
                                             <button onClick={() => handleDelete(followUp.id)} title="Delete"><Trash size={18} /></button>
                                         </div>

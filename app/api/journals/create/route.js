@@ -14,7 +14,11 @@ export async function POST(request) {
     }
     try {
         // Accept the new optional field
-        const { content, tags, quotedJournalId = null } = await request.json();
+        const { content, tags, quotedJournalId = null, quotedFollowUpId = null } = await request.json();
+
+        if (quotedJournalId && quotedFollowUpId) {
+            return NextResponse.json({ error: 'Only one quote context can be attached.' }, { status: 400 });
+        }
 
         if (!tags || tags.length === 0) {
             return NextResponse.json({ error: 'At least one tag is required.' }, { status: 400 });
@@ -43,6 +47,7 @@ export async function POST(request) {
                 journalData.id, 
                 journalData.content, 
                 journalData.quotedJournalId,
+                journalData.quotedFollowUpId,
                 journalData.moodSentenceId
             );
             const journalId = journalData.id;
@@ -64,6 +69,7 @@ export async function POST(request) {
             content: finalContent, 
             tags, 
             quotedJournalId,
+            quotedFollowUpId,
             moodSentenceId
         });
 

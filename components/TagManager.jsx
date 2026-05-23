@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Trash, PencilSimple, FloppyDisk, AsteriskIcon, PersonSimpleBikeIcon, Users, MapTrifoldIcon, ClipboardTextIcon, Check, CheckCircleIcon } from '@phosphor-icons/react';
+import { Plus, Trash, PencilSimple, FloppyDisk, AsteriskIcon, PersonSimpleBikeIcon, Users, MapTrifoldIcon, ClipboardTextIcon, Check, CheckCircleIcon, ArrowsClockwise, ArrowRight, SubtractSquareIcon, UniteSquareIcon, CaretDownIcon } from '@phosphor-icons/react';
 import { useModal } from '../context/ModalContext';
 import { useToast } from '../context/ToastContext';
 import styles from '../styles/TagManager.module.css';
@@ -45,6 +45,12 @@ function EditableTag({ tag, onUpdate, onDelete }) {
 export default function TagManager() {
     const [allTags, setAllTags] = useState({ moods: [], activities: [], people: [], places: [] });
     const [isLoading, setIsLoading] = useState(true);
+    const [moodOpsData, setMoodOpsData] = useState(null);
+    const [moodMoveEmotionId, setMoodMoveEmotionId] = useState('');
+    const [moodMoveTargetParentId, setMoodMoveTargetParentId] = useState('');
+    const [moodMergeSourceId, setMoodMergeSourceId] = useState('');
+    const [moodMergeTargetId, setMoodMergeTargetId] = useState('');
+    const [isMoodOpsOpen, setIsMoodOpsOpen] = useState(true);
     const [newTags, setNewTags] = useState({});
     const [unassignedMoods, setUnassignedMoods] = useState([]);
     const [matchedMoods, setMatchedMoods] = useState([]);
@@ -73,12 +79,31 @@ export default function TagManager() {
             });
     }, []);
 
+    const refreshMoodOpsData = async () => {
+        const res = await fetch('/api/moods/tags');
+        if (!res.ok) throw new Error('Failed to load mood tags.');
+        const data = await res.json();
+        setMoodOpsData(data);
+    };
+
+    useEffect(() => {
+        refreshMoodOpsData().catch(() => {
+            // Keep UI usable even if this fails.
+            setMoodOpsData(null);
+        });
+    }, []);
+
 
     const refreshTags = async () => {
         const res = await fetch('/api/tags');
         if (!res.ok) throw new Error('Failed to refresh tags.');
         const next = await res.json();
         setAllTags(next);
+    };
+
+    const refreshAll = async () => {
+        await refreshTags();
+        await refreshMoodOpsData();
     };
 
     const runTagOp = async (payload) => {
@@ -95,8 +120,25 @@ export default function TagManager() {
             return false;
         }
 
-        await refreshTags();
+        await refreshAll();
         return true;
+    };
+
+    const runMoodOp = async (payload) => {
+        const response = await fetch('/api/moods/tags', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+            const msg = typeof data?.error === 'string' ? data.error : 'Mood operation failed.';
+            showToast({ title: 'Error', message: msg, type: 'error' });
+            return null;
+        }
+
+        return data;
     };
 
     const handleTagDelete = (category, tagToDelete) => {
@@ -386,6 +428,186 @@ Data to process:`;
 
             <div className={styles.category}>
                 <h3><AsteriskIcon size={28} weight="duotone" />Moods</h3>
+
+                <div className={styles.moodOps} id="mood-ops">
+                    <button
+                        type="button"
+                        className={styles.moodOpsHeader}
+                        onClick={() => setIsMoodOpsOpen(v => !v)}
+                        title={isMoodOpsOpen ? 'Collapse' : 'Expand'}
+                    >
+                        <span className={styles.moodOpsHeaderTitle}>
+                            <SubtractSquareIcon size={18} weight="duotone" /> Move
+                            <span className={styles.moodOpsHeaderSep}>/</span>
+                            <UniteSquareIcon size={18} weight="duotone" /> Merge mood emotion tags
+                        </span>
+                        <span className={styles.moodOpsHeaderHint}>
+                            {isMoodOpsOpen ? 'Hide' : 'Show'}
+                        </span>
+                    </button>
+                    <p className={styles.infoText}>
+                        Move or merge mood tags only. This is implemented specially to handle data imported from external sources.
+                    </p>
+
+                    {isMoodOpsOpen && (
+                        !moodOpsData ? (
+                            <p className={styles.emptyText}>Mood operations are currently unavailable.</p>
+                        ) : (
+                            <>
+                                <div className={styles.moodOpsGrid}>
+                                    <div className={styles.moodOpsCard}>
+                                        <h5><SubtractSquareIcon size={18} weight="duotone" /> Move emotion tag</h5>
+                                        <label className={styles.moodOpsLabel}>Emotion tag</label>
+                                        <div className={styles.moodOpsSelectWrapper}>
+                                            <select
+                                                className={styles.moodOpsSelect}
+                                                value={moodMoveEmotionId}
+                                                onChange={(e) => setMoodMoveEmotionId(e.target.value)}
+                                            >
+                                                <option value="">Select an emotion…</option>
+                                                {Object.entries(moodOpsData.emotionsByParent || {}).flatMap(([parentId, emotions]) => {
+                                                    const parent = (moodOpsData.parents || []).find(p => String(p.id) === String(parentId));
+                                                    const parentName = parent?.name || 'Unknown';
+                                                    return (emotions || []).map(em => (
+                                                        <option key={em.id} value={String(em.id)}>
+                                                            {em.name} ({parentName})
+                                                        </option>
+                                                    ));
+                                                })}
+                                            </select>
+                                            <CaretDownIcon size={20} weight="bold" className={styles.moodOpsSelectIcon} />
+                                        </div>
+
+                                        <label className={styles.moodOpsLabel}>Move to</label>
+                                        <div className={styles.moodOpsSelectWrapper}>
+                                            <select
+                                                className={styles.moodOpsSelect}
+                                                value={moodMoveTargetParentId}
+                                                onChange={(e) => setMoodMoveTargetParentId(e.target.value)}
+                                            >
+                                                <option value="">Select a mood…</option>
+                                                {(moodOpsData.parents || []).map(p => (
+                                                    <option key={p.id} value={String(p.id)}>{p.name}</option>
+                                                ))}
+                                            </select>
+                                            <CaretDownIcon size={20} weight="bold" className={styles.moodOpsSelectIcon} />
+                                        </div>
+
+                                        <button
+                                            className={styles.moodOpsButton}
+                                            disabled={!moodMoveEmotionId || !moodMoveTargetParentId}
+                                            onClick={async () => {
+                                                const preview = await runMoodOp({ op: 'move_preview', emotionTagId: moodMoveEmotionId, targetParentMoodId: moodMoveTargetParentId });
+                                                if (!preview) return;
+
+                                                showConfirm({
+                                                    title: 'Confirm move (Step 1/2)',
+                                                    message: `Move "${preview.emotion.name}" from "${preview.from?.name || 'Unknown'}" to "${preview.to.name}"? Affected journals: (${preview.affectedJournals}). This changes categorization only; journal entries keep the tag.`,
+                                                    confirmLabel: 'Continue',
+                                                    onConfirm: () => {
+                                                        showConfirm({
+                                                            title: 'Really move? (Step 2/2)',
+                                                            message: `This will update the mood category for "${preview.emotion.name}".\n\nProceed?`,
+                                                            confirmLabel: 'Move',
+                                                            onConfirm: async () => {
+                                                                const res = await runMoodOp({ op: 'move_execute', emotionTagId: moodMoveEmotionId, targetParentMoodId: moodMoveTargetParentId });
+                                                                if (!res) return;
+                                                                await refreshAll();
+                                                                showToast({ title: 'Moved', message: `"${preview.emotion.name}" moved to "${preview.to.name}".`, type: 'success' });
+                                                                setMoodMoveEmotionId('');
+                                                                setMoodMoveTargetParentId('');
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            }}
+                                        >
+                                            Move
+                                        </button>
+                                    </div>
+
+                                    <div className={styles.moodOpsCard}>
+                                        <h5><UniteSquareIcon size={18} weight="duotone" /> Merge emotion tags</h5>
+                                        <label className={styles.moodOpsLabel}>Merge from</label>
+                                        <div className={styles.moodOpsSelectWrapper}>
+                                            <select
+                                                className={styles.moodOpsSelect}
+                                                value={moodMergeSourceId}
+                                                onChange={(e) => setMoodMergeSourceId(e.target.value)}
+                                            >
+                                                <option value="">Select source…</option>
+                                                {Object.entries(moodOpsData.emotionsByParent || {}).flatMap(([parentId, emotions]) => {
+                                                    const parent = (moodOpsData.parents || []).find(p => String(p.id) === String(parentId));
+                                                    const parentName = parent?.name || 'Unknown';
+                                                    return (emotions || []).map(em => (
+                                                        <option key={em.id} value={String(em.id)}>
+                                                            {em.name} ({parentName})
+                                                        </option>
+                                                    ));
+                                                })}
+                                            </select>
+                                            <CaretDownIcon size={20} weight="bold" className={styles.moodOpsSelectIcon} />
+                                        </div>
+
+                                        <label className={styles.moodOpsLabel}>Merge into</label>
+                                        <div className={styles.moodOpsSelectWrapper}>
+                                            <select
+                                                className={styles.moodOpsSelect}
+                                                value={moodMergeTargetId}
+                                                onChange={(e) => setMoodMergeTargetId(e.target.value)}
+                                            >
+                                                <option value="">Select target…</option>
+                                                {Object.entries(moodOpsData.emotionsByParent || {}).flatMap(([parentId, emotions]) => {
+                                                    const parent = (moodOpsData.parents || []).find(p => String(p.id) === String(parentId));
+                                                    const parentName = parent?.name || 'Unknown';
+                                                    return (emotions || []).map(em => (
+                                                        <option key={em.id} value={String(em.id)}>
+                                                            {em.name} ({parentName})
+                                                        </option>
+                                                    ));
+                                                })}
+                                            </select>
+                                            <CaretDownIcon size={20} weight="bold" className={styles.moodOpsSelectIcon} />
+                                        </div>
+
+                                        <button
+                                            className={styles.moodOpsButtonDanger}
+                                            disabled={!moodMergeSourceId || !moodMergeTargetId || moodMergeSourceId === moodMergeTargetId}
+                                            onClick={async () => {
+                                                const preview = await runMoodOp({ op: 'merge_preview', sourceEmotionTagId: moodMergeSourceId, targetEmotionTagId: moodMergeTargetId });
+                                                if (!preview) return;
+
+                                                showConfirm({
+                                                    title: 'Confirm merge (Step 1/2)',
+                                                    message: `Merge "${preview.source.name}" into "${preview.target.name}"?\n\nSource journals: (${preview.sourceLinks}) Target journals: (${preview.targetLinks}) Already having both: (${preview.overlap}) Journals with target after merge: (${preview.totalAfter}) After merge, the source tag is deleted.`,
+                                                    confirmLabel: 'Continue',
+                                                    onConfirm: () => {
+                                                        showConfirm({
+                                                            title: 'Really merge? (Step 2/2)',
+                                                            message: `This is irreversible.\n\nProceed to merge and delete "${preview.source.name}"?`,
+                                                            confirmLabel: 'Merge',
+                                                            onConfirm: async () => {
+                                                                const res = await runMoodOp({ op: 'merge_execute', sourceEmotionTagId: moodMergeSourceId, targetEmotionTagId: moodMergeTargetId });
+                                                                if (!res) return;
+                                                                await refreshAll();
+                                                                showToast({ title: 'Merged', message: `"${preview.source.name}" merged into "${preview.target.name}".`, type: 'success' });
+                                                                setMoodMergeSourceId('');
+                                                                setMoodMergeTargetId('');
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            }}
+                                        >
+                                            Merge
+                                        </button>
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    )}
+                </div>
+
                 {allTags.moods.map(mood => {
                     const uniqueTags = [...new Set(mood.tags)];
                     return (

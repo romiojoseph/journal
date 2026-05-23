@@ -119,6 +119,148 @@
     transition: all 0.32s ease-in-out;
 }
 
+.moodOps {
+    margin-top: 8px;
+    margin-bottom: 32px;
+}
+
+.moodOpsHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.moodOpsHeaderTitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--font-size-subtitle);
+    color: var(--monochrome-4);
+    font-weight: 700;
+}
+
+.moodOpsHeaderSep {
+    color: var(--monochrome-9);
+    font-weight: 700;
+}
+
+.moodOpsHeaderHint {
+    font-size: var(--font-size-body);
+    color: var(--monochrome-6);
+    font-weight: 600;
+    transition: all 0.32s ease-in-out;
+    cursor: pointer;
+}
+
+.moodOpsHeaderHint:hover {
+    color: var(--monochrome-4);
+}
+
+.moodOpsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.moodOpsCard {
+    border: 2px solid var(--monochrome-11);
+    background: var(--monochrome-12);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.moodOpsCard h5 {
+    margin: 0 0 12px;
+    font-size: var(--font-size-subtitle);
+    color: var(--monochrome-4);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.moodOpsLabel {
+    display: block;
+    margin: 16px 0 6px;
+    font-size: var(--font-size-caption);
+    font-weight: 500;
+    color: var(--monochrome-6);
+}
+
+.moodOpsSelectWrapper {
+    position: relative;
+}
+
+.moodOpsSelect {
+    font-size: var(--font-size-body);
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    border-radius: 12px;
+    border: 2px solid var(--monochrome-11);
+    background: var(--monochrome-13);
+    color: var(--monochrome-4);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.moodOpsSelect:hover {
+    background-color: var(--monochrome-12);
+    border-color: var(--monochrome-10);
+    color: var(--monochrome-3);
+}
+
+.moodOpsSelect:focus {
+    outline: none;
+    border-color: var(--monochrome-10);
+    box-shadow: 0 0 0 3px var(--monochrome-12);
+    color: var(--monochrome-2);
+}
+
+.moodOpsSelectIcon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--monochrome-7);
+}
+
+.moodOpsButton,
+.moodOpsButtonDanger {
+    width: 100%;
+    margin-top: 16px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.moodOpsButton {
+    background: var(--monochrome-4);
+    color: var(--monochrome-14);
+}
+
+.moodOpsButtonDanger {
+    background: var(--mood-stress);
+    color: var(--monochrome-14);
+}
+
+.moodOpsButton:disabled,
+.moodOpsButtonDanger:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .tagPillEditing input:hover {
     background-color: var(--monochrome-13);
     border-color: var(--monochrome-11);
@@ -291,6 +433,12 @@
     font-size: var(--font-size-caption);
     color: var(--monochrome-6);
     margin: 6px 0 24px;
+}
+
+.infoText {
+    font-size: var(--font-size-body);
+    color: var(--monochrome-7);
+    margin: 8px 0 0;
 }
 
 .assignmentSection {

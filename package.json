@@ -1,6 +1,6 @@
 {
   "name": "journal",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 2048 --hostname 127.0.0.1",
@@ -26,7 +26,7 @@
     "react-select": "^5.10.2"
   },
   "devDependencies": {
-    "eslint": "^10.3.0",
+    "eslint": "^10.4.0",
     "eslint-config-next": "16.2.6"
   },
   "overrides": {

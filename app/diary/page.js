@@ -15,11 +15,13 @@ function parseJournal(journal, moodSentences = [], key) {
     
     let content = journal.content;
     let quotedContent = journal.quoted_content;
+    let quotedFollowUpContent = journal.quoted_follow_up_content;
     let followUpContent = journal.follow_up_content || '';
 
     if (key) {
         content = decrypt(content, key);
         if (quotedContent) quotedContent = decrypt(quotedContent, key);
+        if (quotedFollowUpContent) quotedFollowUpContent = decrypt(quotedFollowUpContent, key);
         if (followUpContent) {
             // followUpContent is a GROUP_CONCAT with space separator.
             // Split by space, decrypt each (which also handles unencrypted fallback seamlessly), and rejoin.
@@ -28,6 +30,14 @@ function parseJournal(journal, moodSentences = [], key) {
     }
 
     const quotedJournal = journal.quoted_id ? { id: journal.quoted_id, content: quotedContent, createdAt: journal.quoted_createdAt } : null;
+    const quotedFollowUp = journal.quoted_follow_up_id
+        ? {
+            id: journal.quoted_follow_up_id,
+            journalId: journal.quoted_follow_up_journal_id,
+            content: quotedFollowUpContent,
+            createdAt: journal.quoted_follow_up_createdAt
+        }
+        : null;
 
     const sentence = moodSentences.find(s => s.id === journal.mood_sentence_id);
 
@@ -39,6 +49,7 @@ function parseJournal(journal, moodSentences = [], key) {
         isBookmarked: journal.isBookmarked,
         tags: tagsArray,
         quotedJournal: quotedJournal,
+        quotedFollowUp: quotedFollowUp,
         follow_up_content: followUpContent,
         followUpCount: journal.follow_up_count || 0,
         quoteCount: journal.quote_count || 0,

@@ -105,7 +105,11 @@ function legacyToHtml(text) {
     
     let html = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     
-    // Process timestamps - convert [timestamp] to div without adding newlines
+    // Process ### timestamps (new format) - convert to timestamp divs
+    html = html.replace(/^###\s+(.+)$/gm, (_, inner) =>
+        `<div class="${styles.timestampHeading} ts-heading" data-ts="1" contenteditable="false">${inner}</div>`
+    );
+    // Process [timestamps] (legacy format) - still supported for existing letters
     html = html.replace(/\[([^\]]+)\]/g, (_, inner) =>
         `<div class="${styles.timestampHeading} ts-heading" data-ts="1" contenteditable="false">${inner}</div>`
     );
@@ -154,7 +158,7 @@ function htmlToMarkdown(html) {
         if (tag === 'div' || tag === 'p') {
             if (node.dataset.ts === '1') {
                 // Blank line before, single line break after (normalized later).
-                return `\n\n[${node.textContent.trim()}]\n`;
+                return `\n\n### ${node.textContent.trim()}\n`;
             }
             const trimmedInner = inner.replace(/\n+$/g, '');
             return trimmedInner ? `${trimmedInner}\n` : '\n';

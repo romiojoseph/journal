@@ -53,8 +53,8 @@ export const ModalProvider = ({ children }) => {
                 { label: 'Cancel', onClick: hideModal, variant: 'default' },
                 {
                     label: confirmLabel, onClick: () => {
-                        onConfirm();
                         hideModal();
+                        onConfirm();
                     }, variant: 'danger'
                 }
             ]

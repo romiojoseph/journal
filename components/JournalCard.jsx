@@ -6,6 +6,7 @@ import Link from 'next/link';
 import styles from '../styles/JournalCard.module.css';
 import FormattedDate from './FormattedDate';
 import QuotedJournalPreview from './QuotedJournalPreview';
+import QuotedFollowUpPreview from './QuotedFollowUpPreview';
 import { getMoodColor } from '../lib/mood-utils';
 import {
     AsteriskIcon, PersonSimpleBikeIcon, Users, MapTrifoldIcon,
@@ -311,6 +312,7 @@ export default function JournalCard({ journal, moodData }) {
             )}
 
             <QuotedJournalPreview journal={journal.quotedJournal} />
+            <QuotedFollowUpPreview followUp={journal.quotedFollowUp} />
 
             <div className={styles.footer}>
                 <div className={styles.footerRow}>

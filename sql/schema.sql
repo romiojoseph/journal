@@ -10,7 +10,9 @@ CREATE TABLE IF NOT EXISTS journals (
     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     isBookmarked BOOLEAN DEFAULT 0,
     quoted_journal_id TEXT,
-    FOREIGN KEY (quoted_journal_id) REFERENCES journals (id) ON DELETE SET NULL
+    quoted_follow_up_id INTEGER,
+    FOREIGN KEY (quoted_journal_id) REFERENCES journals (id) ON DELETE SET NULL,
+    FOREIGN KEY (quoted_follow_up_id) REFERENCES follow_ups (id) ON DELETE SET NULL
 );
 
 -- Table for all tags (moods, activities, etc.)
