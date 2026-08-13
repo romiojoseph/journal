@@ -42,24 +42,25 @@ function Toast({ title, message, type, duration, onClose }) {
     const [progress, setProgress] = useState(100);
     const onCloseRef = useRef(onClose);
     onCloseRef.current = onClose;
-    
+
     useEffect(() => {
         const startTime = Date.now();
-        const endTime = startTime + duration;
-        
-        const interval = setInterval(() => {
-            const now = Date.now();
-            const remaining = Math.max(0, endTime - now);
+
+        function tick() {
+            const elapsed = Date.now() - startTime;
+            const remaining = Math.max(0, duration - elapsed);
             const percent = (remaining / duration) * 100;
             setProgress(percent);
-            
-            if (remaining <= 0) {
-                clearInterval(interval);
-                onCloseRef.current();
-            }
-        }, 10);
 
-        return () => clearInterval(interval);
+            if (remaining <= 0) {
+                onCloseRef.current();
+                return;
+            }
+            requestAnimationFrame(tick);
+        }
+
+        const rafId = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(rafId);
     }, [duration]);
 
     const icons = {

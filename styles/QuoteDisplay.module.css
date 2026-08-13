@@ -46,10 +46,3 @@
     font-weight: 500;
     letter-spacing: 0.5px;
 }
-
-.loader {
-    padding: 40px;
-    color: var(--monochrome-9);
-    text-align: center;
-    font-style: italic;
-}

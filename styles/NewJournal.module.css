@@ -186,6 +186,13 @@
     width: 100%;
 }
 
+.noResultsMessage {
+    text-align: center;
+    color: var(--monochrome-7);
+    font-size: var(--font-size-body);
+    padding: 24px 16px;
+}
+
 .accordionItem {
     border: 1px solid var(--monochrome-11);
     border-radius: 16px;

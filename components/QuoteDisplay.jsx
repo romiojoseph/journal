@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Quotes } from '@phosphor-icons/react';
 import styles from '../styles/QuoteDisplay.module.css';
+import LoadingSpinner from './LoadingSpinner';
 
 export default function QuoteDisplay({ mood }) {
     const [quote, setQuote] = useState(null);
@@ -26,7 +27,7 @@ export default function QuoteDisplay({ mood }) {
         fetchQuote();
     }, [mood]);
 
-    if (isLoading) return <div className={styles.loader}>...</div>;
+    if (isLoading) return <LoadingSpinner message="Loading quote..." />;
     if (!quote) return null;
 
     return (

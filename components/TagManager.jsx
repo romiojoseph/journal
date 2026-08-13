@@ -5,6 +5,7 @@ import { Plus, Trash, PencilSimple, FloppyDisk, AsteriskIcon, PersonSimpleBikeIc
 import { useModal } from '../context/ModalContext';
 import { useToast } from '../context/ToastContext';
 import styles from '../styles/TagManager.module.css';
+import LoadingSpinner from './LoadingSpinner';
 
 function EditableTag({ tag, onUpdate, onDelete }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -157,6 +158,17 @@ export default function TagManager() {
 
     const handleTagUpdate = async (category, oldTag, newTag) => {
         if (!newTag.trim() || oldTag === newTag) return;
+        const lowerNew = newTag.trim().toLowerCase();
+        if (category === 'moods') {
+            const mood = allTags.moods.find(m => m.tags.some(t => t.toLowerCase() === lowerNew && t !== oldTag));
+            if (mood) {
+                showToast({ title: 'Invalid Tag', message: `Tag "${newTag}" already exists in mood "${mood.name}".`, type: 'warning' });
+                return;
+            }
+        } else if (allTags[category]?.some(t => t.toLowerCase() === lowerNew && t !== oldTag)) {
+            showToast({ title: 'Invalid Tag', message: `Tag "${newTag}" already exists in ${category}.`, type: 'warning' });
+            return;
+        }
         const success = await runTagOp({ op: 'rename', category, oldName: oldTag, newName: newTag });
         if (success) {
             showToast({ title: 'Updated', message: `Tag renamed to "${newTag}".`, type: 'success' });
@@ -171,13 +183,14 @@ export default function TagManager() {
             return;
         }
 
+        const lowerNew = newTag.toLowerCase();
         if (category === 'moods' && parentName) {
             const mood = allTags.moods.find(m => m.name === parentName);
-            if (mood?.tags.includes(newTag)) {
+            if (mood?.tags.some(t => t.toLowerCase() === lowerNew)) {
                 showToast({ title: 'Invalid Tag', message: 'Tag already exists in this mood.', type: 'warning' });
                 return;
             }
-        } else if (allTags[category] && allTags[category].includes(newTag)) {
+        } else if (allTags[category]?.some(t => t.toLowerCase() === lowerNew)) {
             showToast({ title: 'Invalid Tag', message: 'Tag already exists in this category.', type: 'warning' });
             return;
         }
@@ -418,7 +431,7 @@ Data to process:`;
         });
     };
 
-    if (isLoading) return <p>Loading tags...</p>;
+    if (isLoading) return <LoadingSpinner message="Loading tags..." />;
 
     return (
         <div className={styles.manager}>

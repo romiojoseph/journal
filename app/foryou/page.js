@@ -13,6 +13,7 @@ import ConnectorsBarChart from '../../components/ConnectorsBarChart';
 import { formatDate } from '../../lib/time-utils';
 import MoodStackedBarChart from '../../components/MoodStackedBarChart';
 import MoodConnectionsChart from '../../components/MoodConnectionsChart';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 export default function ForYouPage() {
     const [stats, setStats] = useState(null);
@@ -43,7 +44,7 @@ export default function ForYouPage() {
         fetchStats();
     }, []);
 
-    if (isLoading) return <div>Loading your stats...</div>;
+    if (isLoading) return <LoadingSpinner message="Loading your stats..." fullPage />;
     if (error) return <div>{error}</div>;
     if (!stats || stats.isEmpty) return <div className={styles.emptyMessage}>No entries yet. Start writing whenever you feel ready, and insights will appear here once there&apos;s enough to process.</div>;
 

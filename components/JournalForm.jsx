@@ -295,7 +295,10 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
     }, [availableTags, searchQuery]);
 
     // Open all accordions when searching, close all when cleared
+    const prevSearchQueryRef = useRef(searchQuery);
     useEffect(() => {
+        const prevQuery = prevSearchQueryRef.current;
+        prevSearchQueryRef.current = searchQuery;
         if (searchQuery.trim()) {
             setOpenAccordions(['moods', 'activities', 'people', 'places']);
             const moodWithResults = filteredTags.moods.find(m => m.tags.length > 0);
@@ -305,7 +308,7 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
                     setActiveMoodTab(moodWithResults.name);
                 }
             }
-        } else {
+        } else if (prevQuery.trim()) {
             setOpenAccordions([]);
         }
     }, [searchQuery, filteredTags, activeMoodTab]);
@@ -413,7 +416,10 @@ export default function JournalForm({ initialData = null, quotedJournal: initial
                     </div>
 
                     <div className={styles.tagSections}>
-                        {(searchQuery === '' || filteredTags.moods.length > 0) && (
+                        {searchQuery && filteredTags.moods.every(m => m.tags.length === 0) && filteredTags.activities.length === 0 && filteredTags.people.length === 0 && filteredTags.places.length === 0 && (
+                            <div className={styles.noResultsMessage}>No items match your search</div>
+                        )}
+                        {(searchQuery === '' || filteredTags.moods.some(m => m.tags.length > 0)) && (
                             <div className={styles.accordionItem}>
                                 <button type="button" className={styles.accordionHeader} onClick={() => setOpenAccordions(prev => prev.includes('moods') ? prev.filter(a => a !== 'moods') : [...prev, 'moods'])}>
                                     <div className={styles.headerLeft}>

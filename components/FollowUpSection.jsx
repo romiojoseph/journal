@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useModal } from '../context/ModalContext';
 import styles from '../styles/FollowUp.module.css';
 import FormattedDate from './FormattedDate';
+import LoadingSpinner from './LoadingSpinner';
 import FireAnimationOverlay from './FireAnimationOverlay';
 
 const copyToClipboard = (text, showAlert) => {
@@ -197,9 +198,7 @@ export default function FollowUpSection({ journalId }) {
         }
     };
 
-    if (isLoading) {
-        return <p>Loading follow-ups...</p>;
-    }
+    if (isLoading) return <LoadingSpinner message="Loading follow-ups..." />;
 
     return (
         <>
